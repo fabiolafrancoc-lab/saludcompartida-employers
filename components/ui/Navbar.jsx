@@ -1,18 +1,12 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-
-const NAV_LINKS = [
-  { label: 'Cómo funciona', href: '#como' },
-  { label: 'Beneficios',    href: '#beneficios' },
-  { label: 'Modalidades',   href: '#modalidades' },
-  { label: 'Quiénes somos', href: '#nosotros' },
-  { label: 'FAQ',           href: '#faq' },
-]
+import { useLang } from '@/contexts/LanguageContext'
+import { translations as T, t } from '@/lib/translations'
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
+  const { lang, setLang } = useLang()
+  const nav = T.nav
 
   return (
     <nav style={{
@@ -44,14 +38,20 @@ export default function Navbar() {
               SaludCompartida
             </div>
             <div style={{ fontSize: 10, color: 'var(--clarity)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-              For Employers
+              {t(nav.tagline, lang)}
             </div>
           </div>
         </Link>
 
-        {/* Desktop nav */}
+        {/* Nav links */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
-          {NAV_LINKS.map(({ label, href }) => (
+          {[
+            [t(nav.links.how,      lang), '#como'],
+            [t(nav.links.benefits, lang), '#beneficios'],
+            [t(nav.links.plans,    lang), '#modalidades'],
+            [t(nav.links.about,    lang), '#nosotros'],
+            [t(nav.links.faq,      lang), '#faq'],
+          ].map(([label, href]) => (
             <a
               key={href}
               href={href}
@@ -64,14 +64,46 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* CTA */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        {/* Right side: lang toggle + CTA */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+
+          {/* Language toggle */}
+          <div style={{
+            display: 'flex', alignItems: 'center',
+            background: 'var(--surface)',
+            border: '1px solid var(--border)',
+            borderRadius: 8,
+            overflow: 'hidden',
+          }}>
+            {['es', 'en'].map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                style={{
+                  padding: '6px 12px',
+                  fontSize: 12,
+                  fontWeight: 600,
+                  border: 'none',
+                  cursor: 'pointer',
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  transition: 'background .15s, color .15s',
+                  background: lang === l ? 'var(--trust)' : 'transparent',
+                  color: lang === l ? 'white' : 'var(--muted)',
+                }}
+              >
+                {l === 'es' ? 'ES' : 'EN'}
+              </button>
+            ))}
+          </div>
+
           <Link
             href="/login"
             style={{ fontSize: 14, color: 'var(--body)', fontWeight: 500 }}
           >
-            Iniciar sesión
+            {t(nav.login, lang)}
           </Link>
+
           <Link
             href="/dashboard"
             style={{
@@ -89,7 +121,7 @@ export default function Navbar() {
             onMouseEnter={e => e.currentTarget.style.background = 'var(--clarity)'}
             onMouseLeave={e => e.currentTarget.style.background = 'var(--trust)'}
           >
-            Acceder al Portal
+            {t(nav.cta, lang)}
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
