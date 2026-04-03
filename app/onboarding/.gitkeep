@@ -1,1 +1,17 @@
-# PEO onboarding and enrollment models documented — see Supabase migrations
+# PEO Onboarding Portal
+# Two enrollment models supported:
+#
+# Model A — API integration (preferred)
+# PEO connects their HR system (PrismHR, Rippling, ADP) to saludcompartida.ai API.
+# API key generated on onboarding completion.
+# Real-time enrollment, zero manual work.
+# Target: G&A Partners and PEOs with PrismHR/Rippling.
+#
+# Model B — CSV upload
+# PEO uploads employee file from saludcompartida.ai portal.
+# Processed in bulk, errors logged to enrollment_uploads table.
+# Frequency: weekly or during open enrollment periods.
+# Target: smaller PEOs without API-capable HR systems.
+#
+# Model C (manual, one-by-one) — NOT supported.
+# Too operationally expensive at this stage.
