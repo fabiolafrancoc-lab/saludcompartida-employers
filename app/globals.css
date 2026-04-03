@@ -1,26 +1,37 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+/*
+  COLORES BASADOS EN NEUROCIENCIA
+  Azul profundo (#1B4F72)  → Confianza institucional. Reduce amígdala. Activa corteza prefrontal.
+  Cyan (#06B6D4)           → Claridad, salud. Reduce cortisol. Sensación de apertura.
+  Verde (#059669)          → Seguridad, crecimiento. Sistema parasimpático (calma y bienestar).
+  Magenta (#EC4899)        → Activación emocional sin amenaza. Libera dopamina. Ideal para CTAs.
+  Blanco + grises claros   → Claridad cognitiva. El cerebro procesa más rápido con espacio.
+*/
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --trust:         #1B4F72;
+  --trust-light:   #D6EAF8;
+  --clarity:       #06B6D4;
+  --clarity-light: #CFFAFE;
+  --growth:        #059669;
+  --growth-light:  #D1FAE5;
+  --action:        #EC4899;
+  --action-light:  #FCE7F3;
+  --ink:           #0F172A;
+  --body:          #334155;
+  --muted:         #64748B;
+  --border:        #E2E8F0;
+  --surface:       #F8FAFC;
+  --white:         #FFFFFF;
+  --font-display:  'DM Serif Display', Georgia, serif;
+  --font-body:     'Plus Jakarta Sans', -apple-system, sans-serif;
+  --max-w:         1200px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html  { scroll-behavior: smooth; }
+body  { font-family: var(--font-body); background: var(--white); color: var(--body); -webkit-font-smoothing: antialiased; line-height: 1.6; }
+h1,h2,h3,h4 { font-family: var(--font-display); color: var(--ink); line-height: 1.15; }
+p     { line-height: 1.75; }
+a     { text-decoration: none; }
