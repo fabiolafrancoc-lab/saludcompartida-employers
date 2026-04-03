@@ -34,3 +34,19 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+---
+
+## Payment models
+
+Each `group_policy` has a `payment_model` that determines how the benefit is funded:
+
+| Model | Who pays | Use case |
+|---|---|---|
+| `company_100` | Employer covers 100% | Premium benefit — most attractive for employees |
+| `split` | Employer X%, employee Y% via payroll deduction | Common in mid-size companies (e.g. 80/20) |
+| `employee_100` | Employee pays 100% via payroll deduction | Voluntary benefit — no employer subsidy |
+
+The `company_pct` + `employee_pct` columns always sum to 100%.
+Invoice to PEO = `company_invoice_amount` only.
+Payroll deduction = `employee_payroll_deduction` (PEO handles this internally).
