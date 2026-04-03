@@ -1,9 +1,12 @@
+export const dynamic = 'force-dynamic'
+
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+function getResend() { return new Resend(process.env.RESEND_API_KEY) }
+
 
 export async function POST(request: NextRequest) {
   const cookieStore = await cookies()
@@ -55,7 +58,7 @@ export async function POST(request: NextRequest) {
   }
 
   // Notify support team
-  await resend.emails.send({
+  await getResend().emails.send({
     from: 'SaludCompartida Support <support@saludcompartida.ai>',
     to: 'soporte@saludcompartida.com',
     subject: `[${ticket.ticket_number}] ${category.toUpperCase()} — ${subject}`,
@@ -72,7 +75,7 @@ export async function POST(request: NextRequest) {
 
   // Auto-reply to reporter
   if (reporter_email) {
-    await resend.emails.send({
+    await getResend().emails.send({
       from: 'SaludCompartida <support@saludcompartida.ai>',
       to: reporter_email,
       subject: `Support request received — ${ticket.ticket_number}`,

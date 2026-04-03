@@ -1,5 +1,24 @@
+export const dynamic = 'force-dynamic'
+
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin } from '@/lib/supabase'
+
+type BillingRow = {
+  policy_id: string
+  policy_code: string
+  employer_name: string
+  payment_model: string
+  company_pct: number
+  employee_pct: number
+  peo_code: string
+  peo_name: string
+  commission_rate: number
+  active_employees: number
+  total_plan_value: number
+  company_invoice_amount: number
+  employee_payroll_deduction: number
+  peo_commission: number
+}
 
 // Se ejecuta el día 1 de cada mes vía Vercel Cron
 // Vercel Cron config en vercel.json:
@@ -27,9 +46,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'No billing data' }, { status: 500 })
   }
 
+  const rows = billingRows as BillingRow[]
+
   // 2. Agrupar por PEO — un invoice por PEO
-  const byPeo: Record<string, typeof billingRows> = {}
-  for (const row of billingRows) {
+  const byPeo: Record<string, BillingRow[]> = {}
+  for (const row of rows) {
     if (!byPeo[row.peo_code]) byPeo[row.peo_code] = []
     byPeo[row.peo_code].push(row)
   }

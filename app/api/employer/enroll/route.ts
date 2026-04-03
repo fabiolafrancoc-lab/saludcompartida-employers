@@ -1,8 +1,11 @@
+export const dynamic = 'force-dynamic'
+
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin, validateApiKey } from '@/lib/supabase'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+function getResend() { return new Resend(process.env.RESEND_API_KEY) }
+
 
 interface EnrollPayload {
   peo_code: string
@@ -97,7 +100,7 @@ export async function POST(request: NextRequest) {
     })
   }
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from: 'SaludCompartida <noreply@saludcompartida.com>',
     to: body.email,
     subject: `Your family benefit is active — ID: ${cert.sc_employee_id}`,

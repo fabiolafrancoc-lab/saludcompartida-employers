@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { NextRequest, NextResponse } from 'next/server'
 import { supabaseAdmin, validateApiKey } from '@/lib/supabase'
 import type { TerminationPayload, ApiResponse } from '@/types/employer'
