@@ -2,112 +2,165 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useLang } from '@/contexts/LanguageContext'
-import { IconTelemedicina, IconFarmacia, IconTerapia, IconLupita } from '@/components/icons/SCIcons'
 
+// Rotating employee fears — the ONLY dynamic content needed
+// The image tells the benefit story. The text tells the human cost.
 const FEARS = {
   es: [
-    '"¿Tendrá mamá para su medicina este mes?"',
-    '"¿Y si papá necesita al médico y no tengo el dinero?"',
-    '"¿Y si mi hija se enferma y no hay nada en la remesa?"',
+    { quote: '"¿Tendrá mamá para su medicina este mes?"', who: 'Carlos · Construcción · Houston' },
+    { quote: '"Si mi hija se enferma no sé cómo pagar el médico."', who: 'Miguel · Manufactura · Dallas' },
+    { quote: '"Mi esposa lleva la casa sola y yo no puedo hacer nada desde aquí."', who: 'Javier · Agricultura · California' },
+    { quote: '"Papá tiene diabetes y cada mes es una sorpresa cuánto va a costar."', who: 'Rosa · Limpieza · Chicago' },
+    { quote: '"Mi mamá vive sola. Le da miedo enfermar y quedarse sin ayuda."', who: 'Andrés · Restaurante · Miami' },
   ],
   en: [
-    '"Will mom have enough for her medicine this month?"',
-    '"What if dad needs a doctor and I don\'t have the money?"',
-    '"What if my daughter gets sick and there\'s nothing left?"',
+    { quote: '"Will mom have enough for her medicine this month?"', who: 'Carlos · Construction · Houston' },
+    { quote: '"If my daughter gets sick I don\'t know how to pay for the doctor."', who: 'Miguel · Manufacturing · Dallas' },
+    { quote: '"My wife runs the household alone and I can\'t do anything from here."', who: 'Javier · Agriculture · California' },
+    { quote: '"Dad has diabetes and every month is a surprise how much it\'ll cost."', who: 'Rosa · Cleaning · Chicago' },
+    { quote: '"My mom lives alone. She\'s afraid of getting sick with no one to help."', who: 'Andrés · Restaurant · Miami' },
   ]
 }
-
-const SERVICES = [
-  { Icon: IconTelemedicina, color: '#0891B2', bg: '#E0F7FA', es: 'Médico 24/7', en: 'Doctor 24/7' },
-  { Icon: IconFarmacia,     color: '#D97706', bg: '#FFFBEB', es: 'Farmacia',    en: 'Pharmacy' },
-  { Icon: IconTerapia,      color: '#7C3AED', bg: '#EDE9FE', es: 'Terapia',     en: 'Therapy' },
-  { Icon: IconLupita,       color: '#006847', bg: '#ECFDF5', es: 'Lupita AI',   en: 'Lupita AI' },
-]
 
 export default function Hero() {
   const { lang } = useLang()
   const es = lang === 'es'
-  const [fearIdx, setFearIdx] = useState(0)
-  const [imgLoaded, setImgLoaded] = useState(false)
+  const [idx, setIdx] = useState(0)
+  const fears = FEARS[lang]
 
   useEffect(() => {
-    const i = setInterval(() => setFearIdx(p => (p + 1) % 3), 3600)
-    return () => clearInterval(i)
-  }, [])
+    const t = setInterval(() => setIdx(p => (p + 1) % fears.length), 4000)
+    return () => clearInterval(t)
+  }, [lang])
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '44% 56%', minHeight: 'calc(100vh - 56px)', animation: 'fadeUp .4s ease' }}>
+    <div style={{
+      position: 'relative',
+      minHeight: 'calc(100vh - 56px)',
+      display: 'flex',
+      overflow: 'hidden',
+    }}>
 
-      {/* ── LEFT PANEL — Content ── */}
+      {/* ── FULL BACKGROUND: niña pintada ── */}
+      <img
+        src="/nina-pintada.jpg"
+        alt=""
+        style={{
+          position: 'absolute', inset: 0,
+          width: '100%', height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'right center',
+        }}
+      />
+
+      {/* Gradient: left dark (readable) → right transparent (girl visible) */}
       <div style={{
-        background: 'var(--ink)',
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(100deg, rgba(10,15,30,0.95) 0%, rgba(10,15,30,0.88) 30%, rgba(10,15,30,0.55) 55%, rgba(10,15,30,0.1) 72%, transparent 85%)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* ── LEFT CONTENT — sits over the cyan area of the image ── */}
+      <div style={{
+        position: 'relative', zIndex: 2,
+        width: '48%', minWidth: 480,
         display: 'flex', flexDirection: 'column',
         justifyContent: 'center',
-        padding: '64px 52px',
-        position: 'relative',
-        overflow: 'hidden',
+        padding: '64px 56px 64px 52px',
       }}>
-        {/* Subtle green accent top-left */}
-        <div style={{ position: 'absolute', top: 0, left: 0, width: 4, height: '100%', background: 'linear-gradient(180deg, #006847 0%, #0891B2 100%)' }} />
 
-        {/* Eyebrow */}
-        <div style={{ display: 'flex', gap: 6, marginBottom: 28, flexWrap: 'wrap' }}>
-          {['PEO', es ? 'RRHH' : 'HR', 'Risk Manager'].map(l => (
-            <span key={l} style={{ fontSize: 10, fontWeight: 700, color: '#0891B2', background: 'rgba(8,145,178,0.12)', padding: '3px 10px', borderRadius: 100, letterSpacing: '0.06em' }}>
-              {l}
-            </span>
+        {/* Thin cyan/green vertical accent */}
+        <div style={{
+          position: 'absolute', left: 0, top: '10%', bottom: '10%', width: 3,
+          background: 'linear-gradient(180deg, transparent, #0891B2 20%, #006847 80%, transparent)',
+          borderRadius: 2,
+        }} />
+
+        {/* Audience tags */}
+        <div style={{ display: 'flex', gap: 6, marginBottom: 28 }}>
+          {['PEO', es ? 'RRHH' : 'HR', 'Risk Manager', 'CFO'].map(l => (
+            <span key={l} style={{
+              fontSize: 9, fontWeight: 700, letterSpacing: '0.08em',
+              color: '#0891B2', background: 'rgba(8,145,178,0.14)',
+              padding: '3px 9px', borderRadius: 100,
+            }}>{l}</span>
           ))}
         </div>
 
-        {/* Headline */}
-        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 44, lineHeight: 1.1, color: 'white', marginBottom: 24, fontWeight: 400 }}>
+        {/* Main headline */}
+        <h1 style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: 46, lineHeight: 1.1,
+          color: 'white', fontWeight: 400,
+          marginBottom: 16,
+        }}>
           {es
             ? <>Tu empleado trabaja mejor<br />cuando sabe que<br /><span style={{ color: '#0891B2', fontStyle: 'italic' }}>su familia está protegida</span></>
             : <>Your employee performs better<br />when they know<br /><span style={{ color: '#0891B2', fontStyle: 'italic' }}>their family is protected</span></>
           }
         </h1>
 
-        {/* Rotating fear */}
+        <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.65)', marginBottom: 36, lineHeight: 1.7, maxWidth: 420 }}>
+          {es
+            ? 'El 78% de tu fuerza laboral latina manda remesas a México cada mes. Mientras trabajan, piensan en esto:'
+            : '78% of your Latino workforce sends remittances to Mexico every month. While they work, they\'re thinking about this:'
+          }
+        </p>
+
+        {/* ── ROTATING FEAR QUOTE CARD — the only dynamic element ── */}
         <div style={{
+          background: 'rgba(255,255,255,0.06)',
+          backdropFilter: 'blur(16px)',
+          border: '1px solid rgba(255,255,255,0.12)',
           borderLeft: '3px solid #D97706',
-          paddingLeft: 16, marginBottom: 32,
-          minHeight: 52,
+          borderRadius: '0 12px 12px 0',
+          padding: '22px 24px',
+          marginBottom: 36,
+          minHeight: 90,
+          transition: 'all .3s ease',
         }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: '#D97706', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
-            {es ? 'Lo que piensa tu empleado hoy' : 'What your employee thinks today'}
-          </div>
-          <p key={fearIdx} style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', fontStyle: 'italic', lineHeight: 1.5, animation: 'fadeUp .3s ease' }}>
-            {FEARS[lang][fearIdx]}
+          <p key={idx} style={{
+            fontSize: 17, fontStyle: 'italic',
+            color: 'rgba(255,255,255,0.92)',
+            lineHeight: 1.6, marginBottom: 10,
+            animation: 'fadeUp .35s ease',
+          }}>
+            {fears[idx].quote}
           </p>
-        </div>
-
-        {/* 4 service pills */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 36 }}>
-          {SERVICES.map(({ Icon, color, bg, es: esLabel, en: enLabel }) => (
-            <div key={esLabel} style={{
-              display: 'flex', alignItems: 'center', gap: 8,
-              background: 'rgba(255,255,255,0.05)',
-              borderRadius: 8, padding: '10px 12px',
-              border: '1px solid rgba(255,255,255,0.08)',
-            }}>
-              <div style={{ width: 28, height: 28, borderRadius: 7, background: `${color}20`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <Icon size={15} color={color} strokeWidth={1.6} />
-              </div>
-              <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>
-                {es ? esLabel : enLabel}
-              </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            {/* Dot indicators */}
+            <div style={{ display: 'flex', gap: 4 }}>
+              {fears.map((_, i) => (
+                <div key={i} onClick={() => setIdx(i)} style={{
+                  width: i === idx ? 16 : 5, height: 5, borderRadius: 3,
+                  background: i === idx ? '#D97706' : 'rgba(255,255,255,0.2)',
+                  cursor: 'pointer', transition: 'all .25s',
+                }} />
+              ))}
             </div>
-          ))}
+            <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginLeft: 4 }}>
+              {fears[idx].who}
+            </span>
+          </div>
         </div>
 
-        {/* NOT insurance */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 32, padding: '10px 14px', background: 'rgba(255,255,255,0.04)', borderRadius: 8, border: '1px solid rgba(255,255,255,0.08)' }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0891B2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+        {/* NOT insurance — compact */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 8,
+          marginBottom: 28,
+          padding: '8px 12px',
+          background: 'rgba(8,145,178,0.1)',
+          border: '1px solid rgba(8,145,178,0.2)',
+          borderRadius: 8,
+        }}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0891B2" strokeWidth="2.5" strokeLinecap="round">
             <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
           </svg>
-          <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.55)', lineHeight: 1.4 }}>
-            <strong style={{ color: 'white' }}>{es ? 'NO es un seguro médico' : 'NOT health insurance'}</strong>
-            {es ? ' — sin deducibles, sin copagos, sin trámites' : ' — no deductibles, no copays, no claims'}
+          <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)' }}>
+            <strong style={{ color: 'white', fontWeight: 600 }}>
+              {es ? 'NO es un seguro médico' : 'NOT health insurance'}
+            </strong>
+            {es ? ' · sin deducibles · sin copagos · activa en 30 segundos' : ' · no deductibles · no copays · activates in 30 seconds'}
           </span>
         </div>
 
@@ -115,92 +168,51 @@ export default function Hero() {
         <div style={{ display: 'flex', gap: 10 }}>
           <Link href="/dashboard" style={{
             background: '#006847', color: 'white',
-            padding: '13px 28px', borderRadius: 8,
-            fontSize: 14, fontWeight: 600,
+            padding: '13px 32px', borderRadius: 8,
+            fontSize: 14, fontWeight: 700,
             display: 'inline-flex', alignItems: 'center', gap: 8,
+            letterSpacing: '0.02em',
           }}>
             {es ? 'Acceder al Portal' : 'Access Portal'}
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </Link>
-          <a style={{ background: 'transparent', color: 'rgba(255,255,255,0.6)', padding: '13px 20px', borderRadius: 8, fontSize: 13, fontWeight: 500, border: '1px solid rgba(255,255,255,0.12)', cursor: 'pointer' }}>
+          <a style={{
+            background: 'rgba(255,255,255,0.08)',
+            backdropFilter: 'blur(8px)',
+            color: 'rgba(255,255,255,0.75)',
+            padding: '13px 22px', borderRadius: 8,
+            fontSize: 13, fontWeight: 500,
+            border: '1px solid rgba(255,255,255,0.12)',
+            cursor: 'pointer',
+          }}>
             {es ? 'Ver cómo funciona' : 'See how it works'}
           </a>
         </div>
 
-        {/* Bottom: loss aversion */}
-        <div style={{ marginTop: 28, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-          <span style={{ fontSize: 12, color: 'rgba(220,38,38,0.85)' }}>
-            {es
-              ? 'Reemplazar un empleado cuesta $3,000–$8,000. SaludCompartida: $18/mes.'
-              : 'Replacing an employee costs $3,000–$8,000. SaludCompartida: $18/month.'
-            }
-          </span>
+        {/* Bottom stat strip */}
+        <div style={{ display: 'flex', gap: 28, marginTop: 36, paddingTop: 28, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+          {[
+            { n: '$18', sub: es ? '/ mes por empleado' : '/ month per employee' },
+            { n: '4', sub: es ? 'servicios para la familia' : 'family services' },
+            { n: '30s', sub: es ? 'para activar el beneficio' : 'to activate the benefit' },
+          ].map(({ n, sub }) => (
+            <div key={n}>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: 26, color: 'white', lineHeight: 1 }}>{n}</div>
+              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', marginTop: 3 }}>{sub}</div>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* ── RIGHT PANEL — Imagen niña pintada ── */}
-      <div style={{ position: 'relative', overflow: 'hidden', background: '#0C1A2E' }}>
-        {/* Photo — niña pintada */}
-        <img
-          src="/nina-pintada.jpg"
-          alt="Niña pintada — SaludCompartida"
-          onLoad={() => setImgLoaded(true)}
-          onError={e => { e.target.style.display = 'none' }}
-          style={{
-            position: 'absolute', inset: 0,
-            width: '100%', height: '100%',
-            objectFit: 'cover', objectPosition: 'center',
-            opacity: imgLoaded ? 1 : 0,
-            transition: 'opacity .6s ease',
-          }}
-        />
-
-        {/* Fallback gradient when image not yet uploaded */}
-        {!imgLoaded && (
-          <div style={{
-            position: 'absolute', inset: 0,
-            background: 'linear-gradient(135deg, #0C4A6E 0%, #0891B2 35%, #06B6D4 55%, #BAE6FD 80%, #F0F9FF 100%)',
-            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          }}>
-            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" style={{ marginBottom: 16, opacity: 0.4 }}>
-              <rect x="8" y="16" width="48" height="36" rx="4" stroke="white" strokeWidth="2"/>
-              <circle cx="24" cy="30" r="6" stroke="white" strokeWidth="2"/>
-              <path d="M8 44l14-10 10 8 8-6 14 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12, textAlign: 'center', maxWidth: 200, lineHeight: 1.5 }}>
-              {es ? 'Sube nina-pintada.jpg a public/' : 'Upload nina-pintada.jpg to public/'}
-            </p>
-          </div>
-        )}
-
-        {/* Subtle left gradient bridge — cyan connects left panel to photo */}
-        <div style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none',
-          background: 'linear-gradient(to right, rgba(8,145,178,0.25) 0%, transparent 30%)',
-        }} />
-
-        {/* Bottom caption */}
-        <div style={{
-          position: 'absolute', bottom: 24, left: 24, right: 24,
-          display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
-        }}>
-          <div style={{ background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(12px)', borderRadius: 10, padding: '10px 14px', maxWidth: 280 }}>
-            <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.9)', lineHeight: 1.5, fontStyle: 'italic', margin: 0 }}>
-              {es
-                ? '"Todo lo que quiero es saber que está bien."'
-                : '"All I want is to know she\'s okay."'
-              }
-            </p>
-            <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)', marginTop: 4, margin: '4px 0 0' }}>
-              {es ? '— Carlos, trabajador de construcción, Houston' : '— Carlos, construction worker, Houston'}
-            </p>
-          </div>
-          <div style={{ background: 'rgba(0,104,71,0.85)', backdropFilter: 'blur(8px)', borderRadius: 8, padding: '8px 14px' }}>
-            <div style={{ fontSize: 18, fontFamily: 'var(--font-display)', color: 'white', lineHeight: 1 }}>$18</div>
-            <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>/ mes</div>
-          </div>
-        </div>
-      </div>
+      {/* Fallback gradient when image missing */}
+      <style>{`
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(6px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </div>
   )
 }
