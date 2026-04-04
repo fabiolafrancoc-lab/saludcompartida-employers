@@ -224,18 +224,7 @@ export default function Benefits() {
               }
             </p>
           </div>
-          {/* NOT insurance pill */}
-          <div style={{ background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.25)', borderRadius: 12, padding: '14px 18px', maxWidth: 280, flexShrink: 0 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: 'white', marginBottom: 6 }}>
-              {es ? '⚠ Esto NO es un seguro médico' : '⚠ This is NOT health insurance'}
-            </div>
-            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>
-              {es
-                ? 'Sin deducibles · Sin copagos · Sin trámites · Sin períodos de espera · Activo en 30 segundos'
-                : 'No deductibles · No copays · No paperwork · No waiting periods · Active in 30 seconds'
-              }
-            </div>
-          </div>
+
         </div>
 
         {/* Service tabs */}
@@ -265,9 +254,9 @@ export default function Benefits() {
           {/* Left: story + specs */}
           <div>
             {/* Badge + headline */}
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: svc.bg, borderRadius: 100, padding: '4px 12px', marginBottom: 16 }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'var(--navy)', borderRadius: 100, padding: '5px 14px', marginBottom: 16 }}>
               {svc.IconComp && <svc.IconComp size={13} color={svc.color} strokeWidth={1.8} />}
-              <span style={{ fontSize: 11, fontWeight: 700, color: svc.color, textTransform: 'uppercase', letterSpacing: '0.07em' }}>{svc.tag}</span>
+              <span style={{ fontSize: 11, fontWeight: 800, color: 'white', textTransform: 'uppercase', letterSpacing: '0.07em' }}>{svc.tag}</span>
             </div>
 
             <h3 style={{ fontSize: 26, color: 'white', marginBottom: 8, lineHeight: 1.2 }}>{svc.headline}</h3>
