@@ -131,7 +131,7 @@ const SERVICES = {
       tag: 'Pharmacy',
       headline: 'Up to 75% off medications',
       subline: '1,700+ pharmacies in Mexico. The remittance goes twice as far.',
-      story: '"Rosa\'s mom takes metformin, losartan and atorvastatin every month. Without SC: $120 USD out of pocket. With SC: $28 USD. Rosa can now send $92 more to her family — or simply breathe."',
+      story: '"Rosa\'s mom takes metformin, losartan and atorvastatin every month. Without SaludCompartida: $120 USD out of pocket. With SaludCompartida: $28 USD. Rosa can now send $92 more to her family — or simply breathe."',
       story_who: '— Real case. Diabetes + hypertension + cholesterol = $120/month in Mexico.',
       specs: [
         { icon: '✓', text: 'Up to 75% discount' },
@@ -350,8 +350,8 @@ export default function Benefits() {
               {svc.id === 'medico' && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                   {(es
-                    ? ['1 noche sin dormir por angustia = día con errores y riesgo de accidente', 'Con SC: médico a las 11pm → empleado tranquilo a las 7am', 'Sin salir del trabajo, sin pedir permiso, sin adelantos de nómina']
-                    : ['1 sleepless night from family worry = error-prone, accident-risk day', 'With SC: doctor at 11pm → employee calm at 7am', 'No leaving work, no asking for time off, no paycheck advances']
+                    ? ['1 noche sin dormir por angustia = día con errores y riesgo de accidente', 'Con SaludCompartida: médico a las 11pm → empleado tranquilo a las 7am', 'Sin salir del trabajo, sin pedir permiso, sin adelantos de nómina']
+                    : ['1 sleepless night from family worry = error-prone, accident-risk day', 'With SaludCompartida: doctor at 11pm → employee calm at 7am', 'No leaving work, no asking for time off, no paycheck advances']
                   ).map((t, i) => (
                     <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
                       <span style={{ color: '#5EEAD4', fontWeight: 800, flexShrink: 0, fontSize: 14 }}>→</span>

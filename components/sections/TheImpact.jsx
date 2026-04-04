@@ -109,13 +109,13 @@ export default function TheImpact() {
 
   const roiData = [50,100,200,500,1000].map(n => ({
     n: n >= 1000 ? '1K' : String(n),
-    [es ? 'Costo SC' : 'SC cost']: n * 18 * 12,
+    [es ? 'Costo SaludCompartida' : 'SaludCompartida cost']: n * 18 * 12,
     [es ? 'Ahorro rotación' : 'Turnover savings']: Math.round(n * 0.25 * 0.15 * 5200),
   }))
 
   const TABS = [
     es ? 'La remesa y la salud'   : 'Remittance & health',
-    es ? 'Costo sin vs con SC'    : 'Cost without vs with SC',
+    es ? 'Costo sin vs con SaludCompartida'    : 'Cost without vs with SaludCompartida',
     es ? 'Tus empleados y la remesa' : 'Your employees & the remittance',
   ]
 
@@ -264,7 +264,7 @@ export default function TheImpact() {
           </div>
         )}
 
-        {/* ── TAB 1: Costo sin vs con SC ── */}
+        {/* ── TAB 1: Costo sin vs con SaludCompartida ── */}
         {tab === 1 && (
           <div key="t1" style={{ animation: 'fadeUp .2s ease' }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16, marginBottom: 28 }}>
@@ -344,7 +344,7 @@ export default function TheImpact() {
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
-              {/* Hoy sin SC */}
+              {/* Hoy sin SaludCompartida */}
               <div style={{ background: NAVY_CARD, borderRadius: 16, padding: 28, border: '1px solid rgba(248,113,113,0.2)' }}>
                 <div style={{ fontSize: 12, fontWeight: 800, color: '#F87171', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 20 }}>
                   {es ? 'Hoy — sin SaludCompartida' : 'Today — without SaludCompartida'}
@@ -352,7 +352,7 @@ export default function TheImpact() {
                 {[
                   { num: Math.round(employees * 0.78), unit: es ? 'empleados envían remesas' : 'employees send remittances', sub: es ? `78% de tus ${employees} empleados` : `78% of your ${employees} employees`, color: '#60A5FA', arrow: true },
                   { num: `$${Math.round(employees * 0.78 * 393 * 0.10).toLocaleString()}`, unit: es ? 'van a salud cada mes' : 'go to healthcare per month', sub: es ? '10% de cada remesa · medicina privada' : '10% of each remittance · private medicine', color: '#FCD34D', arrow: true },
-                  { num: `$${Math.round(employees * 0.78 * 393 * 0.10 * 0.66).toLocaleString()}`, unit: es ? 'en médicos, exámenes y medicamentos' : 'on doctors, exams and medications', sub: es ? '66% del gasto en salud — lo que SC cubre' : '66% of health spend — what SC covers', color: '#F87171', arrow: false },
+                  { num: `$${Math.round(employees * 0.78 * 393 * 0.10 * 0.66).toLocaleString()}`, unit: es ? 'en médicos, exámenes y medicamentos' : 'on doctors, exams and medications', sub: es ? '66% del gasto en salud — lo que SaludCompartida cubre' : '66% of health spend — what SaludCompartida covers', color: '#F87171', arrow: false },
                 ].map(({ num, unit, sub, color, arrow }, i) => (
                   <div key={i}>
                     <div style={{ background: NAVY_INNER, borderRadius: 10, padding: '14px 16px', border: `1px solid ${color}30` }}>
@@ -376,7 +376,7 @@ export default function TheImpact() {
                 </div>
               </div>
 
-              {/* Con SC */}
+              {/* Con SaludCompartida */}
               <div style={{ background: NAVY_CARD, borderRadius: 16, padding: 28, border: '1px solid rgba(52,211,153,0.2)' }}>
                 <div style={{ fontSize: 12, fontWeight: 800, color: '#34D399', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 20 }}>
                   {es ? 'Con SaludCompartida' : 'With SaludCompartida'}

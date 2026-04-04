@@ -37,7 +37,7 @@ const STEP_DETAIL = {
       visual: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
       color: 'var(--emerald)',
       bg: 'var(--emerald-light)',
-      what: 'El empleado recibe un email con su SC Employee ID y un enlace de activación. Con un clic activa la cuenta de su mamá, papá o hijos en México. Ellos reciben un WhatsApp y el beneficio queda activo inmediatamente.',
+      what: 'El empleado recibe un email con su SaludCompartida Employee ID y un enlace de activación. Con un clic activa la cuenta de su mamá, papá o hijos en México. Ellos reciben un WhatsApp y el beneficio queda activo inmediatamente.',
       result: 'La familia accede a médico 24/7, farmacia y terapia desde ese momento.',
       callout: {
         icon: 'M12 18h.01M8 21h8a2 2 0 002-2v-2H6v2a2 2 0 002 2zM10 7L8.5 2H4l2 5H10zm4 0h3.5l2-5h-4.5L14 7zm-4 0v11m4-11v11',
@@ -91,7 +91,7 @@ const STEP_DETAIL = {
       visual: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
       color: 'var(--emerald)',
       bg: 'var(--emerald-light)',
-      what: 'The employee receives an email with their SC Employee ID and an activation link. One click activates their mom\'s, dad\'s, or children\'s account in Mexico. They receive a WhatsApp message and the benefit is active immediately.',
+      what: 'The employee receives an email with their SaludCompartida Employee ID and an activation link. One click activates their mom\'s, dad\'s, or children\'s account in Mexico. They receive a WhatsApp message and the benefit is active immediately.',
       result: 'The family accesses 24/7 doctor, pharmacy, and therapy from that moment.',
       callout: {
         icon: 'M12 18h.01M8 21h8a2 2 0 002-2v-2H6v2a2 2 0 002 2zM10 7L8.5 2H4l2 5H10zm4 0h3.5l2-5h-4.5L14 7zm-4 0v11m4-11v11',

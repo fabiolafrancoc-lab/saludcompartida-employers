@@ -270,7 +270,7 @@ export default function Carlos() {
                       <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 1l6 6M7 1L1 7" stroke="white" strokeWidth="1.3" strokeLinecap="round"/></svg>
                     </div>
                     <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--loss)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
-                      {es ? 'Sin SC' : 'Without SC'}
+                      {es ? 'Sin SaludCompartida' : 'Without SaludCompartida'}
                     </span>
                   </div>
                   <p style={{ fontSize: 13, color: '#7F1D1D', lineHeight: 1.65 }}>{m.before}</p>
@@ -283,7 +283,7 @@ export default function Carlos() {
                       <svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     </div>
                     <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--emerald)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>
-                      {es ? 'Con SC' : 'With SC'}
+                      {es ? 'Con SaludCompartida' : 'With SaludCompartida'}
                     </span>
                   </div>
                   <p style={{ fontSize: 13, color: '#064E3B', lineHeight: 1.65 }}>{m.after}</p>
