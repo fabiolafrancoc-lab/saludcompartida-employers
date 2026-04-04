@@ -28,7 +28,7 @@ export default function FAQ() {
             </p>
 
             {/* CTA block */}
-            <div style={{ background: 'var(--navy)', borderRadius: 14, padding: 28, color: 'white' }}>
+            <div style={{ background: 'var(--navy)', borderRadius: 14, padding: 28, color: 'white' }} className="on-dark">
               <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>
                 {t(f.ctaText, lang)}
               </div>

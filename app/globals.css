@@ -64,3 +64,36 @@ a { text-decoration: none; }
 .on-green { color: white; }
 .on-green h1, .on-green h2, .on-green h3, .on-green h4 { color: white; }
 .on-green p, .on-green span { color: rgba(255,255,255,0.85); }
+
+/* ─── DARK BACKGROUND TEXT RULES ─────────────────────────
+   White bold text on all dark backgrounds.
+   Applied via className="on-green" or className="on-dark"
+──────────────────────────────────────────────────────── */
+
+/* Mexican flag green bg (#006847) */
+.on-green { color: white; }
+.on-green h1, .on-green h2, .on-green h3, .on-green h4 {
+  color: white;
+  font-weight: 700;
+}
+.on-green p {
+  color: rgba(255,255,255,0.92);
+  font-weight: 500;
+}
+.on-green span {
+  color: rgba(255,255,255,0.9);
+}
+
+/* Navy / ink dark bg (#0F3460, #0A0F1E) */
+.on-dark { color: white; }
+.on-dark h1, .on-dark h2, .on-dark h3, .on-dark h4 {
+  color: white;
+  font-weight: 700;
+}
+.on-dark p {
+  color: rgba(255,255,255,0.9);
+  font-weight: 500;
+}
+.on-dark span {
+  color: rgba(255,255,255,0.85);
+}

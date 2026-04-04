@@ -125,7 +125,7 @@ export default function Carlos() {
           {/* Left: Carlos profile + family */}
           <div>
             {/* Profile card */}
-            <div style={{ background: 'var(--navy)', borderRadius: 16, padding: 28, marginBottom: 20, position: 'relative', overflow: 'hidden' }}>
+            <div style={{ background: 'var(--navy)', borderRadius: 16, padding: 28, marginBottom: 20, position: 'relative', overflow: 'hidden', color: 'white' }} className="on-dark">
               {/* Background pattern */}
               <div style={{ position: 'absolute', top: -20, right: -20, width: 120, height: 120, borderRadius: '50%', background: 'rgba(255,255,255,0.04)' }}/>
               <div style={{ position: 'absolute', bottom: -30, right: 20, width: 80, height: 80, borderRadius: '50%', background: 'rgba(255,255,255,0.04)' }}/>

@@ -101,11 +101,11 @@ export default function AboutUs() {
         </div>
 
         {/* Why this matters — the mission */}
-        <div style={{ background: 'var(--navy)', borderRadius: 20, padding: 48, textAlign: 'center' }}>
+        <div style={{ background: 'var(--navy)', borderRadius: 20, padding: 48, textAlign: 'center', color: 'white' }} className="on-dark">
           <h3 style={{ fontSize: 28, color: 'white', marginBottom: 16, fontFamily: 'var(--font-display)' }}>
             {t(a.diffTitle, lang)}
           </h3>
-          <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.75)', maxWidth: 680, margin: '0 auto', lineHeight: 1.8 }}>
+          <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.9)', fontWeight: 500, maxWidth: 680, margin: '0 auto', lineHeight: 1.8 }}>
             {t(a.diffP, lang)}
           </p>
         </div>

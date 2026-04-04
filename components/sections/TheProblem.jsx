@@ -151,7 +151,7 @@ export default function TheProblem() {
         </div>
 
         {/* Bridge */}
-        <div style={{ marginTop: 48, background: 'var(--navy)', borderRadius: 20, padding: '40px 48px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
+        <div style={{ marginTop: 48, background: 'var(--navy)', borderRadius: 20, padding: '40px 48px', color: 'white', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }} className="on-dark">
           <div>
             <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 14 }}>
               {es ? 'La solución' : 'The solution'}

@@ -297,14 +297,14 @@ export default function Benefits() {
             </div>
 
             {/* Employer impact */}
-            <div style={{ background: 'var(--ink)', borderRadius: 16, padding: 24, flex: 1 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>
+            <div style={{ background: 'var(--ink)', borderRadius: 16, padding: 24, flex: 1, color: 'white' }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.85)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>
                 {es ? 'Por qué importa a tu empresa' : 'Why it matters to your company'}
               </div>
               <div style={{ fontFamily: 'var(--font-display)', fontSize: 20, color: 'white', marginBottom: 12, lineHeight: 1.3 }}>
                 {svc.employer_benefit}
               </div>
-              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
+              <p style={{ fontSize: 13, color: 'white', fontWeight: 500, lineHeight: 1.7 }}>
                 {svc.employer_detail}
               </p>
             </div>
@@ -341,7 +341,7 @@ export default function Benefits() {
                 : 'An employee who knows their family is protected is a different kind of employee.'
               }
             </div>
-            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>
+            <p style={{ fontSize: 14, color: 'white', fontWeight: 500, lineHeight: 1.7 }}>
               {es
                 ? 'No necesita revisar el celular cada hora. No necesita pedir un adelanto para una emergencia. No necesita pedir permiso para atender una crisis que SaludCompartida ya resolvió.'
                 : "They don't need to check their phone every hour. They don't need to ask for a paycheck advance for an emergency. They don't need to ask for time off for a crisis SaludCompartida already solved."
@@ -357,7 +357,7 @@ export default function Benefits() {
             ].map(({ icon, text, color }) => (
               <div key={text} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <span style={{ fontSize: 16, fontWeight: 700, color, width: 20, textAlign: 'center' }}>{icon}</span>
-                <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>{text}</span>
+                <span style={{ fontSize: 13, color: 'white', fontWeight: 600 }}>{text}</span>
               </div>
             ))}
           </div>

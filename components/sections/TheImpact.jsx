@@ -119,10 +119,10 @@ export default function TheImpact() {
           <div style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 12 }}>
             {es ? 'Datos que importan' : 'Data that matters'}
           </div>
-          <h2 style={{ fontSize: 42, color: 'white', marginBottom: 14 }}>
+          <h2 style={{ fontSize: 42, color: 'white', fontWeight: 700, marginBottom: 14 }}>
             {es ? 'El impacto en números reales' : 'The impact in real numbers'}
           </h2>
-          <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.75)', lineHeight: 1.65 }}>
+          <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.9)', fontWeight: 600, lineHeight: 1.65 }}>
             {es
               ? 'El 10% de cada remesa se va en salud. El 66% de ese gasto es médicos, exámenes y medicamentos — exactamente lo que SaludCompartida cubre.'
               : '10% of every remittance goes to healthcare. 66% of that spend is doctors, exams, and medications — exactly what SaludCompartida covers.'
@@ -137,7 +137,7 @@ export default function TheImpact() {
               padding: '9px 20px', borderRadius: 8,
               border: tab === i ? '2px solid white' : '2px solid rgba(255,255,255,0.2)',
               background: tab === i ? 'white' : 'rgba(255,255,255,0.08)',
-              color: tab === i ? 'var(--sand)' : 'rgba(255,255,255,0.8)',
+              color: tab === i ? 'var(--sand)' : 'rgba(255,255,255,0.9)', fontWeight: tab === i ? 700 : 600,
               fontSize: 13, fontWeight: tab === i ? 700 : 400,
               cursor: 'pointer', transition: 'all .15s',
             }}>{t.label}</button>
@@ -157,7 +157,7 @@ export default function TheImpact() {
               ].map(({ val, label, src }) => (
                 <div key={val} style={{ background: 'rgba(255,255,255,0.1)', borderRadius: 14, padding: '22px 24px', border: '1px solid rgba(255,255,255,0.15)' }}>
                   <div style={{ fontFamily: 'var(--font-display)', fontSize: 44, color: 'white', lineHeight: 1 }}>{val}</div>
-                  <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)', lineHeight: 1.55, margin: '10px 0 8px' }}>{label}</p>
+                  <p style={{ fontSize: 13, color: 'white', fontWeight: 600, lineHeight: 1.55, margin: '10px 0 8px' }}>{label}</p>
                   <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{src}</div>
                 </div>
               ))}
@@ -476,7 +476,7 @@ export default function TheImpact() {
             {/* Cost callout — simple, not ROI */}
             <div style={{ background: 'rgba(255,255,255,0.1)', borderRadius: 12, padding: '18px 24px',
               border: '1px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
-              <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.85)' }}>
+              <div style={{ fontSize: 14, color: 'white', fontWeight: 600 }}>
                 {es
                   ? `Cubrir a los ${Math.round(employees * 0.78)} empleados que envían remesas:`
                   : `Covering the ${Math.round(employees * 0.78)} employees who send remittances:`
@@ -487,7 +487,7 @@ export default function TheImpact() {
                   <div style={{ fontFamily: 'var(--font-display)', fontSize: 32, color: 'white', lineHeight: 1 }}>
                     ${(Math.round(employees * 0.78) * 18).toLocaleString()}
                   </div>
-                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.55)', marginTop: 3 }}>
+                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.8)', fontWeight: 600, marginTop: 3 }}>
                     {es ? 'por mes' : 'per month'}
                   </div>
                 </div>
@@ -496,7 +496,7 @@ export default function TheImpact() {
                   <div style={{ fontFamily: 'var(--font-display)', fontSize: 32, color: '#6EE7B7', lineHeight: 1 }}>
                     ${(Math.round(employees * 0.78) * 18 * 12).toLocaleString()}
                   </div>
-                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.55)', marginTop: 3 }}>
+                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.8)', fontWeight: 600, marginTop: 3 }}>
                     {es ? 'por año' : 'per year'}
                   </div>
                 </div>
