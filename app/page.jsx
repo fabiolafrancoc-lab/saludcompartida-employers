@@ -19,181 +19,184 @@ const SECTIONS = [
 ]
 
 const NAV_LABELS = {
-  inicio:      { es: 'Inicio',       en: 'Home' },
+  inicio:      { es: 'Inicio',        en: 'Home' },
   como:        { es: 'Cómo funciona', en: 'How it works' },
-  beneficios:  { es: 'Beneficios',   en: 'Benefits' },
-  modalidades: { es: 'Modalidades',  en: 'Plans' },
+  beneficios:  { es: 'Beneficios',    en: 'Benefits' },
+  modalidades: { es: 'Modalidades',   en: 'Plans' },
   nosotros:    { es: 'Quiénes somos', en: 'About us' },
-  faq:         { es: 'FAQ',          en: 'FAQ' },
+  faq:         { es: 'FAQ',           en: 'FAQ' },
 }
 
 export default function HomePage() {
-  const [active, setActive] = useState('inicio')
-  const [sidebarOpen, setSidebarOpen] = useState(true)
-  const { lang, setLang } = useLang()
+  const [active, setActive]         = useState('inicio')
+  const [collapsed, setCollapsed]   = useState(false)
+  const { lang, setLang }           = useLang()
+
+  const sidebarW = collapsed ? 64 : 248
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--surface)' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', background: '#F3F4F6' }}>
 
-      {/* ── SIDEBAR ── */}
+      {/* ── SIDEBAR ── light, professional */}
       <aside style={{
-        width: sidebarOpen ? 240 : 64,
-        flexShrink: 0,
-        background: 'var(--ink)',
-        display: 'flex',
-        flexDirection: 'column',
+        width: sidebarW, flexShrink: 0,
+        background: 'var(--white)',
+        borderRight: '1px solid var(--border)',
+        display: 'flex', flexDirection: 'column',
         transition: 'width .25s ease',
-        position: 'sticky',
-        top: 0,
-        height: '100vh',
+        position: 'sticky', top: 0, height: '100vh',
         overflow: 'hidden',
+        boxShadow: '2px 0 8px rgba(0,0,0,0.04)',
       }}>
 
         {/* Logo */}
-        <div style={{ padding: '24px 16px 20px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ padding: collapsed ? '20px 12px' : '20px 18px', borderBottom: '1px solid var(--border)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{
-              width: 36, height: 36, borderRadius: 10, flexShrink: 0,
-              background: 'linear-gradient(135deg, var(--clarity), var(--action))',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-            }}>
+            <div style={{ width: 36, height: 36, borderRadius: 10, background: 'linear-gradient(135deg, var(--navy), var(--teal))', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
               <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
                 <path d="M10 2C7 2 4 5.2 4 8.8c0 5 6 9.2 6 9.2s6-4.2 6-9.2C16 5.2 13 2 10 2z" fill="white" opacity="0.9"/>
                 <circle cx="10" cy="8.5" r="2.8" fill="white"/>
               </svg>
             </div>
-            {sidebarOpen && (
-              <div style={{ overflow: 'hidden' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 15, color: 'white', lineHeight: 1.1, whiteSpace: 'nowrap' }}>SaludCompartida</div>
-                <div style={{ fontSize: 9, color: 'var(--clarity)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>For Employers</div>
+            {!collapsed && (
+              <div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: 15, color: 'var(--ink)', lineHeight: 1.1, whiteSpace: 'nowrap' }}>SaludCompartida</div>
+                <div style={{ fontSize: 9, color: 'var(--teal)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>For Employers</div>
               </div>
             )}
           </div>
         </div>
 
-        {/* Nav items */}
-        <nav style={{ flex: 1, padding: '16px 8px', display: 'flex', flexDirection: 'column', gap: 4 }}>
+        {/* Nav */}
+        <nav style={{ flex: 1, padding: '12px 8px', display: 'flex', flexDirection: 'column', gap: 2 }}>
           {SECTIONS.map(({ id, icon }) => {
             const isActive = active === id
             return (
-              <button
-                key={id}
-                onClick={() => setActive(id)}
-                title={!sidebarOpen ? t(NAV_LABELS[id], lang) : undefined}
+              <button key={id} onClick={() => setActive(id)}
+                title={collapsed ? t(NAV_LABELS[id], lang) : undefined}
                 style={{
-                  display: 'flex', alignItems: 'center', gap: 12,
-                  padding: '10px 12px',
+                  display: 'flex', alignItems: 'center',
+                  gap: collapsed ? 0 : 10,
+                  justifyContent: collapsed ? 'center' : 'flex-start',
+                  padding: collapsed ? '10px 0' : '9px 12px',
                   borderRadius: 8, border: 'none', cursor: 'pointer',
-                  background: isActive ? 'var(--clarity)' : 'transparent',
-                  transition: 'background .15s',
+                  background: isActive ? 'var(--navy-light)' : 'transparent',
+                  transition: 'background .12s',
                   width: '100%', textAlign: 'left',
                 }}
-                onMouseEnter={e => { if (!isActive) e.currentTarget.style.background = 'rgba(255,255,255,0.06)' }}
+                onMouseEnter={e => { if (!isActive) e.currentTarget.style.background = '#F9FAFB' }}
                 onMouseLeave={e => { if (!isActive) e.currentTarget.style.background = 'transparent' }}
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                  stroke={isActive ? 'white' : 'rgba(255,255,255,0.5)'}
-                  strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
-                  style={{ flexShrink: 0 }}>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+                  stroke={isActive ? 'var(--navy)' : 'var(--muted)'}
+                  strokeWidth={isActive ? '2' : '1.5'}
+                  strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                   <path d={icon}/>
                 </svg>
-                {sidebarOpen && (
-                  <span style={{
-                    fontSize: 13, fontWeight: isActive ? 600 : 400,
-                    color: isActive ? 'white' : 'rgba(255,255,255,0.6)',
-                    whiteSpace: 'nowrap', overflow: 'hidden',
-                  }}>
+                {!collapsed && (
+                  <span style={{ fontSize: 13, fontWeight: isActive ? 600 : 400, color: isActive ? 'var(--navy)' : 'var(--body)', whiteSpace: 'nowrap' }}>
                     {t(NAV_LABELS[id], lang)}
                   </span>
+                )}
+                {/* Active indicator */}
+                {isActive && !collapsed && (
+                  <div style={{ marginLeft: 'auto', width: 5, height: 5, borderRadius: '50%', background: 'var(--teal)', flexShrink: 0 }}/>
                 )}
               </button>
             )
           })}
         </nav>
 
-        {/* Bottom: language toggle + portal CTA */}
-        <div style={{ padding: '16px 8px', borderTop: '1px solid rgba(255,255,255,0.08)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {/* Bottom controls */}
+        <div style={{ padding: '12px 8px', borderTop: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: 8 }}>
 
-          {/* Language toggle */}
-          <div style={{ display: 'flex', borderRadius: 8, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.12)' }}>
-            {['es','en'].map(l => (
-              <button key={l} onClick={() => setLang(l)} style={{
-                flex: 1, padding: '7px 0', border: 'none', cursor: 'pointer',
-                fontSize: 11, fontWeight: 600, letterSpacing: '0.06em',
-                textTransform: 'uppercase',
-                background: lang === l ? 'var(--clarity)' : 'transparent',
-                color: lang === l ? 'white' : 'rgba(255,255,255,0.4)',
-                transition: 'background .15s, color .15s',
-              }}>
-                {l === 'es' ? 'ES' : 'EN'}
-              </button>
-            ))}
-          </div>
+          {/* Lang toggle */}
+          {!collapsed && (
+            <div style={{ display: 'flex', gap: 4 }}>
+              {['es','en'].map(l => (
+                <button key={l} onClick={() => setLang(l)} style={{
+                  flex: 1, padding: '6px 0', borderRadius: 6, border: '1px solid var(--border)',
+                  cursor: 'pointer', fontSize: 11, fontWeight: 600,
+                  letterSpacing: '0.06em', textTransform: 'uppercase',
+                  background: lang === l ? 'var(--navy)' : 'var(--white)',
+                  color: lang === l ? 'white' : 'var(--muted)',
+                  transition: 'all .12s',
+                }}>
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+          )}
 
-          {/* Dashboard CTA */}
+          {/* Portal CTA */}
           <a href="/dashboard" style={{
-            display: 'flex', alignItems: 'center', justifyContent: sidebarOpen ? 'flex-start' : 'center',
-            gap: 8, padding: '10px 12px',
-            background: 'var(--clarity)', borderRadius: 8, color: 'white',
-            fontSize: 13, fontWeight: 600, transition: 'background .2s',
+            display: 'flex', alignItems: 'center',
+            justifyContent: collapsed ? 'center' : 'center',
+            gap: 6, padding: '9px 12px',
+            background: 'var(--navy)', borderRadius: 8,
+            color: 'white', fontSize: 12, fontWeight: 600,
+            transition: 'background .15s',
           }}
-            onMouseEnter={e => e.currentTarget.style.background = '#0891B2'}
-            onMouseLeave={e => e.currentTarget.style.background = 'var(--clarity)'}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
-              <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            onMouseEnter={e => e.currentTarget.style.background = 'var(--teal)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'var(--navy)'}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+              <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+              <rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>
             </svg>
-            {sidebarOpen && <span>Portal</span>}
+            {!collapsed && <span>Portal</span>}
           </a>
-        </div>
 
-        {/* Collapse toggle */}
-        <button
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          style={{
-            margin: '0 8px 12px',
-            padding: '8px', borderRadius: 8, border: 'none',
-            background: 'rgba(255,255,255,0.06)', cursor: 'pointer',
+          {/* Collapse toggle */}
+          <button onClick={() => setCollapsed(!collapsed)} style={{
+            padding: '7px', borderRadius: 6, border: '1px solid var(--border)',
+            background: 'var(--white)', cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            color: 'rgba(255,255,255,0.4)', transition: 'background .15s',
+            color: 'var(--muted)', transition: 'background .12s',
           }}
-          onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
-          onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.06)'}
-          title={sidebarOpen ? 'Collapse sidebar' : 'Expand sidebar'}
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-            <path d={sidebarOpen ? 'M15 19l-7-7 7-7' : 'M9 19l7-7-7-7'}/>
-          </svg>
-        </button>
+            onMouseEnter={e => e.currentTarget.style.background = '#F9FAFB'}
+            onMouseLeave={e => e.currentTarget.style.background = 'var(--white)'}
+            title={collapsed ? 'Expand' : 'Collapse'}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+              <path d={collapsed ? 'M9 18l6-6-6-6' : 'M15 18l-6-6 6-6'}/>
+            </svg>
+          </button>
+        </div>
       </aside>
 
       {/* ── MAIN CONTENT ── */}
-      <div style={{ flex: 1, overflow: 'auto', background: 'var(--white)' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, overflow: 'auto' }}>
 
         {/* Top bar */}
         <div style={{
-          position: 'sticky', top: 0, zIndex: 40,
-          background: 'rgba(255,255,255,0.96)',
-          backdropFilter: 'blur(12px)',
+          background: 'var(--white)',
           borderBottom: '1px solid var(--border)',
           padding: '0 40px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          height: 60,
+          height: 56, flexShrink: 0,
+          position: 'sticky', top: 0, zIndex: 40,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ fontSize: 13, color: 'var(--muted)' }}>saludcompartida.ai</span>
-            <span style={{ color: 'var(--border)' }}>/</span>
-            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--ink)' }}>
-              {t(NAV_LABELS[active], lang)}
-            </span>
+            <span style={{ fontSize: 12, color: 'var(--muted)' }}>saludcompartida.ai</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="var(--border)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--ink)' }}>{t(NAV_LABELS[active], lang)}</span>
           </div>
-          <a href="/login" style={{ fontSize: 13, color: 'var(--muted)', fontWeight: 500 }}>
-            {lang === 'es' ? 'Iniciar sesión' : 'Sign in'}
-          </a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            {/* Audience badges — reinforces who this is for */}
+            <div style={{ display: 'flex', gap: 6 }}>
+              {[lang === 'es' ? 'PEO' : 'PEO', lang === 'es' ? 'RRHH' : 'HR', lang === 'es' ? 'Risk' : 'Risk'].map(label => (
+                <span key={label} style={{ fontSize: 10, fontWeight: 600, color: 'var(--teal)', background: 'var(--teal-light)', padding: '2px 8px', borderRadius: 100 }}>
+                  {label}
+                </span>
+              ))}
+            </div>
+            <a href="/login" style={{ fontSize: 13, color: 'var(--muted)', fontWeight: 500 }}>
+              {lang === 'es' ? 'Iniciar sesión' : 'Sign in'}
+            </a>
+          </div>
         </div>
 
-        {/* Section content */}
-        <div key={active} style={{ animation: 'fadeIn .2s ease' }}>
+        {/* Section */}
+        <div key={active} style={{ flex: 1, animation: 'fadeUp .25s ease' }}>
           {active === 'inicio'      && <Hero />}
           {active === 'como'        && <HowItWorks />}
           {active === 'beneficios'  && <Benefits />}
@@ -203,12 +206,12 @@ export default function HomePage() {
         </div>
 
         {/* Footer */}
-        <footer style={{ background: 'var(--ink)', color: 'rgba(255,255,255,0.5)', padding: '28px 40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 12 }}>
-          <span>© 2026 Tech Solution Services FVR LLC</span>
+        <footer style={{ background: 'var(--ink)', color: 'rgba(255,255,255,0.5)', padding: '20px 40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 12, flexShrink: 0 }}>
+          <span>© 2026 Tech Solution Services FVR LLC · Florida</span>
           <div style={{ display: 'flex', gap: 20 }}>
             {['saludcompartida.com','saludcompartida.app'].map(d => (
-              <a key={d} href={`https://${d}`} style={{ color: 'rgba(255,255,255,0.4)', transition: 'color .2s' }}
-                onMouseEnter={e => e.currentTarget.style.color = 'var(--clarity)'}
+              <a key={d} href={`https://${d}`} style={{ color: 'rgba(255,255,255,0.4)', transition: 'color .15s' }}
+                onMouseEnter={e => e.currentTarget.style.color = 'var(--teal)'}
                 onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}>
                 {d}
               </a>
@@ -216,13 +219,6 @@ export default function HomePage() {
           </div>
         </footer>
       </div>
-
-      <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(8px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
     </div>
   )
 }

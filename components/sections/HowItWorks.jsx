@@ -8,39 +8,72 @@ const ICONS = [
   'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
   'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
 ]
-const COLORS = ['var(--trust)','var(--clarity)','var(--growth)','var(--action)']
-const BGS    = ['var(--trust-light)','var(--clarity-light)','var(--growth-light)','var(--action-light)']
 
 export default function HowItWorks() {
   const { lang } = useLang()
   const h = T.how
+  const steps = h.steps
 
   return (
-    <section id="como" style={{ background: 'var(--surface)', padding: '96px 5%' }}>
-      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 60 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--clarity)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 12 }}>{t(h.eyebrow, lang)}</div>
+    <div style={{ background: 'var(--white)', animation: 'fadeUp .35s ease' }}>
+      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '72px 48px' }}>
+
+        <div style={{ maxWidth: 600, marginBottom: 52 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 12 }}>
+            {t(h.eyebrow, lang)}
+          </div>
           <h2 style={{ fontSize: 42, marginBottom: 16 }}>{t(h.h2, lang)}</h2>
-          <p style={{ fontSize: 17, color: 'var(--muted)', maxWidth: 520, margin: '0 auto' }}>{t(h.sub, lang)}</p>
+          <p style={{ fontSize: 16, color: 'var(--muted)' }}>{t(h.sub, lang)}</p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
-          {h.steps.map((step, i) => (
-            <div key={step.n} style={{ background: 'white', borderRadius: 16, padding: 28, border: '1px solid var(--border)', position: 'relative', transition: 'transform .2s, box-shadow .2s' }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,0.08)' }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none' }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: COLORS[i], letterSpacing: '0.1em', marginBottom: 18 }}>{step.n}</div>
-              <div style={{ width: 48, height: 48, background: BGS[i], borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18 }}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={COLORS[i]} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+
+        {/* Steps — horizontal flow */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, position: 'relative', marginBottom: 56 }}>
+          {/* Connecting line */}
+          <div style={{ position: 'absolute', top: 36, left: '12.5%', right: '12.5%', height: 1, background: 'var(--border)', zIndex: 0 }}/>
+
+          {steps.map((step, i) => (
+            <div key={step.n} style={{ padding: '0 16px', position: 'relative', zIndex: 1 }}>
+              {/* Number circle */}
+              <div style={{
+                width: 72, height: 72,
+                borderRadius: '50%',
+                background: i === 0 ? 'var(--navy)' : 'var(--white)',
+                border: `2px solid ${i === 0 ? 'var(--navy)' : 'var(--border)'}`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                marginBottom: 20,
+              }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke={i === 0 ? 'white' : 'var(--teal)'}
+                  strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d={ICONS[i]}/>
                 </svg>
               </div>
-              <h3 style={{ fontSize: 16, fontWeight: 600, color: 'var(--ink)', marginBottom: 10 }}>{t(step.title, lang)}</h3>
+              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', letterSpacing: '0.1em', marginBottom: 8 }}>{step.n}</div>
+              <h3 style={{ fontSize: 16, fontWeight: 600, color: 'var(--ink)', marginBottom: 8, lineHeight: 1.3 }}>{t(step.title, lang)}</h3>
               <p style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.65 }}>{t(step.desc, lang)}</p>
-              {i < 3 && <div style={{ position: 'absolute', top: 52, right: -12, width: 24, height: 2, background: 'var(--border)', zIndex: 1 }}/>}
             </div>
           ))}
         </div>
+
+        {/* Key insight callout — cognitive ease */}
+        <div style={{
+          background: 'var(--navy-light)',
+          borderRadius: 12, padding: '20px 28px',
+          display: 'flex', alignItems: 'center', gap: 16,
+        }}>
+          <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--navy)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <p style={{ fontSize: 14, color: 'var(--navy)', fontWeight: 500, lineHeight: 1.5 }}>
+            {lang === 'es'
+              ? 'PrismHR, Rippling y ADP ya saben conectar beneficios externos vía API. Tu equipo técnico lo configura en 2–4 semanas. Después, el enrollment es completamente automático.'
+              : 'PrismHR, Rippling, and ADP already know how to connect external benefits via API. Your tech team sets it up in 2–4 weeks. After that, enrollment is fully automatic.'
+            }
+          </p>
+        </div>
       </div>
-    </section>
+    </div>
   )
 }

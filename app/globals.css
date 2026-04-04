@@ -1,37 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
 
 /*
-  COLORES BASADOS EN NEUROCIENCIA
-  Azul profundo (#1B4F72)  → Confianza institucional. Reduce amígdala. Activa corteza prefrontal.
-  Cyan (#06B6D4)           → Claridad, salud. Reduce cortisol. Sensación de apertura.
-  Verde (#059669)          → Seguridad, crecimiento. Sistema parasimpático (calma y bienestar).
-  Magenta (#EC4899)        → Activación emocional sin amenaza. Libera dopamina. Ideal para CTAs.
-  Blanco + grises claros   → Claridad cognitiva. El cerebro procesa más rápido con espacio.
+  SISTEMA DE COLOR — NEUROCIENCIA B2B ALTA CONFIANZA
+  ────────────────────────────────────────────────────────
+  --navy    #0F3460  Azul profundo → Corteza prefrontal, autoridad, confianza institucional
+                     Reduce activación de amígdala (miedo/desconfianza) en tomadores de decisión
+  --teal    #0891B2  Cyan oscuro → Innovación + salud, reduce cortisol, apertura mental
+  --emerald #059669  Verde → Sistema nervioso parasimpático, seguridad, crecimiento financiero
+  --amber   #D97706  Ámbar → Atención selectiva sin amenaza, valor percibido, escasez
+  --loss    #DC2626  Rojo → SOLO para datos de pérdida (loss aversion - Kahneman)
+  --sand    #FFFBF5  Warm white → Calidez sin frialdad clínica, acogida, decisión relajada
+  --ink     #0A0F1E  Negro azulado → Contraste máximo, autoridad editorial
 */
 
 :root {
-  --trust:         #1B4F72;
-  --trust-light:   #D6EAF8;
-  --clarity:       #06B6D4;
-  --clarity-light: #CFFAFE;
-  --growth:        #059669;
-  --growth-light:  #D1FAE5;
-  --action:        #EC4899;
-  --action-light:  #FCE7F3;
-  --ink:           #0F172A;
-  --body:          #334155;
-  --muted:         #64748B;
-  --border:        #E2E8F0;
-  --surface:       #F8FAFC;
-  --white:         #FFFFFF;
-  --font-display:  'DM Serif Display', Georgia, serif;
-  --font-body:     'Plus Jakarta Sans', -apple-system, sans-serif;
-  --max-w:         1200px;
+  --navy:        #0F3460;
+  --navy-light:  #EEF2FF;
+  --teal:        #0891B2;
+  --teal-light:  #E0F7FA;
+  --emerald:     #059669;
+  --emerald-light: #ECFDF5;
+  --amber:       #D97706;
+  --amber-light: #FFFBEB;
+  --loss:        #DC2626;
+  --loss-light:  #FEF2F2;
+  --ink:         #0A0F1E;
+  --body:        #374151;
+  --muted:       #6B7280;
+  --border:      #E5E7EB;
+  --sand:        #FFFBF5;
+  --white:       #FFFFFF;
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body:    'Inter', -apple-system, sans-serif;
+  --max-w:        1200px;
+  --sidebar-w:    252px;
+  --sidebar-collapsed: 64px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html  { scroll-behavior: smooth; }
-body  { font-family: var(--font-body); background: var(--white); color: var(--body); -webkit-font-smoothing: antialiased; line-height: 1.6; }
-h1,h2,h3,h4 { font-family: var(--font-display); color: var(--ink); line-height: 1.15; }
-p     { line-height: 1.75; }
-a     { text-decoration: none; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--body);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); line-height: 1.15; }
+p { line-height: 1.75; }
+a { text-decoration: none; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
