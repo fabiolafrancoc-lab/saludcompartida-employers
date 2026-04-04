@@ -249,25 +249,25 @@ export default function Benefits() {
         </div>
 
         {/* Detail panel */}
-        <div key={active} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, animation: 'fadeUp .2s ease' }}>
+        <div key={active} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, animation: 'fadeUp .2s ease' }}>
 
-          {/* Left: story + specs */}
-          <div>
+          {/* Left: story + specs — navy card matching right side */}
+          <div style={{ background: 'var(--navy)', borderRadius: 16, padding: '28px 28px', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', flexDirection: 'column' }}>
             {/* Badge + headline */}
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'var(--navy)', borderRadius: 100, padding: '5px 14px', marginBottom: 16 }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: `${svc.color}25`, borderRadius: 100, padding: '5px 14px', marginBottom: 16, alignSelf: 'flex-start', border: `1px solid ${svc.color}50` }}>
               {svc.IconComp && <svc.IconComp size={13} color={svc.color} strokeWidth={1.8} />}
               <span style={{ fontSize: 11, fontWeight: 800, color: 'white', textTransform: 'uppercase', letterSpacing: '0.07em' }}>{svc.tag}</span>
             </div>
 
             <h3 style={{ fontSize: 26, color: 'white', marginBottom: 8, lineHeight: 1.2 }}>{svc.headline}</h3>
-            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', marginBottom: 24, fontWeight: 500 }}>{svc.subline}</p>
+            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', marginBottom: 24, fontWeight: 600 }}>{svc.subline}</p>
 
             {/* Human story — emotional anchor */}
             <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: 12, padding: '20px 22px', marginBottom: 24, borderLeft: `3px solid ${svc.color}` }}>
               <p style={{ fontSize: 14, fontStyle: 'italic', color: 'rgba(255,255,255,0.9)', lineHeight: 1.75, marginBottom: 10 }}>
                 {svc.story}
               </p>
-              <span style={{ fontSize: 12, color: svc.color, fontWeight: 600 }}>{svc.story_who}</span>
+              <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', fontWeight: 700 }}>{svc.story_who}</span>
             </div>
 
             {/* Specs */}

@@ -103,3 +103,49 @@ a { text-decoration: none; }
 /* White card interiors inside on-green — exempt */
 .on-green .white-card { all: revert; }
 .on-green .white-card * { color: inherit !important; font-weight: inherit !important; }
+
+/* ─── RESPONSIVE — fits any desktop screen size ──────────────────
+   Tested ranges: 1280px, 1366px, 1440px, 1512px, 1920px
+──────────────────────────────────────────────────────────────── */
+
+/* Base: no horizontal overflow ever */
+html, body { overflow-x: hidden; }
+
+/* Content container scales with viewport */
+:root {
+  --max-w: min(1200px, calc(100vw - 320px - 96px));
+}
+
+/* 1280–1366px: slightly smaller text and padding */
+@media (max-width: 1366px) {
+  :root { --max-w: calc(100vw - 300px - 64px); }
+  h1 { font-size: clamp(28px, 3.5vw, 48px) !important; }
+  h2 { font-size: clamp(24px, 3vw, 42px) !important; }
+}
+
+/* 1440px+ keeps max-w at 1200px */
+@media (min-width: 1440px) {
+  :root { --max-w: 1100px; }
+}
+
+/* Sections: padding scales with viewport */
+@media (max-width: 1366px) {
+  .sc-section-pad { padding: 52px 36px !important; }
+}
+
+/* Sidebar always fits, never overlaps */
+aside { min-width: 0 !important; }
+
+/* Two-column grids: don't overflow on smaller screens */
+@media (max-width: 1300px) {
+  /* Benefits detail panel */
+  [style*="gridTemplateColumns: '1fr 1fr'"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Hero: minimum content width */
+@media (max-width: 1380px) {
+  /* Hero content panel */
+  .hero-left { min-width: 400px !important; }
+}
