@@ -5,7 +5,7 @@ import { translations as T, t } from '@/lib/translations'
 import {
   IconInicio, IconProblema, IconComo, IconBeneficios,
   IconImpacto, IconModalidades, IconNosotros, IconFAQ,
-  IconPortal, IconCarlos, SCLogoMark,
+  IconPortal, IconCarlos, IconApp, IconCapacidades, SCLogoMark,
 } from '@/components/icons/SCIcons'
 import Hero          from '@/components/sections/Hero'
 import TheProblem    from '@/components/sections/TheProblem'
@@ -15,6 +15,7 @@ import TheImpact     from '@/components/sections/TheImpact'
 import PaymentModels from '@/components/sections/PaymentModels'
 import AboutUs       from '@/components/sections/AboutUs'
 import FAQ           from '@/components/sections/FAQ'
+import Capabilities  from '@/components/sections/Capabilities'
 import VideoBreak    from '@/components/sections/VideoBreak'
 import Carlos        from '@/components/sections/Carlos'
 
@@ -26,6 +27,7 @@ const SECTIONS = [
   { id: 'como',        Icon: IconComo },
   { id: 'modalidades', Icon: IconModalidades },
   { id: 'impacto',     Icon: IconImpacto },
+  { id: 'capacidades', Icon: IconCapacidades },
   { id: 'nosotros',    Icon: IconNosotros },
   { id: 'faq',         Icon: IconFAQ },
 ]
@@ -38,6 +40,7 @@ const NAV_LABELS = {
   beneficios:  { es: 'Beneficios',    en: 'Benefits' },
   impacto:     { es: 'Impacto',       en: 'Impact' },
   modalidades: { es: 'Modalidades',   en: 'Plans' },
+  capacidades: { es: 'Capacidades',   en: 'Capabilities' },
   nosotros:    { es: 'Quiénes somos', en: 'About us' },
   faq:         { es: 'FAQ',           en: 'FAQ' },
 }
@@ -50,6 +53,7 @@ const NAV_ACCENTS = {
   beneficios:  '#059669',
   impacto:     '#006847',
   modalidades: '#0F3460',
+  capacidades: '#22D3EE',
   nosotros:    '#D97706',
   faq:         '#0891B2',
 }
@@ -223,6 +227,7 @@ export default function HomePage() {
           {active === 'beneficios'  && <Benefits />}
           {active === 'impacto'     && <TheImpact />}
           {active === 'modalidades' && <PaymentModels />}
+          {active === 'capacidades' && <Capabilities />}
           {active === 'nosotros'    && <AboutUs />}
           {active === 'faq'         && <FAQ />}
         </div>

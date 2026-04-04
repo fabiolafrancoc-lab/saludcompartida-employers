@@ -299,3 +299,21 @@ export function IconCarlos({ size = 24, color = 'currentColor', strokeWidth = 1.
     </svg>
   )
 }
+
+/** Capacidades: servidor con check — operando hoy */
+export function IconCapacidades({ size = 24, color = 'currentColor', strokeWidth = 1.6 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base} stroke={color} strokeWidth={strokeWidth}>
+      {/* Server stack */}
+      <rect x="2" y="3" width="20" height="5" rx="1.5" />
+      <rect x="2" y="10" width="20" height="5" rx="1.5" />
+      {/* Dots on servers */}
+      <circle cx="6" cy="5.5" r="0.8" fill={color} stroke="none" />
+      <circle cx="6" cy="12.5" r="0.8" fill={color} stroke="none" />
+      {/* Check = live/active */}
+      <path d="M10 19l2.5 2.5 5-5" strokeWidth="2" />
+      {/* Signal waves */}
+      <path d="M19 5.5h1M19 12.5h1" strokeWidth="1.3" />
+    </svg>
+  )
+}
