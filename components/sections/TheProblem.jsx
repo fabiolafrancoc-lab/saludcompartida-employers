@@ -61,21 +61,6 @@ export default function TheProblem() {
       {/* ── CONTENT ── */}
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '56px 48px' }}>
 
-        {/* Photo — abuelanietas */}
-        <div style={{ borderRadius: 16, overflow: 'hidden', height: 320, marginBottom: 48, position: 'relative' }}>
-          <img src="/abuelanietas.jpeg" alt=""
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,8,18,0.92) 0%, rgba(5,8,18,0.3) 55%, transparent 80%)' }} />
-          <div style={{ position: 'absolute', bottom: 24, left: 28, right: 28 }}>
-            <p style={{ fontFamily: 'var(--font-display)', fontSize: 22, color: 'white', fontWeight: 700, lineHeight: 1.3, marginBottom: 6 }}>
-              {es ? 'Esta es la familia que se quedó en México.' : 'This is the family that stayed in Mexico.'}
-            </p>
-            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', fontWeight: 600 }}>
-              {es ? 'La abuela, la mamá, la hija. Las tres solas. Sin el padre. Sin seguro.' : 'The grandmother, the mother, the daughter. All three alone. Without the father. Without insurance.'}
-            </p>
-          </div>
-        </div>
-
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'start' }}>
 
           {/* LEFT — the employee's voice */}

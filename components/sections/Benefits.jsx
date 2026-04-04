@@ -15,7 +15,8 @@ const SERVICES = {
       color: 'var(--teal)',
       bg: 'var(--teal-light)',
       icon: 'M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z',
-      tag: 'Telemedicina',
+      tag: 'Videollamada con Doctor',
+      youtubeId: 'zjakLC1ipHc',
       headline: 'Médico disponible a cualquier hora',
       subline: 'Desde el celular. Sin fila. Sin traslado.',
       story: '"Son las 11pm en Guadalajara. La mamá de Carlos tiene fiebre alta y tos. Antes, Carlos hubiera pasado toda la noche en vela esperando que el IMSS abriera a las 8am. Con SaludCompartida, a las 11:01pm ya está hablando con un médico por videollamada."',
@@ -58,6 +59,7 @@ const SERVICES = {
       bg: 'var(--emerald-light)',
       icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
       tag: 'Terapia',
+      youtubeId: '4y3zSt9m2C0',
       headline: 'Salud mental para toda la familia',
       subline: 'Psicólogo certificado. Online. Sin estigma.',
       story: '"La hija de Javier tiene 14 años y empezó a fallar en la escuela. Llevaba meses con ansiedad desde que papá se fue a Chicago. La terapia online de SaludCompartida la vio los martes a las 4pm, desde casa, sin que nadie en la colonia lo supiera."',
@@ -104,7 +106,8 @@ const SERVICES = {
       color: 'var(--teal)',
       bg: 'var(--teal-light)',
       icon: 'M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z',
-      tag: 'Telemedicine',
+      tag: 'Video Call with Doctor',
+      youtubeId: 'zjakLC1ipHc',
       headline: 'Doctor available any time',
       subline: 'From their phone. No line. No travel.',
       story: '"It\'s 11pm in Guadalajara. Carlos\'s mom has a high fever and cough. Before, Carlos would have spent all night awake waiting for the clinic to open at 8am. With SaludCompartida, at 11:01pm she\'s already speaking with a doctor by video call."',
@@ -147,6 +150,7 @@ const SERVICES = {
       bg: 'var(--emerald-light)',
       icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
       tag: 'Therapy',
+      youtubeId: '4y3zSt9m2C0',
       headline: 'Mental health for the whole family',
       subline: 'Certified psychologist. Online. No stigma.',
       story: '"Javier\'s daughter is 14 and started failing in school. She\'d had anxiety for months since dad left for Chicago. SaludCompartida\'s online therapy saw her every Tuesday at 4pm, from home, without anyone in the neighborhood knowing."',
@@ -192,8 +196,11 @@ export default function Benefits() {
   const { lang } = useLang()
   const es = lang === 'es'
   const [active, setActive] = useState(3) // default to Lupita — most differentiated
+  const [videoPlaying, setVideoPlaying] = useState(false)
   const services = SERVICES[lang]
   const svc = services[active]
+  // Reset video when tab changes
+  const prevActive = active
 
   return (
     <div style={{ background: 'var(--sand)', animation: 'fadeUp .35s ease', color: 'white' }} className="on-green">
@@ -236,14 +243,14 @@ export default function Benefits() {
               display: 'flex', alignItems: 'center', gap: 8,
               padding: '10px 18px', borderRadius: 100,
               border: active === i ? '2px solid white' : '2px solid rgba(255,255,255,0.2)',
-              background: active === i ? 'white' : 'rgba(255,255,255,0.08)',
+              background: active === i ? 'rgba(255,255,255,0.18)' : 'rgba(255,255,255,0.06)',
               cursor: 'pointer', transition: 'all .15s',
             }}>
               {s.isFeature && active !== i && (
                 <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#FCD34D', display: 'inline-block', flexShrink: 0 }}/>
               )}
-              {s.IconComp && <s.IconComp size={14} color={active === i ? s.color : 'rgba(255,255,255,0.6)'} strokeWidth={1.5} />}
-              <span style={{ fontSize: 13, fontWeight: active === i ? 700 : 400, color: active === i ? s.color : 'rgba(255,255,255,0.75)', whiteSpace: 'nowrap' }}>
+              {s.IconComp && <s.IconComp size={14} color="white" strokeWidth={active === i ? 2 : 1.5} />}
+              <span style={{ fontSize: 13, fontWeight: active === i ? 800 : 500, color: 'white', whiteSpace: 'nowrap' }}>
                 {s.tag}
               </span>
             </button>
@@ -281,6 +288,30 @@ export default function Benefits() {
                 </div>
               ))}
             </div>
+
+            {/* Video embed — only for services with youtubeId */}
+            {svc.youtubeId && (
+              <div style={{ marginTop: 20, borderRadius: 12, overflow: 'hidden', position: 'relative', aspectRatio: '16/9', background: '#000', cursor: 'pointer' }}
+                onClick={() => setVideoPlaying(v => !v)}>
+                {videoPlaying && active === active ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${svc.youtubeId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1`}
+                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }}
+                    allow="autoplay; fullscreen" allowFullScreen />
+                ) : (
+                  <>
+                    <img
+                      src={svc.id === 'medico' ? '/thumb_fiebre.jpg' : '/thumb_ninos.jpg'}
+                      alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <div style={{ width: 52, height: 52, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', backdropFilter: 'blur(8px)', border: '2px solid rgba(255,255,255,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 3.5l10 5.5-10 5.5V3.5z" fill="white"/></svg>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Right: employer impact + stat */}
@@ -329,21 +360,6 @@ export default function Benefits() {
                 </div>
               </div>
             )}
-          </div>
-        </div>
-
-        {/* Photo: abuela mamá hija — la familia protegida */}
-        <div style={{ marginTop: 48, borderRadius: 16, overflow: 'hidden', height: 280, position: 'relative' }}>
-          <img src="/abuelamamahija.jpeg" alt=""
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%', display: 'block' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(0,104,71,0.88) 0%, rgba(0,104,71,0.6) 40%, transparent 75%)' }} />
-          <div style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', left: 32, maxWidth: 320 }}>
-            <div style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,0.85)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10 }}>
-              {es ? 'La familia de tu empleado' : "Your employee's family"}
-            </div>
-            <p style={{ fontFamily: 'var(--font-display)', fontSize: 24, color: 'white', fontWeight: 700, lineHeight: 1.3 }}>
-              {es ? 'Protegida. Presente. Tranquila.' : 'Protected. Present. At peace.'}
-            </p>
           </div>
         </div>
 
