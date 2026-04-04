@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useLang } from '@/contexts/LanguageContext'
 import { translations as T, t } from '@/lib/translations'
 import {
@@ -58,6 +58,14 @@ export default function HomePage() {
   const [active, setActive]       = useState('inicio')
   const [collapsed, setCollapsed] = useState(false)
   const { lang, setLang }         = useLang()
+  const mainRef = useRef(null)
+
+  // Scroll to top of content area on every section change
+  useEffect(() => {
+    if (mainRef.current) {
+      mainRef.current.scrollTo({ top: 0, behavior: 'instant' })
+    }
+  }, [active])
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: '#F3F4F6' }}>
@@ -174,7 +182,7 @@ export default function HomePage() {
       </aside>
 
       {/* ── MAIN ── */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, overflow: 'auto' }}>
+      <div ref={mainRef} style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, overflow: 'auto' }}>
 
         {/* Topbar */}
         <div style={{

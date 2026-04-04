@@ -100,18 +100,6 @@ export default function AboutUs() {
           </div>
         </div>
 
-        {/* Photo: familia grande — the result */}
-        <div style={{ borderRadius: 16, overflow: 'hidden', height: 300, position: 'relative', marginBottom: 24 }}>
-          <img src="/familiagrande.jpeg" alt=""
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 40%', display: 'block' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,104,71,0.15)' }} />
-          <div style={{ position: 'absolute', top: 20, left: 24, background: 'rgba(0,104,71,0.9)', borderRadius: 8, padding: '8px 14px' }}>
-            <p style={{ fontSize: 13, fontWeight: 700, color: 'white' }}>
-              {es ? '4 generaciones. Una sola suscripción.' : '4 generations. One subscription.'}
-            </p>
-          </div>
-        </div>
-
         {/* Why this matters — the mission */}
         <div style={{ background: 'var(--navy)', borderRadius: 20, padding: 48, textAlign: 'center', color: 'white' }} className="on-dark">
           <h3 style={{ fontSize: 28, color: 'white', marginBottom: 16, fontFamily: 'var(--font-display)' }}>

@@ -120,6 +120,32 @@ export default function Carlos() {
           </p>
         </div>
 
+        {/* Familia de Carlos — visual anchor */}
+        <div style={{ marginBottom: 36, borderRadius: 16, overflow: 'hidden', position: 'relative', height: 340 }}>
+          <img src="/familiagrande.jpeg" alt="La familia de Carlos"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 35%', display: 'block' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,8,18,0.95) 0%, rgba(5,8,18,0.55) 45%, rgba(5,8,18,0.05) 75%, transparent 100%)' }} />
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '28px 32px' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
+              <div>
+                <p style={{ fontFamily: 'var(--font-display)', fontSize: 26, color: 'white', fontWeight: 700, lineHeight: 1.2, marginBottom: 8 }}>
+                  {es ? 'Esta es la familia de Carlos.' : "This is Carlos's family."}
+                </p>
+                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.9)', fontWeight: 600, lineHeight: 1.55, maxWidth: 520 }}>
+                  {es
+                    ? 'Su esposa, sus hijos, su suegra, sus padres — en Ciudad de México. Él trabaja en Houston para darles una vida mejor. Cada quincena manda $500. Cada mes reza para que alcance.'
+                    : "His wife, his children, his mother-in-law, his parents — in Mexico City. He works in Houston to give them a better life. Every two weeks he sends $500. Every month he prays it's enough."
+                  }
+                </p>
+              </div>
+              <div style={{ background: 'rgba(0,104,71,0.92)', backdropFilter: 'blur(8px)', borderRadius: 10, padding: '12px 20px', flexShrink: 0, textAlign: 'center' }}>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: 24, color: 'white', fontWeight: 700, lineHeight: 1 }}>$500</div>
+                <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.85)', fontWeight: 600, marginTop: 4 }}>{es ? 'remesa quincenal' : 'biweekly remittance'}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div style={{ display: 'grid', gridTemplateColumns: '0.85fr 1.15fr', gap: 40, alignItems: 'start' }}>
 
           {/* Left: Carlos profile + family */}
