@@ -22,17 +22,17 @@ const NAVY_INNER = '#1E2D4F' // innermost card bg
 const REMESA_TOTAL = 393
 
 const REMESA_SLICES = (es) => [
-  { name: es ? 'Renta y alimentación' : 'Rent & food',  pct: 68, color: '#94A3B8' },
-  { name: es ? 'Educación'            : 'Education',    pct: 12, color: '#60A5FA' },
+  { name: es ? 'Renta y alimentación' : 'Rent & food',  pct: 68, color: '#3B82F6' },
+  { name: es ? 'Educación'            : 'Education',    pct: 12, color: '#818CF8' },
   { name: es ? 'Salud'                : 'Healthcare',   pct: 10, color: '#22D3EE' },
   { name: es ? 'Ahorro'               : 'Savings',      pct:  6, color: '#FCD34D' },
-  { name: es ? 'Otros'                : 'Other',        pct:  4, color: '#475569' },
+  { name: es ? 'Otros'                : 'Other',        pct:  4, color: '#6B7280' },
 ]
 const SALUD_SLICES = (es) => [
   { name: es ? 'Visitas al médico'     : 'Doctor visits',    pct: 28, color: '#22D3EE' },
   { name: es ? 'Exámenes ambulatorios' : 'Outpatient exams', pct: 21, color: '#A78BFA' },
   { name: es ? 'Medicamentos'          : 'Medications',      pct: 17, color: '#34D399' },
-  { name: es ? 'Otros gastos salud'    : 'Other health',     pct: 34, color: '#475569' },
+  { name: es ? 'Otros gastos salud'    : 'Other health',     pct: 34, color: '#6B7280' },
 ]
 const GASTO_DATA = (es) => [
   { cat: es ? 'Médico'      : 'Doctor',    sinRemesa: 25,  conRemesa: 80,  conSC: 0   },
@@ -42,24 +42,39 @@ const GASTO_DATA = (es) => [
   { cat: es ? 'Terapia'     : 'Therapy',   sinRemesa: 0,   conRemesa: 90,  conSC: 0   },
 ]
 
-/* Active donut shape */
+/* Active donut shape — expands on hover */
 const ActiveShape = (props) => {
-  const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill, payload, value } = props
+  const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, fill, value } = props
   return (
     <g>
-      <Sector cx={cx} cy={cy} innerRadius={innerRadius} outerRadius={outerRadius + 10}
-        startAngle={startAngle} endAngle={endAngle} fill={fill} />
-      <text x={cx} y={cy - 12} textAnchor="middle" fill="white"
-        style={{ fontSize: 22, fontFamily: 'Instrument Serif, Georgia, serif', fontWeight: 700 }}>
+      <Sector cx={cx} cy={cy} innerRadius={innerRadius - 2} outerRadius={outerRadius + 8}
+        startAngle={startAngle} endAngle={endAngle} fill={fill}
+        stroke="rgba(255,255,255,0.2)" strokeWidth={1} />
+      <text x={cx} y={cy - 10} textAnchor="middle" fill="white"
+        style={{ fontSize: 24, fontFamily: 'Instrument Serif, Georgia, serif', fontWeight: 700 }}>
         {value}%
       </text>
-      <text x={cx} y={cy + 12} textAnchor="middle" fill="rgba(255,255,255,0.7)"
-        style={{ fontSize: 10, fontWeight: 600 }}>
+      <text x={cx} y={cy + 14} textAnchor="middle" fill="rgba(255,255,255,0.75)"
+        style={{ fontSize: 11, fontWeight: 700 }}>
         ${Math.round(REMESA_TOTAL * value / 100)}/mes
       </text>
     </g>
   )
 }
+
+/* Static center label when no active shape */
+const CenterLabel = ({ cx, cy, label, sub }) => (
+  <g>
+    <text x={cx} y={cy - 8} textAnchor="middle" fill="white"
+      style={{ fontSize: 18, fontFamily: 'Instrument Serif, Georgia, serif', fontWeight: 700 }}>
+      {label}
+    </text>
+    {sub && <text x={cx} y={cy + 12} textAnchor="middle" fill="rgba(255,255,255,0.6)"
+      style={{ fontSize: 10, fontWeight: 700 }}>
+      {sub}
+    </text>}
+  </g>
+)
 
 /* Dark tooltip */
 const DarkTooltip = ({ active, payload }) => {
@@ -171,12 +186,13 @@ export default function TheImpact() {
                   {es ? 'Promedio $393/mes · click para explorar' : 'Average $393/mo · click to explore'}
                 </div>
                 <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
-                  <ResponsiveContainer width={130} height={130}>
+                  <ResponsiveContainer width={160} height={160}>
                     <PieChart>
                       <Pie data={remesaSlices.map(s => ({ ...s, value: s.pct }))}
-                        cx="50%" cy="50%" innerRadius={44} outerRadius={68}
+                        cx="50%" cy="50%" innerRadius={48} outerRadius={74}
                         dataKey="value" activeIndex={activeRemesa}
                         activeShape={<ActiveShape />}
+                        stroke="rgba(22,32,64,0.8)" strokeWidth={2}
                         onMouseEnter={(_, i) => setActiveRemesa(i)}>
                         {remesaSlices.map((s, i) => <Cell key={i} fill={s.color} />)}
                       </Pie>
@@ -208,11 +224,12 @@ export default function TheImpact() {
                   {es ? '$39/mes promedio · 66% en atención directa' : '$39/mo average · 66% on direct care'}
                 </div>
                 <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
-                  <ResponsiveContainer width={130} height={130}>
+                  <ResponsiveContainer width={160} height={160}>
                     <PieChart>
                       <Pie data={saludSlices.map(s => ({ ...s, value: s.pct }))}
-                        cx="50%" cy="50%" innerRadius={44} outerRadius={68}
-                        dataKey="value" startAngle={90} endAngle={-270}>
+                        cx="50%" cy="50%" innerRadius={48} outerRadius={74}
+                        dataKey="value" startAngle={90} endAngle={-270}
+                        stroke="rgba(22,32,64,0.8)" strokeWidth={2}>
                         {saludSlices.map((s, i) => <Cell key={i} fill={s.color} />)}
                       </Pie>
                       <Tooltip content={({ active, payload }) => {
