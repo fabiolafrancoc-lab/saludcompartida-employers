@@ -22,10 +22,10 @@ const SERVICES = {
       story: '"Son las 11pm en Guadalajara. La mamá de Carlos tiene fiebre alta y tos. Antes, Carlos hubiera pasado toda la noche en vela esperando que el IMSS abriera a las 8am. Con SaludCompartida, a las 11:01pm ya está hablando con un médico por videollamada."',
       story_who: '— Escenario real. Ocurre cada noche.',
       specs: [
-        { icon: '✓', text: 'Disponible 24/7, 365 días' },
-        { icon: '✓', text: 'Videollamada desde cualquier celular' },
-        { icon: '✓', text: 'Receta electrónica incluida' },
-        { icon: '✓', text: 'Seguimiento post-consulta' },
+        { chk: true, text: 'Disponible 24/7, 365 días' },
+        { chk: true, text: 'Videollamada desde cualquier celular' },
+        { chk: true, text: 'Receta electrónica incluida' },
+        { chk: true, text: 'Seguimiento post-consulta' },
       ],
       employer_benefit: 'Tu empleado duerme. Mañana llega al trabajo.',
       employer_detail: 'Una noche sin dormir por angustia familiar = día improductivo, errores, riesgo de accidente en trabajo físico. Resuelto en 5 minutos con telemedicina.',
@@ -43,10 +43,10 @@ const SERVICES = {
       story: '"La mamá de Rosa toma metformina, losartán y atorvastatina todos los meses. Sin SaludCompartida: $120 USD de su bolsillo. Con SaludCompartida: $28 USD. Rosa ahora puede enviar $92 más a su familia — o simplemente respirar."',
       story_who: '— Caso real. Diabetes + hipertensión + colesterol = $120/mes en México.',
       specs: [
-        { icon: '✓', text: 'Hasta 75% de descuento' },
-        { icon: '✓', text: '1,700+ farmacias afiliadas' },
-        { icon: '✓', text: 'Medicamentos crónicos priorizados' },
-        { icon: '✓', text: 'Se activa mostrando el código QR' },
+        { chk: true, text: 'Hasta 75% de descuento' },
+        { chk: true, text: '1,700+ farmacias afiliadas' },
+        { chk: true, text: 'Medicamentos crónicos priorizados' },
+        { chk: true, text: 'Se activa mostrando el código QR' },
       ],
       employer_benefit: 'La remesa ya no se va en medicamentos.',
       employer_detail: 'Entre 5–9% de la remesa ya se destina a salud de bolsillo (Banxico/IDB). El descuento en farmacia devuelve ese dinero al presupuesto familiar — reduciendo el estrés financiero directamente.',
@@ -65,10 +65,10 @@ const SERVICES = {
       story: '"La hija de Javier tiene 14 años y empezó a fallar en la escuela. Llevaba meses con ansiedad desde que papá se fue a Chicago. La terapia online de SaludCompartida la vio los martes a las 4pm, desde casa, sin que nadie en la colonia lo supiera."',
       story_who: '— La separación familiar tiene un costo emocional invisible.',
       specs: [
-        { icon: '✓', text: 'Psicólogos certificados disponibles' },
-        { icon: '✓', text: 'Video, chat o llamada' },
-        { icon: '✓', text: 'Para adultos, adolescentes y niños' },
-        { icon: '✓', text: 'Agenda online en minutos' },
+        { chk: true, text: 'Psicólogos certificados disponibles' },
+        { chk: true, text: 'Video, chat o llamada' },
+        { chk: true, text: 'Para adultos, adolescentes y niños' },
+        { chk: true, text: 'Agenda online en minutos' },
       ],
       employer_benefit: 'Familias estables = empleados presentes.',
       employer_detail: 'La inestabilidad emocional en la familia de México impacta directamente la estabilidad del empleado en EE.UU. Tratar la raíz del problema reduce rotación y ausentismo.',
@@ -86,12 +86,12 @@ const SERVICES = {
       story: '"Son las 10am del martes. Doña Carmen, 71 años, no ha tomado su insulina en 3 días. No le ha dicho a su hijo porque no quiere preocuparlo. Lupita la llama — como lo hace cada martes — y en la conversación natural detecta la señal. Conecta a Carmen con el médico antes de que sea una emergencia."',
       story_who: '— Esto no es un chatbot. Es una guardiana silenciosa.',
       specs: [
-        { icon: '★', text: 'Llama proactivamente — no espera que la llamen' },
-        { icon: '★', text: 'Diseñada para el adulto mayor mexicano culturalmente' },
-        { icon: '★', text: 'Usa "usted" o "tú" según la persona' },
-        { icon: '★', text: 'Detecta señales de crisis emocional y física' },
-        { icon: '★', text: 'Escala a médico o psicólogo cuando lo necesita' },
-        { icon: '★', text: '16 códigos conductuales propietarios' },
+        { chk: true, text: 'Llama proactivamente — no espera que la llamen' },
+        { chk: true, text: 'Diseñada para el adulto mayor mexicano culturalmente' },
+        { chk: true, text: 'Usa "usted" o "tú" según la persona' },
+        { chk: true, text: 'Detecta señales de crisis emocional y física' },
+        { chk: true, text: 'Escala a médico o psicólogo cuando lo necesita' },
+        { chk: true, text: '16 códigos conductuales propietarios' },
       ],
       employer_benefit: 'Tu empleado puede respirar.',
       employer_detail: 'El 75% de adultos mayores con enfermedad crónica tiene soledad severa (National Institute on Aging). Lupita no reemplaza al hijo — crea la red de seguridad que permite que el empleado trabaje sin ese peso constante.',
@@ -113,10 +113,10 @@ const SERVICES = {
       story: '"It\'s 11pm in Guadalajara. Carlos\'s mom has a high fever and cough. Before, Carlos would have spent all night awake waiting for the clinic to open at 8am. With SaludCompartida, at 11:01pm she\'s already speaking with a doctor by video call."',
       story_who: '— Real scenario. Happens every night.',
       specs: [
-        { icon: '✓', text: 'Available 24/7, 365 days' },
-        { icon: '✓', text: 'Video call from any phone' },
-        { icon: '✓', text: 'Electronic prescription included' },
-        { icon: '✓', text: 'Post-consultation follow-up' },
+        { chk: true, text: 'Available 24/7, 365 days' },
+        { chk: true, text: 'Video call from any phone' },
+        { chk: true, text: 'Electronic prescription included' },
+        { chk: true, text: 'Post-consultation follow-up' },
       ],
       employer_benefit: 'Your employee sleeps. Tomorrow they show up.',
       employer_detail: 'One sleepless night from family anxiety = unproductive day, errors, accident risk in physical work. Resolved in 5 minutes with telemedicine.',
@@ -134,10 +134,10 @@ const SERVICES = {
       story: '"Rosa\'s mom takes metformin, losartan and atorvastatin every month. Without SaludCompartida: $120 USD out of pocket. With SaludCompartida: $28 USD. Rosa can now send $92 more to her family — or simply breathe."',
       story_who: '— Real case. Diabetes + hypertension + cholesterol = $120/month in Mexico.',
       specs: [
-        { icon: '✓', text: 'Up to 75% discount' },
-        { icon: '✓', text: '1,700+ affiliated pharmacies' },
-        { icon: '✓', text: 'Chronic medications prioritized' },
-        { icon: '✓', text: 'Activated by showing QR code' },
+        { chk: true, text: 'Up to 75% discount' },
+        { chk: true, text: '1,700+ affiliated pharmacies' },
+        { chk: true, text: 'Chronic medications prioritized' },
+        { chk: true, text: 'Activated by showing QR code' },
       ],
       employer_benefit: 'The remittance no longer goes to medications.',
       employer_detail: '5–9% of remittances already go to out-of-pocket healthcare (Banxico/IDB). The pharmacy discount returns that money to the family budget — directly reducing financial stress.',
@@ -156,10 +156,10 @@ const SERVICES = {
       story: '"Javier\'s daughter is 14 and started failing in school. She\'d had anxiety for months since dad left for Chicago. SaludCompartida\'s online therapy saw her every Tuesday at 4pm, from home, without anyone in the neighborhood knowing."',
       story_who: '— Family separation has an invisible emotional cost.',
       specs: [
-        { icon: '✓', text: 'Certified psychologists available' },
-        { icon: '✓', text: 'Video, chat, or phone' },
-        { icon: '✓', text: 'For adults, teens, and children' },
-        { icon: '✓', text: 'Online scheduling in minutes' },
+        { chk: true, text: 'Certified psychologists available' },
+        { chk: true, text: 'Video, chat, or phone' },
+        { chk: true, text: 'For adults, teens, and children' },
+        { chk: true, text: 'Online scheduling in minutes' },
       ],
       employer_benefit: 'Stable families = present employees.',
       employer_detail: 'Emotional instability in the Mexico family directly impacts the employee\'s stability in the US. Treating the root cause reduces turnover and absenteeism.',
@@ -177,12 +177,12 @@ const SERVICES = {
       story: '"It\'s 10am on Tuesday. Doña Carmen, 71, hasn\'t taken her insulin in 3 days. She hasn\'t told her son because she doesn\'t want to worry him. Lupita calls — as she does every Tuesday — and in natural conversation detects the signal. She connects Carmen with the doctor before it becomes an emergency."',
       story_who: '— This is not a chatbot. This is a silent guardian.',
       specs: [
-        { icon: '★', text: 'Calls proactively — doesn\'t wait to be called' },
-        { icon: '★', text: 'Culturally designed for the Mexican senior' },
-        { icon: '★', text: 'Uses formal or informal address based on the person' },
-        { icon: '★', text: 'Detects emotional and physical crisis signals' },
-        { icon: '★', text: 'Escalates to doctor or psychologist when needed' },
-        { icon: '★', text: '16 proprietary behavioral codes' },
+        { chk: true, text: 'Calls proactively — doesn\'t wait to be called' },
+        { chk: true, text: 'Culturally designed for the Mexican senior' },
+        { chk: true, text: 'Uses formal or informal address based on the person' },
+        { chk: true, text: 'Detects emotional and physical crisis signals' },
+        { chk: true, text: 'Escalates to doctor or psychologist when needed' },
+        { chk: true, text: '16 proprietary behavioral codes' },
       ],
       employer_benefit: 'Your employee can breathe.',
       employer_detail: '75% of seniors with chronic illness have severe loneliness (National Institute on Aging). Lupita doesn\'t replace the son — she creates the safety net that lets the employee work without that constant weight.',
@@ -274,7 +274,11 @@ export default function Benefits() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6 }}>
               {svc.specs.map((spec, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, background: 'rgba(255,255,255,0.06)', borderRadius: 8, padding: '7px 10px' }}>
-                  <span style={{ color: svc.color, fontSize: 14, fontWeight: 700, flexShrink: 0, marginTop: 1 }}>{spec.icon}</span>
+                  <div style={{ width: 16, height: 16, borderRadius: '50%', background: `${svc.color}25`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
+                    <svg width="8" height="7" viewBox="0 0 8 7" fill="none">
+                      <path d="M1 3.5L3 5.5L7 1" stroke={svc.color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
                   <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.85)', lineHeight: 1.4 }}>{spec.text}</span>
                 </div>
               ))}
@@ -354,7 +358,9 @@ export default function Benefits() {
                     : ['1 sleepless night from family worry = error-prone, accident-risk day', 'With SaludCompartida: doctor at 11pm → employee calm at 7am', 'No leaving work, no asking for time off, no paycheck advances']
                   ).map((t, i) => (
                     <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-                      <span style={{ color: '#5EEAD4', fontWeight: 800, flexShrink: 0, fontSize: 14 }}>→</span>
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
+                      <path d="M2 7h10M8 3l4 4-4 4" stroke="#5EEAD4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                       <span style={{ fontSize: 12, color: 'white', fontWeight: 600, lineHeight: 1.4 }}>{t}</span>
                     </div>
                   ))}
@@ -367,7 +373,9 @@ export default function Benefits() {
                     : ['Family with elderly diabetic saves up to $92/month on medications', '5–9% of remittance went to medications — now stays with the family', 'Employee with less financial stress = less anxiety-related absenteeism']
                   ).map((t, i) => (
                     <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-                      <span style={{ color: '#FCD34D', fontWeight: 800, flexShrink: 0, fontSize: 14 }}>→</span>
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
+                      <path d="M2 7h10M8 3l4 4-4 4" stroke="#FCD34D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                       <span style={{ fontSize: 12, color: 'white', fontWeight: 600, lineHeight: 1.4 }}>{t}</span>
                     </div>
                   ))}
@@ -380,7 +388,9 @@ export default function Benefits() {
                     : ['Family separation creates chronic anxiety in children and spouses', 'An employee worried about family mental health loses 40 min/day of focus', 'Weekly therapy prevents crises — cheaper than resolving them later']
                   ).map((t, i) => (
                     <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-                      <span style={{ color: '#6EE7B7', fontWeight: 800, flexShrink: 0, fontSize: 14 }}>→</span>
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
+                      <path d="M2 7h10M8 3l4 4-4 4" stroke="#6EE7B7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                       <span style={{ fontSize: 12, color: 'white', fontWeight: 600, lineHeight: 1.4 }}>{t}</span>
                     </div>
                   ))}
@@ -393,7 +403,9 @@ export default function Benefits() {
                     : ['Lupita calls proactively — does not wait for something to go wrong', 'Detects crisis signals before they reach the employee', 'Employee works without the weight of "is my mom okay today?"']
                   ).map((t, i) => (
                     <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-                      <span style={{ color: '#93C5FD', fontWeight: 800, flexShrink: 0, fontSize: 14 }}>→</span>
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
+                      <path d="M2 7h10M8 3l4 4-4 4" stroke="#93C5FD" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                       <span style={{ fontSize: 12, color: 'white', fontWeight: 600, lineHeight: 1.4 }}>{t}</span>
                     </div>
                   ))}

@@ -78,22 +78,22 @@ export default function Capabilities() {
   /* ── COMMUNICATION KIT ── */
   const COMM_KIT = [
     {
-      icon: '📧',
+      svgPath: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
       title: es ? 'Email de bienvenida' : 'Welcome email',
       desc: es ? 'Personalizado con nombre del empleado y código de activación. En español. SaludCompartida lo envía.' : 'Personalized with employee name and activation code. In Spanish. SaludCompartida sends it.',
     },
     {
-      icon: '📱',
+      svgPath: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z',
       title: es ? 'Video por WhatsApp' : 'Video via WhatsApp',
       desc: es ? 'Video corto explicando los 4 beneficios, cómo activar y cómo usar. En español. Enviado directamente al celular del empleado.' : 'Short video explaining the 4 benefits, how to activate, and how to use. In Spanish. Sent directly to employee\'s phone.',
     },
     {
-      icon: '🎬',
+      svgPath: 'M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z',
       title: es ? 'Videos de YouTube' : 'YouTube videos',
       desc: es ? 'Biblioteca de videos en español listos para usar: presentación del beneficio, cómo hacer una videollamada médica, cómo usar el descuento en farmacia, cómo agendar terapia.' : 'Library of ready-to-use Spanish videos: benefit presentation, how to make a medical video call, how to use the pharmacy discount, how to schedule therapy.',
     },
     {
-      icon: '📋',
+      svgPath: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4',
       title: es ? 'Kit para RRHH' : 'HR kit',
       desc: es ? 'FAQ en español e inglés, one-pager del beneficio, plantilla de presentación para el open enrollment. Todo listo. Solo distribuye.' : 'FAQ in Spanish and English, benefit one-pager, presentation template for open enrollment. All ready. Just distribute.',
     },
@@ -101,10 +101,10 @@ export default function Capabilities() {
 
   /* ── UTILIZATION DASHBOARD ── */
   const DASH_WIDGETS = [
-    { n: '—', label: es ? 'Empleados con beneficio activo' : 'Employees with active benefit', color: '#22D3EE', icon: '👥' },
-    { n: '—', label: es ? 'Consultas médicas este mes' : 'Medical consultations this month', color: '#34D399', icon: '🩺' },
-    { n: '—', label: es ? 'Ahorro farmacia generado' : 'Pharmacy savings generated', color: '#FCD34D', icon: '💊' },
-    { n: '—', label: es ? 'Sesiones de terapia completadas' : 'Therapy sessions completed', color: '#A78BFA', icon: '🧠' },
+    { n: '—', label: es ? 'Empleados con beneficio activo' : 'Employees with active benefit', color: '#22D3EE', svgPath: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zm8 4v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75' },
+    { n: '—', label: es ? 'Consultas médicas este mes' : 'Medical consultations this month', color: '#34D399', svgPath: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z' },
+    { n: '—', label: es ? 'Ahorro farmacia generado' : 'Pharmacy savings generated', color: '#FCD34D', svgPath: 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z' },
+    { n: '—', label: es ? 'Sesiones de terapia completadas' : 'Therapy sessions completed', color: '#A78BFA', svgPath: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z' },
   ]
 
   const TABS = [
@@ -253,10 +253,14 @@ export default function Capabilities() {
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
-              {COMM_KIT.map(({ icon, title, desc }, i) => (
+              {COMM_KIT.map(({ svgPath, title, desc }, i) => (
                 <div key={i} style={{ background: NAVY_CARD, borderRadius: 14, padding: '20px 22px', border: '1px solid rgba(255,255,255,0.08)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-                    <div style={{ fontSize: 22 }}>{icon}</div>
+                    <div style={{ width: 36, height: 36, borderRadius: 8, background: 'rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                      <path d={item.svgPath}/>
+                    </svg>
+                  </div>
                     <span style={{ fontSize: 14, fontWeight: 800, color: 'white' }}>{title}</span>
                   </div>
                   <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)', fontWeight: 600, lineHeight: 1.65, margin: 0 }}>{desc}</p>
@@ -315,8 +319,15 @@ export default function Capabilities() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10, marginBottom: 20 }}>
                 {DASH_WIDGETS.map(({ n, label, color }, i) => (
                   <div key={i} style={{ background: NAVY_CARD, borderRadius: 10, padding: '14px 16px', border: `1px solid ${color}20` }}>
-                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 30, color, fontWeight: 700, lineHeight: 1 }}>—</div>
-                    <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.75)', fontWeight: 700, marginTop: 6, lineHeight: 1.4 }}>{label}</div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
+                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 28, color, fontWeight: 700, lineHeight: 1 }}>—</div>
+                      <div style={{ width: 28, height: 28, borderRadius: 6, background: `${color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                          <path d={svgPath}/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.75)', fontWeight: 700, lineHeight: 1.4 }}>{label}</div>
                   </div>
                 ))}
               </div>
