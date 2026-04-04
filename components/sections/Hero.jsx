@@ -4,17 +4,18 @@ import Link from 'next/link'
 import { useLang } from '@/contexts/LanguageContext'
 import { translations as T, t } from '@/lib/translations'
 
-// Rotating proof points — social proof + authority triggers
+// Rotating proof points — social proof + authority
+// Governance committee removed per brief — keep focus on market traction
 const PROOF_POINTS = {
   es: [
     'G&A Partners · 130,000 worksite employees en pipeline',
-    '600,000 suscriptores en Brasil — mismo modelo, probado',
-    'Governance Committee: ex-CEO IDB Lab · ex-Presidente Chubb A&H',
+    '600,000 suscriptores en Brasil 2019 — mismo modelo, probado',
+    '$64.7B en remesas anuales que hoy financian emergencias médicas',
   ],
   en: [
     'G&A Partners · 130,000 worksite employees in pipeline',
-    '600,000 subscribers in Brazil — same model, proven',
-    'Governance Committee: ex-CEO IDB Lab · ex-President Chubb A&H',
+    '600,000 subscribers in Brazil 2019 — same model, proven',
+    '$64.7B in annual remittances today financing medical emergencies',
   ]
 }
 
@@ -31,10 +32,9 @@ export default function Hero() {
   return (
     <div style={{ background: 'var(--white)', animation: 'fadeUp .35s ease' }}>
 
-      {/* Hero section */}
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '72px 48px 64px' }}>
 
-        {/* Live proof ticker — social proof + authority */}
+        {/* Live proof ticker */}
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: 10,
           background: 'var(--navy-light)', borderRadius: 100,
@@ -42,8 +42,7 @@ export default function Hero() {
         }}>
           <span style={{
             width: 7, height: 7, borderRadius: '50%',
-            background: 'var(--emerald)',
-            display: 'inline-block',
+            background: 'var(--emerald)', display: 'inline-block',
             animation: 'pulse-dot 2s infinite',
           }}/>
           <span style={{ fontSize: 12, fontWeight: 500, color: 'var(--navy)' }}>
@@ -53,9 +52,8 @@ export default function Hero() {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1.05fr 0.95fr', gap: 64, alignItems: 'center' }}>
 
-          {/* Left: Main copy */}
+          {/* Left */}
           <div>
-            {/* Pre-headline — audience targeting (pattern interrupt) */}
             <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--teal)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 14 }}>
               {lang === 'es' ? 'Para PEOs · HR Managers · Risk Managers' : 'For PEOs · HR Managers · Risk Managers'}
             </div>
@@ -74,14 +72,13 @@ export default function Hero() {
               }
             </p>
 
-            {/* Loss aversion frame — Kahneman principle */}
+            {/* Loss aversion frame */}
             <div style={{
               background: 'var(--loss-light)',
               border: '1px solid rgba(220,38,38,0.15)',
               borderLeft: '3px solid var(--loss)',
               borderRadius: '0 8px 8px 0',
-              padding: '12px 16px',
-              marginBottom: 32,
+              padding: '12px 16px', marginBottom: 32,
             }}>
               <span style={{ fontSize: 14, color: 'var(--loss)', fontWeight: 600 }}>
                 {lang === 'es'
@@ -97,10 +94,7 @@ export default function Hero() {
                 padding: '13px 28px', borderRadius: 8,
                 fontSize: 14, fontWeight: 600,
                 display: 'inline-flex', alignItems: 'center', gap: 8,
-                transition: 'background .2s, transform .15s',
-              }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'var(--teal)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'var(--navy)'; e.currentTarget.style.transform = 'none' }}>
+              }}>
                 {lang === 'es' ? 'Acceder al Portal' : 'Access Portal'}
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </Link>
@@ -115,24 +109,16 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right: ROI snapshot — anchoring for Risk Manager */}
+          {/* Right: ROI snapshot */}
           <div>
             <div style={{
-              background: 'var(--sand)',
-              borderRadius: 16,
-              padding: 32,
-              border: '1px solid var(--border)',
-              position: 'relative',
-              overflow: 'hidden',
+              background: 'var(--sand)', borderRadius: 16, padding: 32,
+              border: '1px solid var(--border)', position: 'relative', overflow: 'hidden',
             }}>
-              {/* Decorative accent */}
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(90deg, var(--navy), var(--teal))' }}/>
-
               <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 20 }}>
                 {lang === 'es' ? 'Calculadora de ROI rápida' : 'Quick ROI Calculator'}
               </div>
-
-              {/* Cost comparison — anchoring */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 20 }}>
                 {[
                   { label: lang === 'es' ? 'Costo de reemplazar 1 empleado' : 'Cost to replace 1 employee', val: '$5,200', color: 'var(--loss)', bg: 'var(--loss-light)' },
@@ -145,8 +131,6 @@ export default function Hero() {
                   </div>
                 ))}
               </div>
-
-              {/* 4 stats grid */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                 {[
                   { val: '78%', label: lang === 'es' ? 'empleados envían remesas mensualmente' : 'employees send monthly remittances' },
@@ -166,17 +150,12 @@ export default function Hero() {
       </div>
 
       {/* Social proof bar */}
-      <div style={{
-        background: 'var(--navy)',
-        padding: '16px 48px',
-        display: 'flex', justifyContent: 'center', gap: 48, alignItems: 'center',
-        flexWrap: 'wrap',
-      }}>
+      <div style={{ background: 'var(--navy)', padding: '16px 48px', display: 'flex', justifyContent: 'center', gap: 48, alignItems: 'center', flexWrap: 'wrap' }}>
         {[
           { val: lang === 'es' ? '600K suscriptores' : '600K subscribers', sub: lang === 'es' ? 'Brasil 2019 — mismo modelo' : 'Brazil 2019 — same model' },
           { val: '130,000', sub: lang === 'es' ? 'worksite employees en pipeline' : 'worksite employees in pipeline' },
           { val: '25+', sub: lang === 'es' ? 'años experiencia seguros LATAM' : 'years LATAM insurance experience' },
-          { val: '6', sub: lang === 'es' ? 'miembros Governance Committee' : 'Governance Committee members' },
+          { val: '$64.7B', sub: lang === 'es' ? 'corredor remesas EE.UU.→México/año' : 'US→Mexico remittance corridor/year' },
         ].map(({ val, sub }) => (
           <div key={val} style={{ textAlign: 'center' }}>
             <div style={{ fontFamily: 'var(--font-display)', fontSize: 24, color: 'white' }}>{val}</div>

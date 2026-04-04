@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useLang } from '@/contexts/LanguageContext'
 import { translations as T, t } from '@/lib/translations'
 import Hero          from '@/components/sections/Hero'
+import TheProblem    from '@/components/sections/TheProblem'
 import HowItWorks    from '@/components/sections/HowItWorks'
 import Benefits      from '@/components/sections/Benefits'
 import PaymentModels from '@/components/sections/PaymentModels'
@@ -11,6 +12,7 @@ import FAQ           from '@/components/sections/FAQ'
 
 const SECTIONS = [
   { id: 'inicio',      icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
+  { id: 'problema',    icon: 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z' },
   { id: 'como',        icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
   { id: 'beneficios',  icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z' },
   { id: 'modalidades', icon: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z' },
@@ -20,6 +22,7 @@ const SECTIONS = [
 
 const NAV_LABELS = {
   inicio:      { es: 'Inicio',        en: 'Home' },
+  problema:    { es: 'El Problema',   en: 'The Problem' },
   como:        { es: 'Cómo funciona', en: 'How it works' },
   beneficios:  { es: 'Beneficios',    en: 'Benefits' },
   modalidades: { es: 'Modalidades',   en: 'Plans' },
@@ -27,17 +30,28 @@ const NAV_LABELS = {
   faq:         { es: 'FAQ',           en: 'FAQ' },
 }
 
+// Accent colors per section for visual differentiation
+const NAV_ACCENTS = {
+  inicio:      'var(--navy)',
+  problema:    'var(--loss)',
+  como:        'var(--teal)',
+  beneficios:  'var(--emerald)',
+  modalidades: 'var(--navy)',
+  nosotros:    'var(--amber)',
+  faq:         'var(--teal)',
+}
+
 export default function HomePage() {
-  const [active, setActive]         = useState('inicio')
-  const [collapsed, setCollapsed]   = useState(false)
-  const { lang, setLang }           = useLang()
+  const [active, setActive]       = useState('inicio')
+  const [collapsed, setCollapsed] = useState(false)
+  const { lang, setLang }         = useLang()
 
   const sidebarW = collapsed ? 64 : 248
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: '#F3F4F6' }}>
 
-      {/* ── SIDEBAR ── light, professional */}
+      {/* ── SIDEBAR ── */}
       <aside style={{
         width: sidebarW, flexShrink: 0,
         background: 'var(--white)',
@@ -71,6 +85,7 @@ export default function HomePage() {
         <nav style={{ flex: 1, padding: '12px 8px', display: 'flex', flexDirection: 'column', gap: 2 }}>
           {SECTIONS.map(({ id, icon }) => {
             const isActive = active === id
+            const accent = NAV_ACCENTS[id]
             return (
               <button key={id} onClick={() => setActive(id)}
                 title={collapsed ? t(NAV_LABELS[id], lang) : undefined}
@@ -80,7 +95,7 @@ export default function HomePage() {
                   justifyContent: collapsed ? 'center' : 'flex-start',
                   padding: collapsed ? '10px 0' : '9px 12px',
                   borderRadius: 8, border: 'none', cursor: 'pointer',
-                  background: isActive ? 'var(--navy-light)' : 'transparent',
+                  background: isActive ? `${accent}15` : 'transparent',
                   transition: 'background .12s',
                   width: '100%', textAlign: 'left',
                 }}
@@ -88,19 +103,18 @@ export default function HomePage() {
                 onMouseLeave={e => { if (!isActive) e.currentTarget.style.background = 'transparent' }}
               >
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
-                  stroke={isActive ? 'var(--navy)' : 'var(--muted)'}
+                  stroke={isActive ? accent : 'var(--muted)'}
                   strokeWidth={isActive ? '2' : '1.5'}
                   strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                   <path d={icon}/>
                 </svg>
                 {!collapsed && (
-                  <span style={{ fontSize: 13, fontWeight: isActive ? 600 : 400, color: isActive ? 'var(--navy)' : 'var(--body)', whiteSpace: 'nowrap' }}>
+                  <span style={{ fontSize: 13, fontWeight: isActive ? 600 : 400, color: isActive ? accent : 'var(--body)', whiteSpace: 'nowrap' }}>
                     {t(NAV_LABELS[id], lang)}
                   </span>
                 )}
-                {/* Active indicator */}
                 {isActive && !collapsed && (
-                  <div style={{ marginLeft: 'auto', width: 5, height: 5, borderRadius: '50%', background: 'var(--teal)', flexShrink: 0 }}/>
+                  <div style={{ marginLeft: 'auto', width: 5, height: 5, borderRadius: '50%', background: accent, flexShrink: 0 }}/>
                 )}
               </button>
             )
@@ -109,8 +123,6 @@ export default function HomePage() {
 
         {/* Bottom controls */}
         <div style={{ padding: '12px 8px', borderTop: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: 8 }}>
-
-          {/* Lang toggle */}
           {!collapsed && (
             <div style={{ display: 'flex', gap: 4 }}>
               {['es','en'].map(l => (
@@ -127,35 +139,25 @@ export default function HomePage() {
               ))}
             </div>
           )}
-
-          {/* Portal CTA */}
           <a href="/dashboard" style={{
             display: 'flex', alignItems: 'center',
-            justifyContent: collapsed ? 'center' : 'center',
+            justifyContent: 'center',
             gap: 6, padding: '9px 12px',
             background: 'var(--navy)', borderRadius: 8,
             color: 'white', fontSize: 12, fontWeight: 600,
-            transition: 'background .15s',
-          }}
-            onMouseEnter={e => e.currentTarget.style.background = 'var(--teal)'}
-            onMouseLeave={e => e.currentTarget.style.background = 'var(--navy)'}>
+          }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
               <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
               <rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>
             </svg>
             {!collapsed && <span>Portal</span>}
           </a>
-
-          {/* Collapse toggle */}
           <button onClick={() => setCollapsed(!collapsed)} style={{
             padding: '7px', borderRadius: 6, border: '1px solid var(--border)',
             background: 'var(--white)', cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            color: 'var(--muted)', transition: 'background .12s',
-          }}
-            onMouseEnter={e => e.currentTarget.style.background = '#F9FAFB'}
-            onMouseLeave={e => e.currentTarget.style.background = 'var(--white)'}
-            title={collapsed ? 'Expand' : 'Collapse'}>
+            color: 'var(--muted)',
+          }} title={collapsed ? 'Expand' : 'Collapse'}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
               <path d={collapsed ? 'M9 18l6-6-6-6' : 'M15 18l-6-6 6-6'}/>
             </svg>
@@ -168,8 +170,7 @@ export default function HomePage() {
 
         {/* Top bar */}
         <div style={{
-          background: 'var(--white)',
-          borderBottom: '1px solid var(--border)',
+          background: 'var(--white)', borderBottom: '1px solid var(--border)',
           padding: '0 40px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           height: 56, flexShrink: 0,
@@ -178,12 +179,11 @@ export default function HomePage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ fontSize: 12, color: 'var(--muted)' }}>saludcompartida.ai</span>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="var(--border)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--ink)' }}>{t(NAV_LABELS[active], lang)}</span>
+            <span style={{ fontSize: 13, fontWeight: 600, color: NAV_ACCENTS[active] }}>{t(NAV_LABELS[active], lang)}</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            {/* Audience badges — reinforces who this is for */}
             <div style={{ display: 'flex', gap: 6 }}>
-              {[lang === 'es' ? 'PEO' : 'PEO', lang === 'es' ? 'RRHH' : 'HR', lang === 'es' ? 'Risk' : 'Risk'].map(label => (
+              {['PEO', lang === 'es' ? 'RRHH' : 'HR', 'Risk'].map(label => (
                 <span key={label} style={{ fontSize: 10, fontWeight: 600, color: 'var(--teal)', background: 'var(--teal-light)', padding: '2px 8px', borderRadius: 100 }}>
                   {label}
                 </span>
@@ -198,6 +198,7 @@ export default function HomePage() {
         {/* Section */}
         <div key={active} style={{ flex: 1, animation: 'fadeUp .25s ease' }}>
           {active === 'inicio'      && <Hero />}
+          {active === 'problema'    && <TheProblem />}
           {active === 'como'        && <HowItWorks />}
           {active === 'beneficios'  && <Benefits />}
           {active === 'modalidades' && <PaymentModels />}
@@ -205,20 +206,26 @@ export default function HomePage() {
           {active === 'faq'         && <FAQ />}
         </div>
 
-        {/* Footer */}
         <footer style={{ background: 'var(--ink)', color: 'rgba(255,255,255,0.5)', padding: '20px 40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 12, flexShrink: 0 }}>
           <span>© 2026 Tech Solution Services FVR LLC · Florida</span>
           <div style={{ display: 'flex', gap: 20 }}>
             {['saludcompartida.com','saludcompartida.app'].map(d => (
-              <a key={d} href={`https://${d}`} style={{ color: 'rgba(255,255,255,0.4)', transition: 'color .15s' }}
-                onMouseEnter={e => e.currentTarget.style.color = 'var(--teal)'}
-                onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.4)'}>
-                {d}
-              </a>
+              <a key={d} href={`https://${d}`} style={{ color: 'rgba(255,255,255,0.4)' }}>{d}</a>
             ))}
           </div>
         </footer>
       </div>
+
+      <style>{`
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(8px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse-dot {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.4; }
+        }
+      `}</style>
     </div>
   )
 }
