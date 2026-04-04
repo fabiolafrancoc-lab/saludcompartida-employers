@@ -15,6 +15,7 @@ import TheImpact     from '@/components/sections/TheImpact'
 import PaymentModels from '@/components/sections/PaymentModels'
 import AboutUs       from '@/components/sections/AboutUs'
 import FAQ           from '@/components/sections/FAQ'
+import VideoBreak    from '@/components/sections/VideoBreak'
 
 const SECTIONS = [
   { id: 'inicio',      Icon: IconInicio },
@@ -204,9 +205,9 @@ export default function HomePage() {
         {/* Section */}
         <div key={active} style={{ flex: 1, animation: 'fadeUp .25s ease' }}>
           {active === 'inicio'      && <Hero />}
-          {active === 'problema'    && <TheProblem />}
+          {active === 'problema'    && <><VideoBreak variant='fiebre' /><TheProblem /></>}
           {active === 'como'        && <HowItWorks />}
-          {active === 'beneficios'  && <Benefits />}
+          {active === 'beneficios'  && <><Benefits /><VideoBreak variant='ninos' /></>}
           {active === 'impacto'     && <TheImpact />}
           {active === 'modalidades' && <PaymentModels />}
           {active === 'nosotros'    && <AboutUs />}

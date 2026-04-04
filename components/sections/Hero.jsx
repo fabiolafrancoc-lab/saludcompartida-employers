@@ -1,263 +1,204 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useLang } from '@/contexts/LanguageContext'
 import { IconTelemedicina, IconFarmacia, IconTerapia, IconLupita } from '@/components/icons/SCIcons'
-
-/*
-  HERO DESIGN RATIONALE
-  ─────────────────────────────────────────────────────────────────
-  La foto tiene el cyan vacío exactamente en el IZQUIERDO — el
-  ojo sigue naturalmente a la niña (derecha) y LUEGO lee el texto
-  (izquierda). Psicología de lectura F-pattern + face attraction.
-
-  La niña pintada = la hija del empleado en México. El HR Manager
-  lo entiende visceralmente sin que nadie se lo explique.
-
-  Color left panel = #9DCDD0 (muestreado de la foto) →
-  la transición foto-panel es invisible, parece un solo universo.
-  ─────────────────────────────────────────────────────────────────
-*/
 
 const FEARS = {
   es: [
     '"¿Tendrá mamá para su medicina este mes?"',
-    '"¿Y si papá necesita al médico y no tenemos?"',
-    '"¿Y si mi hija se enferma lejos de mí?"',
+    '"¿Y si papá necesita al médico y no tengo el dinero?"',
+    '"¿Y si mi hija se enferma y no hay nada en la remesa?"',
   ],
   en: [
     '"Will mom have enough for her medicine this month?"',
-    '"What if dad needs a doctor and we can\'t afford it?"',
-    '"What if my daughter gets sick far from me?"',
-  ],
+    '"What if dad needs a doctor and I don\'t have the money?"',
+    '"What if my daughter gets sick and there\'s nothing left?"',
+  ]
 }
 
-const SERVICES = (es) => [
-  { Icon: IconTelemedicina, label: es ? 'Médico 24/7' : 'Doctor 24/7',     color: '#0891B2' },
-  { Icon: IconFarmacia,     label: es ? 'Farmacia'    : 'Pharmacy',        color: '#D97706' },
-  { Icon: IconTerapia,      label: es ? 'Terapia'     : 'Therapy',         color: '#7C3AED' },
-  { Icon: IconLupita,       label: es ? 'Lupita AI'   : 'Lupita AI',       color: '#006847' },
+const SERVICES = [
+  { Icon: IconTelemedicina, color: '#0891B2', bg: '#E0F7FA', es: 'Médico 24/7', en: 'Doctor 24/7' },
+  { Icon: IconFarmacia,     color: '#D97706', bg: '#FFFBEB', es: 'Farmacia',    en: 'Pharmacy' },
+  { Icon: IconTerapia,      color: '#7C3AED', bg: '#EDE9FE', es: 'Terapia',     en: 'Therapy' },
+  { Icon: IconLupita,       color: '#006847', bg: '#ECFDF5', es: 'Lupita AI',   en: 'Lupita AI' },
 ]
 
 export default function Hero() {
   const { lang } = useLang()
   const es = lang === 'es'
   const [fearIdx, setFearIdx] = useState(0)
+  const [imgLoaded, setImgLoaded] = useState(false)
 
   useEffect(() => {
-    const t = setInterval(() => setFearIdx(p => (p + 1) % 3), 3600)
-    return () => clearInterval(t)
+    const i = setInterval(() => setFearIdx(p => (p + 1) % 3), 3600)
+    return () => clearInterval(i)
   }, [])
 
-  const services = SERVICES(es)
-
   return (
-    <div style={{ position: 'relative', minHeight: 'calc(100vh - 56px)', display: 'flex', overflow: 'hidden' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '44% 56%', minHeight: 'calc(100vh - 56px)', animation: 'fadeUp .4s ease' }}>
 
-      {/* ── LEFT PANEL — cyan from the photo ── */}
+      {/* ── LEFT PANEL — Content ── */}
       <div style={{
-        width: '44%',
-        flexShrink: 0,
-        background: '#9DCDD0',
-        display: 'flex',
-        flexDirection: 'column',
+        background: 'var(--ink)',
+        display: 'flex', flexDirection: 'column',
         justifyContent: 'center',
-        padding: '56px 52px',
+        padding: '64px 52px',
         position: 'relative',
-        zIndex: 2,
+        overflow: 'hidden',
       }}>
+        {/* Subtle green accent top-left */}
+        <div style={{ position: 'absolute', top: 0, left: 0, width: 4, height: '100%', background: 'linear-gradient(180deg, #006847 0%, #0891B2 100%)' }} />
 
-        {/* Audience badge */}
-        <div style={{
-          display: 'inline-flex', alignItems: 'center', gap: 6,
-          background: 'rgba(255,255,255,0.30)',
-          backdropFilter: 'blur(8px)',
-          borderRadius: 100, padding: '5px 14px',
-          marginBottom: 28, alignSelf: 'flex-start',
-          border: '1px solid rgba(255,255,255,0.4)',
-        }}>
-          <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#0F3460', display: 'block', flexShrink: 0 }}/>
-          <span style={{ fontSize: 11, fontWeight: 700, color: '#0F3460', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            PEOs · HR Managers · Risk Managers
-          </span>
+        {/* Eyebrow */}
+        <div style={{ display: 'flex', gap: 6, marginBottom: 28, flexWrap: 'wrap' }}>
+          {['PEO', es ? 'RRHH' : 'HR', 'Risk Manager'].map(l => (
+            <span key={l} style={{ fontSize: 10, fontWeight: 700, color: '#0891B2', background: 'rgba(8,145,178,0.12)', padding: '3px 10px', borderRadius: 100, letterSpacing: '0.06em' }}>
+              {l}
+            </span>
+          ))}
         </div>
 
         {/* Headline */}
-        <h1 style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: 40,
-          lineHeight: 1.15,
-          color: '#0F3460',
-          marginBottom: 18,
-          letterSpacing: '-0.02em',
-        }}>
+        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 44, lineHeight: 1.1, color: 'white', marginBottom: 24, fontWeight: 400 }}>
           {es
-            ? <>Tu empleado trabaja<br/>mejor cuando su familia<br/><em style={{ color: '#006847', fontStyle: 'italic' }}>está protegida</em></>
-            : <>Your employee performs<br/>better when their family<br/><em style={{ color: '#006847', fontStyle: 'italic' }}>is protected</em></>
+            ? <>Tu empleado trabaja mejor<br />cuando sabe que<br /><span style={{ color: '#0891B2', fontStyle: 'italic' }}>su familia está protegida</span></>
+            : <>Your employee performs better<br />when they know<br /><span style={{ color: '#0891B2', fontStyle: 'italic' }}>their family is protected</span></>
           }
         </h1>
 
-        {/* Rotating fear — the employee's voice */}
+        {/* Rotating fear */}
         <div style={{
-          background: 'rgba(255,255,255,0.35)',
-          backdropFilter: 'blur(8px)',
-          border: '1px solid rgba(255,255,255,0.5)',
           borderLeft: '3px solid #D97706',
-          borderRadius: '0 10px 10px 0',
-          padding: '12px 16px',
-          marginBottom: 24,
-          minHeight: 54,
+          paddingLeft: 16, marginBottom: 32,
+          minHeight: 52,
         }}>
-          <div style={{ fontSize: 10, fontWeight: 700, color: '#D97706', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 5 }}>
-            {es ? 'Piensa esto mientras trabaja' : 'Thinking this while working'}
+          <div style={{ fontSize: 10, fontWeight: 700, color: '#D97706', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
+            {es ? 'Lo que piensa tu empleado hoy' : 'What your employee thinks today'}
           </div>
-          <p key={fearIdx} style={{ fontSize: 13, fontStyle: 'italic', color: '#0F3460', lineHeight: 1.5, margin: 0, animation: 'fadeUp .3s ease' }}>
+          <p key={fearIdx} style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', fontStyle: 'italic', lineHeight: 1.5, animation: 'fadeUp .3s ease' }}>
             {FEARS[lang][fearIdx]}
           </p>
         </div>
 
-        {/* 4 services — compact pills */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 24 }}>
-          {services.map(({ Icon, label, color }) => (
-            <div key={label} style={{
+        {/* 4 service pills */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 36 }}>
+          {SERVICES.map(({ Icon, color, bg, es: esLabel, en: enLabel }) => (
+            <div key={esLabel} style={{
               display: 'flex', alignItems: 'center', gap: 8,
-              background: 'rgba(255,255,255,0.4)',
-              backdropFilter: 'blur(6px)',
-              border: '1px solid rgba(255,255,255,0.55)',
-              borderRadius: 8, padding: '9px 12px',
+              background: 'rgba(255,255,255,0.05)',
+              borderRadius: 8, padding: '10px 12px',
+              border: '1px solid rgba(255,255,255,0.08)',
             }}>
-              <Icon size={17} color={color} strokeWidth={1.7} />
-              <span style={{ fontSize: 12, fontWeight: 600, color: '#0F3460' }}>{label}</span>
+              <div style={{ width: 28, height: 28, borderRadius: 7, background: `${color}20`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <Icon size={15} color={color} strokeWidth={1.6} />
+              </div>
+              <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>
+                {es ? esLabel : enLabel}
+              </span>
             </div>
           ))}
         </div>
 
-        {/* NOT insurance — compact */}
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: 8,
-          background: 'rgba(15,52,96,0.10)',
-          border: '1px solid rgba(15,52,96,0.18)',
-          borderRadius: 8, padding: '9px 14px',
-          marginBottom: 28,
-        }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0F3460" strokeWidth="2.5" strokeLinecap="round">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="12" y1="8" x2="12" y2="12"/>
-            <line x1="12" y1="16" x2="12.01" y2="16"/>
+        {/* NOT insurance */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 32, padding: '10px 14px', background: 'rgba(255,255,255,0.04)', borderRadius: 8, border: '1px solid rgba(255,255,255,0.08)' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0891B2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
           </svg>
-          <span style={{ fontSize: 11, color: '#0F3460', fontWeight: 600 }}>
-            {es
-              ? 'NO es un seguro médico — Sin deducibles. Sin copagos. Sin trámites.'
-              : 'NOT health insurance — No deductibles. No copays. No claims.'
-            }
+          <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.55)', lineHeight: 1.4 }}>
+            <strong style={{ color: 'white' }}>{es ? 'NO es un seguro médico' : 'NOT health insurance'}</strong>
+            {es ? ' — sin deducibles, sin copagos, sin trámites' : ' — no deductibles, no copays, no claims'}
           </span>
         </div>
 
         {/* CTAs */}
         <div style={{ display: 'flex', gap: 10 }}>
           <Link href="/dashboard" style={{
-            background: '#0F3460', color: 'white',
-            padding: '13px 26px', borderRadius: 8,
-            fontSize: 13, fontWeight: 700,
+            background: '#006847', color: 'white',
+            padding: '13px 28px', borderRadius: 8,
+            fontSize: 14, fontWeight: 600,
             display: 'inline-flex', alignItems: 'center', gap: 8,
-            boxShadow: '0 4px 16px rgba(15,52,96,0.30)',
-            transition: 'transform .15s, box-shadow .15s',
-          }}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(15,52,96,0.40)' }}
-            onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(15,52,96,0.30)' }}
-          >
+          }}>
             {es ? 'Acceder al Portal' : 'Access Portal'}
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </Link>
-          <button
-            onClick={() => document.querySelector('[data-section="problema"]')?.click()}
-            style={{
-              background: 'rgba(255,255,255,0.35)',
-              backdropFilter: 'blur(6px)',
-              border: '1px solid rgba(255,255,255,0.5)',
-              color: '#0F3460', padding: '13px 22px', borderRadius: 8,
-              fontSize: 13, fontWeight: 600, cursor: 'pointer',
-            }}
-          >
-            {es ? 'Ver el problema' : 'See the problem'}
-          </button>
+          <a style={{ background: 'transparent', color: 'rgba(255,255,255,0.6)', padding: '13px 20px', borderRadius: 8, fontSize: 13, fontWeight: 500, border: '1px solid rgba(255,255,255,0.12)', cursor: 'pointer' }}>
+            {es ? 'Ver cómo funciona' : 'See how it works'}
+          </a>
         </div>
 
-        {/* Loss aversion strip */}
-        <div style={{ marginTop: 24, padding: '12px 0 0', borderTop: '1px solid rgba(15,52,96,0.15)' }}>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: 22, color: '#DC2626' }}>$18</span>
-            <span style={{ fontSize: 12, color: '#0F3460', opacity: 0.7 }}>
-              {es ? '/mes por empleado · reemplazarlo cuesta' : '/month per employee · replacing them costs'}
-            </span>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: 22, color: '#0F3460' }}>$5,200</span>
-          </div>
+        {/* Bottom: loss aversion */}
+        <div style={{ marginTop: 28, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+          <span style={{ fontSize: 12, color: 'rgba(220,38,38,0.85)' }}>
+            {es
+              ? 'Reemplazar un empleado cuesta $3,000–$8,000. SaludCompartida: $18/mes.'
+              : 'Replacing an employee costs $3,000–$8,000. SaludCompartida: $18/month.'
+            }
+          </span>
         </div>
       </div>
 
-      {/* ── RIGHT PANEL — the girl, full bleed ── */}
-      <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
-
-        {/* Gradient blending left edge with the cyan panel */}
-        <div style={{
-          position: 'absolute', inset: 0, zIndex: 1,
-          background: 'linear-gradient(to right, #9DCDD0 0%, rgba(157,205,208,0.4) 18%, transparent 38%)',
-          pointerEvents: 'none',
-        }}/>
-
-        {/* Photo */}
-        <Image
-          src="/fotoninapintada.jpeg"
-          alt={es ? 'Niña de familia mexicana protegida con SaludCompartida' : 'Mexican family child protected with SaludCompartida'}
-          fill
-          priority
-          style={{ objectFit: 'cover', objectPosition: '65% center' }}
-          sizes="56vw"
+      {/* ── RIGHT PANEL — Imagen niña pintada ── */}
+      <div style={{ position: 'relative', overflow: 'hidden', background: '#0C1A2E' }}>
+        {/* Photo — niña pintada */}
+        <img
+          src="/nina-pintada.jpg"
+          alt="Niña pintada — SaludCompartida"
+          onLoad={() => setImgLoaded(true)}
+          onError={e => { e.target.style.display = 'none' }}
+          style={{
+            position: 'absolute', inset: 0,
+            width: '100%', height: '100%',
+            objectFit: 'cover', objectPosition: 'center',
+            opacity: imgLoaded ? 1 : 0,
+            transition: 'opacity .6s ease',
+          }}
         />
 
-        {/* ROI badge — floats over image bottom-left */}
-        <div style={{
-          position: 'absolute', bottom: 32, left: 32, zIndex: 2,
-          background: 'rgba(15,52,96,0.88)',
-          backdropFilter: 'blur(12px)',
-          borderRadius: 14, padding: '16px 22px',
-          border: '1px solid rgba(255,255,255,0.12)',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.24)',
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: 34, color: '#6EE7B7', lineHeight: 1 }}>24x</div>
-              <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.06em' }}>ROI</div>
-            </div>
-            <div style={{ width: 1, height: 36, background: 'rgba(255,255,255,0.12)' }}/>
-            <div>
-              <div style={{ fontSize: 12, color: 'white', fontWeight: 600, lineHeight: 1.3 }}>
-                {es ? 'Retener 1 empleado paga' : 'Retaining 1 employee pays'}
-              </div>
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.55)', marginTop: 3 }}>
-                {es ? '24 años de SaludCompartida' : '24 years of SaludCompartida'}
-              </div>
-            </div>
+        {/* Fallback gradient when image not yet uploaded */}
+        {!imgLoaded && (
+          <div style={{
+            position: 'absolute', inset: 0,
+            background: 'linear-gradient(135deg, #0C4A6E 0%, #0891B2 35%, #06B6D4 55%, #BAE6FD 80%, #F0F9FF 100%)',
+            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+          }}>
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" style={{ marginBottom: 16, opacity: 0.4 }}>
+              <rect x="8" y="16" width="48" height="36" rx="4" stroke="white" strokeWidth="2"/>
+              <circle cx="24" cy="30" r="6" stroke="white" strokeWidth="2"/>
+              <path d="M8 44l14-10 10 8 8-6 14 8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12, textAlign: 'center', maxWidth: 200, lineHeight: 1.5 }}>
+              {es ? 'Sube nina-pintada.jpg a public/' : 'Upload nina-pintada.jpg to public/'}
+            </p>
           </div>
-        </div>
+        )}
 
-        {/* Quote badge — floats over image top-right */}
+        {/* Subtle left gradient bridge — cyan connects left panel to photo */}
         <div style={{
-          position: 'absolute', top: 32, right: 32, zIndex: 2,
-          background: 'rgba(255,255,255,0.92)',
-          backdropFilter: 'blur(12px)',
-          borderRadius: 14, padding: '14px 20px',
-          maxWidth: 220,
-          boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+          position: 'absolute', inset: 0, pointerEvents: 'none',
+          background: 'linear-gradient(to right, rgba(8,145,178,0.25) 0%, transparent 30%)',
+        }} />
+
+        {/* Bottom caption */}
+        <div style={{
+          position: 'absolute', bottom: 24, left: 24, right: 24,
+          display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
         }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#D97706', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>
-            {es ? '10% de cada remesa' : '10% of each remittance'}
+          <div style={{ background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(12px)', borderRadius: 10, padding: '10px 14px', maxWidth: 280 }}>
+            <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.9)', lineHeight: 1.5, fontStyle: 'italic', margin: 0 }}>
+              {es
+                ? '"Todo lo que quiero es saber que está bien."'
+                : '"All I want is to know she\'s okay."'
+              }
+            </p>
+            <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)', marginTop: 4, margin: '4px 0 0' }}>
+              {es ? '— Carlos, trabajador de construcción, Houston' : '— Carlos, construction worker, Houston'}
+            </p>
           </div>
-          <div style={{ fontSize: 13, color: '#0F3460', fontWeight: 600, lineHeight: 1.4 }}>
-            {es ? 'se va en salud — médicos, exámenes y medicamentos' : 'goes to health — doctors, exams and medications'}
+          <div style={{ background: 'rgba(0,104,71,0.85)', backdropFilter: 'blur(8px)', borderRadius: 8, padding: '8px 14px' }}>
+            <div style={{ fontSize: 18, fontFamily: 'var(--font-display)', color: 'white', lineHeight: 1 }}>$18</div>
+            <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>/ mes</div>
           </div>
-          <div style={{ fontSize: 11, color: '#6B7280', marginTop: 4 }}>IDB 2024 · Banxico</div>
         </div>
       </div>
     </div>
