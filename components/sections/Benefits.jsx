@@ -197,6 +197,8 @@ export default function Benefits() {
   const es = lang === 'es'
   const [active, setActive] = useState(3) // default to Lupita — most differentiated
   const [videoPlaying, setVideoPlaying] = useState(false)
+  // Reset video when switching tabs
+  const handleTabChange = (i) => { setActive(i); setVideoPlaying(false) }
   const services = SERVICES[lang]
   const svc = services[active]
   // Reset video when tab changes
@@ -239,7 +241,7 @@ export default function Benefits() {
         {/* Service tabs */}
         <div style={{ display: 'flex', gap: 8, marginBottom: 32, flexWrap: 'wrap' }}>
           {services.map((s, i) => (
-            <button key={s.id} onClick={() => setActive(i)} style={{
+            <button key={s.id} onClick={() => handleTabChange(i)} style={{
               display: 'flex', alignItems: 'center', gap: 8,
               padding: '10px 18px', borderRadius: 100,
               border: active === i ? '2px solid white' : '2px solid rgba(255,255,255,0.2)',
@@ -293,7 +295,7 @@ export default function Benefits() {
             {svc.youtubeId && (
               <div style={{ marginTop: 20, borderRadius: 12, overflow: 'hidden', position: 'relative', aspectRatio: '16/9', background: '#000', cursor: 'pointer' }}
                 onClick={() => setVideoPlaying(v => !v)}>
-                {videoPlaying && active === active ? (
+                {videoPlaying ? (
                   <iframe
                     src={`https://www.youtube.com/embed/${svc.youtubeId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1`}
                     style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }}
@@ -314,47 +316,117 @@ export default function Benefits() {
             )}
           </div>
 
-          {/* Right: employer impact + stat */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          {/* Right: stat (navy) + employer impact (redesigned) */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
 
-            {/* Big stat */}
-            <div style={{ background: svc.bg, borderRadius: 16, padding: 28, textAlign: 'center' }}>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: 56, color: svc.color, lineHeight: 1, marginBottom: 10 }}>
-                {svc.stat.n}
+            {/* ── STAT BOX — always navy, always white bold ── */}
+            <div style={{ background: 'var(--navy)', borderRadius: 16, padding: '24px 28px', border: '2px solid rgba(255,255,255,0.12)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                <div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 52, color: 'white', fontWeight: 700, lineHeight: 1, marginBottom: 6 }}>
+                    {svc.stat.n}
+                  </div>
+                  <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', fontWeight: 700, lineHeight: 1.4 }}>
+                    {svc.stat.label}
+                  </div>
+                </div>
+                <div style={{ marginLeft: 'auto', width: 48, height: 48, borderRadius: 12, background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  {svc.IconComp && <svc.IconComp size={24} color="white" strokeWidth={1.6} />}
+                </div>
               </div>
-              <div style={{ fontSize: 13, color: 'var(--body)', lineHeight: 1.5, maxWidth: 220, margin: '0 auto' }}>
-                {svc.stat.label}
-              </div>
+              {/* Service-specific extra stat */}
+              {svc.id === 'medico' && (
+                <div style={{ marginTop: 14, paddingTop: 14, borderTop: '1px solid rgba(255,255,255,0.12)', display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span style={{ fontFamily: 'var(--font-display)', fontSize: 28, color: '#5EEAD4', fontWeight: 700 }}>20+</span>
+                  <span style={{ fontSize: 13, color: 'white', fontWeight: 700 }}>{es ? 'especialidades médicas disponibles 24/7' : 'medical specialties available 24/7'}</span>
+                </div>
+              )}
             </div>
 
-            {/* Employer impact */}
-            <div style={{ background: 'var(--ink)', borderRadius: 16, padding: 24, flex: 1, color: 'white' }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.85)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>
-                {es ? 'Por qué importa a tu empresa' : 'Why it matters to your company'}
+            {/* ── EMPLOYER IMPACT — redesigned, content-dense ── */}
+            <div style={{ background: 'var(--navy)', borderRadius: 16, padding: '22px 24px', flex: 1, border: '1px solid rgba(255,255,255,0.1)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
+                <div style={{ width: 4, height: 20, background: svc.color, borderRadius: 2 }} />
+                <div style={{ fontSize: 10, fontWeight: 800, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                  {es ? 'Por qué importa a tu empresa' : 'Why it matters to your company'}
+                </div>
               </div>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: 20, color: 'white', marginBottom: 12, lineHeight: 1.3 }}>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: 22, color: 'white', fontWeight: 700, marginBottom: 12, lineHeight: 1.25 }}>
                 {svc.employer_benefit}
               </div>
-              <p style={{ fontSize: 13, color: 'white', fontWeight: 500, lineHeight: 1.7 }}>
+              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', fontWeight: 600, lineHeight: 1.7, marginBottom: 14 }}>
                 {svc.employer_detail}
               </p>
+              {/* Service-specific bullet points */}
+              {svc.id === 'medico' && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {(es
+                    ? ['1 noche sin dormir por angustia = día con errores y riesgo de accidente', 'Con SC: médico a las 11pm → empleado tranquilo a las 7am', 'Sin salir del trabajo, sin pedir permiso, sin adelantos de nómina']
+                    : ['1 sleepless night from family worry = error-prone, accident-risk day', 'With SC: doctor at 11pm → employee calm at 7am', 'No leaving work, no asking for time off, no paycheck advances']
+                  ).map((t, i) => (
+                    <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                      <span style={{ color: '#5EEAD4', fontWeight: 800, flexShrink: 0, fontSize: 14 }}>→</span>
+                      <span style={{ fontSize: 12, color: 'white', fontWeight: 600, lineHeight: 1.4 }}>{t}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {svc.id === 'farmacia' && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {(es
+                    ? ['Familia con diabético adulto mayor ahorra hasta $92/mes en medicamentos', '5–9% de la remesa iba a medicamentos — ahora se queda en la familia', 'Empleado con menos estrés financiero = menos ausentismo por ansiedad']
+                    : ['Family with elderly diabetic saves up to $92/month on medications', '5–9% of remittance went to medications — now stays with the family', 'Employee with less financial stress = less anxiety-related absenteeism']
+                  ).map((t, i) => (
+                    <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                      <span style={{ color: '#FCD34D', fontWeight: 800, flexShrink: 0, fontSize: 14 }}>→</span>
+                      <span style={{ fontSize: 12, color: 'white', fontWeight: 600, lineHeight: 1.4 }}>{t}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {svc.id === 'terapia' && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {(es
+                    ? ['La separación familiar genera ansiedad crónica en hijos y cónyuge', 'Un empleado preocupado por la salud mental de su familia pierde 40 min/día de concentración', 'Terapia semanal previene crisis — más barata que resolverlas después']
+                    : ['Family separation creates chronic anxiety in children and spouses', 'An employee worried about family mental health loses 40 min/day of focus', 'Weekly therapy prevents crises — cheaper than resolving them later']
+                  ).map((t, i) => (
+                    <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                      <span style={{ color: '#6EE7B7', fontWeight: 800, flexShrink: 0, fontSize: 14 }}>→</span>
+                      <span style={{ fontSize: 12, color: 'white', fontWeight: 600, lineHeight: 1.4 }}>{t}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {svc.id === 'lupita' && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {(es
+                    ? ['Lupita llama proactivamente — no espera a que algo salga mal', 'Detecta señales de crisis antes de que lleguen al empleado', 'El empleado trabaja sin el peso de "estará bien mi mamá hoy"']
+                    : ['Lupita calls proactively — does not wait for something to go wrong', 'Detects crisis signals before they reach the employee', 'Employee works without the weight of "is my mom okay today?"']
+                  ).map((t, i) => (
+                    <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                      <span style={{ color: '#93C5FD', fontWeight: 800, flexShrink: 0, fontSize: 14 }}>→</span>
+                      <span style={{ fontSize: 12, color: 'white', fontWeight: 600, lineHeight: 1.4 }}>{t}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
-            {/* Lupita special: loneliness epidemic callout */}
+            {/* Lupita: loneliness epidemic — navy box, white bold */}
             {svc.isFeature && (
-              <div style={{ background: 'rgba(255,255,255,0.06)', borderRadius: 12, padding: '16px 18px', border: '1px solid rgba(255,255,255,0.15)' }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: '#FCD34D', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>
+              <div style={{ background: 'var(--navy)', borderRadius: 12, padding: '18px 20px', border: '2px solid rgba(255,255,255,0.12)' }}>
+                <div style={{ fontSize: 10, fontWeight: 800, color: 'white', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 14 }}>
                   {es ? 'La epidemia invisible' : 'The invisible epidemic'}
                 </div>
-                <div style={{ display: 'flex', gap: 20 }}>
+                <div style={{ display: 'flex', gap: 16, justifyContent: 'space-between' }}>
                   {[
-                    { n: '15 cig', label: es ? 'riesgo equivalente de la soledad' : 'equivalent risk of loneliness' },
-                    { n: '40%', label: es ? 'peor adherencia a medicamentos' : 'worse medication adherence' },
-                    { n: '0', label: es ? 'soluciones en el mercado para familias migrantes' : 'solutions in the market for migrant families' },
+                    { n: '15 cig', label: es ? 'Riesgo equivalente de la soledad crónica' : 'Equivalent risk of chronic loneliness' },
+                    { n: '40%', label: es ? 'Peor adherencia a medicamentos por aislamiento' : 'Worse medication adherence from isolation' },
+                    { n: '75%', label: es ? 'Adultos mayores con enf. crónica tienen soledad severa' : 'Seniors with chronic illness have severe loneliness' },
                   ].map(({ n, label }) => (
-                    <div key={n} style={{ textAlign: 'center' }}>
-                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 22, color: '#FCD34D', lineHeight: 1 }}>{n}</div>
-                      <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)', marginTop: 4, lineHeight: 1.3 }}>{label}</div>
+                    <div key={n} style={{ textAlign: 'center', flex: 1 }}>
+                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 26, color: 'white', fontWeight: 700, lineHeight: 1 }}>{n}</div>
+                      <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.85)', fontWeight: 700, marginTop: 6, lineHeight: 1.4 }}>{label}</div>
                     </div>
                   ))}
                 </div>
