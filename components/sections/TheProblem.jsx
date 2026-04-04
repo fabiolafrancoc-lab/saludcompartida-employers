@@ -1,188 +1,225 @@
 'use client'
+import { useState } from 'react'
 import { useLang } from '@/contexts/LanguageContext'
+
+// Three crises — each with progressive disclosure
+// Neuroscience: let the HR/Risk Manager choose their entry point.
+// Autonomy increases engagement and retention.
+const CRISES = {
+  es: [
+    {
+      id: 'financial',
+      color: 'var(--loss)',
+      bg: '#FEF2F2',
+      icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+      tag: '💸',
+      title: 'La crisis financiera silenciosa',
+      subtitle: '$393/mes · El único salvavidas de su familia',
+      data: [
+        { n: '$64.7B', label: 'México recibió en remesas en 2024 — máximo histórico', source: 'Banxico 2024' },
+        { n: '96.6%', label: 'provino de Estados Unidos — tus empleados lo enviaron', source: 'Banxico 2024' },
+        { n: '$393', label: 'es el promedio mensual por trabajador — no es extra, es el presupuesto familiar', source: 'Banxico 2024' },
+        { n: '1.1M', label: 'personas fuera de la pobreza gracias a remesas — si se corta, regresan', source: 'CONEVAL' },
+      ],
+      insight: 'La remesa no es un "extra". Es el flujo que paga la renta, la comida, la educación de los hijos Y la salud. Cuando hay una emergencia médica, compite directamente contra la supervivencia básica de la familia.',
+      employee_impact: 'Cuando la remesa no alcanza para la medicina de mamá, tu empleado lo sabe en tiempo real por WhatsApp. Esa conversación ocurre durante su turno de trabajo. Esa distracción tiene un costo real para tu operación.',
+    },
+    {
+      id: 'health',
+      color: '#DC2626',
+      bg: '#FEF2F2',
+      icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+      tag: '🏥',
+      title: 'La crisis de salud invisible',
+      subtitle: '54% sin seguro · Gasto de bolsillo brutal',
+      data: [
+        { n: '54%', label: 'de familias en México sin seguro de salud efectivo', source: 'OECD Health 2023' },
+        { n: '$2K–8K', label: 'cuesta una hospitalización de bolsillo en México (USD)', source: 'Análisis de mercado' },
+        { n: '5–9%', label: 'de las remesas ya se destina a gasto de salud — generalmente ineficiente', source: 'IDB Research' },
+        { n: '28 sem', label: 'tiempo de espera promedio en el sistema público para cirugía', source: 'OCDE' },
+      ],
+      insight: 'Los hogares receptores de remesas gastan más en salud que hogares similares sin remesas. Pero ese gasto es caótico: farmacias sin receta, consultorios de barrio, automedicación. El sistema público existe pero no alcanza.',
+      employee_impact: 'Entre 5 y 9% de lo que tu empleado envía ya se está yendo a salud. Con SaludCompartida, ese mismo gasto se vuelve estructurado, predecible y 10 veces más eficiente. El empleado no gasta más — gasta mejor.',
+    },
+    {
+      id: 'loneliness',
+      color: 'var(--navy)',
+      bg: 'var(--navy-light)',
+      icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+      tag: '💙',
+      title: 'La crisis que nadie ve: la soledad',
+      subtitle: 'La epidemia silenciosa · El Surgeon General de EE.UU. la declaró emergencia de salud pública',
+      data: [
+        { n: '75%', label: 'de adultos mayores con enfermedad crónica experimentan soledad severa', source: 'National Institute on Aging' },
+        { n: '15 cig', label: 'el riesgo para la salud de la soledad equivale a fumar 15 cigarrillos al día', source: 'Holt-Lunstad, APA' },
+        { n: '40%', label: 'peor adherencia a medicamentos en personas aisladas', source: 'Am. J. Public Health' },
+        { n: '3–5', label: 'miembros en el hogar familiar típico — con jefe de hogar de 40–79 años', source: 'INEGI / Banxico' },
+      ],
+      insight: 'La mamá de tu empleado tiene 65 años. Su hijo está en Houston. Ella vive con su diabetes, su artritis y el silencio. Cuando Lupita la llama a las 10am del martes, es la primera voz humana que escucha en dos días. Eso no es exageración — es la realidad de millones.',
+      employee_impact: 'Cuando la mamá está acompañada, monitorizada y con acceso a salud, tu empleado trabaja diferente. No está pendiente del celular esperando malas noticias. La tranquilidad de saber que alguien cuida a su familia es el beneficio más profundo que puedes darle.',
+    },
+  ],
+  en: [
+    {
+      id: 'financial',
+      color: 'var(--loss)',
+      bg: '#FEF2F2',
+      icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+      tag: '💸',
+      title: 'The silent financial crisis',
+      subtitle: '$393/month · The only lifeline for their family',
+      data: [
+        { n: '$64.7B', label: 'Mexico received in remittances in 2024 — historic maximum', source: 'Banxico 2024' },
+        { n: '96.6%', label: 'came from the United States — your employees sent it', source: 'Banxico 2024' },
+        { n: '$393', label: 'is the average monthly send per worker — not extra money, it\'s the family budget', source: 'Banxico 2024' },
+        { n: '1.1M', label: 'people lifted out of poverty by remittances — if it stops, they go back', source: 'CONEVAL' },
+      ],
+      insight: 'The remittance isn\'t "extra." It\'s the flow that pays rent, food, children\'s education AND healthcare. When a medical emergency strikes, it competes directly against the family\'s basic survival.',
+      employee_impact: 'When the remittance doesn\'t cover mom\'s medication, your employee knows it in real time via WhatsApp. That conversation happens during their work shift. That distraction has a real cost to your operation.',
+    },
+    {
+      id: 'health',
+      color: '#DC2626',
+      bg: '#FEF2F2',
+      icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+      tag: '🏥',
+      title: 'The invisible healthcare crisis',
+      subtitle: '54% uninsured · Brutal out-of-pocket costs',
+      data: [
+        { n: '54%', label: 'of families in Mexico have no effective health insurance', source: 'OECD Health 2023' },
+        { n: '$2K–8K', label: 'is the out-of-pocket cost of a hospitalization in Mexico (USD)', source: 'Market analysis' },
+        { n: '5–9%', label: 'of remittances already go to healthcare — usually inefficiently', source: 'IDB Research' },
+        { n: '28 wks', label: 'average public system wait time for surgery', source: 'OECD' },
+      ],
+      insight: 'Households receiving remittances spend more on healthcare than similar households without remittances. But that spending is chaotic: pharmacies without prescriptions, neighborhood clinics, self-medication. The public system exists but doesn\'t reach everyone.',
+      employee_impact: 'Between 5 and 9% of what your employee sends is already going to healthcare. With SaludCompartida, that same spending becomes structured, predictable, and 10x more efficient. The employee doesn\'t spend more — they spend better.',
+    },
+    {
+      id: 'loneliness',
+      color: 'var(--navy)',
+      bg: 'var(--navy-light)',
+      icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+      tag: '💙',
+      title: 'The crisis nobody sees: loneliness',
+      subtitle: 'The silent epidemic · The US Surgeon General declared it a public health emergency',
+      data: [
+        { n: '75%', label: 'of seniors with chronic illness experience severe loneliness', source: 'National Institute on Aging' },
+        { n: '15 cig', label: 'loneliness carries the same health risk as smoking 15 cigarettes a day', source: 'Holt-Lunstad, APA' },
+        { n: '40%', label: 'worse medication adherence in isolated individuals', source: 'Am. J. Public Health' },
+        { n: '3–5', label: 'members in the typical household — head of household 40–79 years old', source: 'INEGI / Banxico' },
+      ],
+      insight: 'Your employee\'s mom is 65. Her son is in Houston. She lives with her diabetes, her arthritis, and the silence. When Lupita calls her at 10am on Tuesday, it\'s the first human voice she\'s heard in two days. That\'s not an exaggeration — it\'s the reality for millions.',
+      employee_impact: 'When mom is accompanied, monitored, and has healthcare access, your employee works differently. They\'re not checking their phone waiting for bad news. The peace of mind from knowing someone cares for their family is the deepest benefit you can give them.',
+    },
+  ]
+}
 
 export default function TheProblem() {
   const { lang } = useLang()
   const es = lang === 'es'
+  const [active, setActive] = useState(0)
+  const crises = CRISES[lang]
+  const crisis = crises[active]
 
   return (
-    <div style={{ background: 'var(--white)', animation: 'fadeUp .35s ease' }}>
+    <div id="problema" style={{ background: 'var(--white)', animation: 'fadeUp .35s ease' }}>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '72px 48px' }}>
 
-        {/* Section header */}
-        <div style={{ maxWidth: 640, marginBottom: 56 }}>
+        {/* Header */}
+        <div style={{ maxWidth: 600, marginBottom: 44 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--loss)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 12 }}>
-            {es ? 'El problema que nadie ve' : 'The problem nobody sees'}
+            {es ? 'El problema que nadie ve en tu empresa' : 'The problem nobody sees in your company'}
           </div>
-          <h2 style={{ fontSize: 42, marginBottom: 20, lineHeight: 1.15 }}>
-            {es
-              ? <>Cada remesa llega con<br/><span style={{ color: 'var(--loss)', fontStyle: 'italic' }}>una ansiedad invisible</span></>
-              : <>Every remittance arrives with<br/><span style={{ color: 'var(--loss)', fontStyle: 'italic' }}>invisible anxiety</span></>
-            }
+          <h2 style={{ fontSize: 40, marginBottom: 16, lineHeight: 1.15 }}>
+            {es ? 'Tres crisis reales que afectan a tu empleado hoy' : 'Three real crises affecting your employees today'}
           </h2>
-          <p style={{ fontSize: 17, color: 'var(--muted)', lineHeight: 1.75 }}>
+          <p style={{ fontSize: 16, color: 'var(--muted)', lineHeight: 1.65 }}>
             {es
-              ? 'Para el migrante en los Estados Unidos, cada remesa llega con una pregunta que no desaparece. Y esa pregunta afecta directamente su desempeño en tu empresa.'
-              : 'For the migrant in the United States, every remittance arrives with a question that never goes away. And that question directly affects their performance at your company.'
+              ? 'No son problemas abstractos. Son situaciones concretas que ocurren mientras tu empleado está en su turno. Selecciona cada una para entender el impacto real.'
+              : 'These aren\'t abstract problems. They\'re concrete situations happening while your employee is on their shift. Select each to understand the real impact.'
             }
           </p>
         </div>
 
-        {/* The human story — emotional hook */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, marginBottom: 64, alignItems: 'start' }}>
-
-          {/* The fear — in the employee's voice */}
-          <div>
-            <div style={{
-              background: 'var(--amber-light)',
-              borderLeft: '4px solid var(--amber)',
-              borderRadius: '0 12px 12px 0',
-              padding: '24px 28px',
-              marginBottom: 28,
+        {/* Crisis selector tabs */}
+        <div style={{ display: 'flex', gap: 10, marginBottom: 36, flexWrap: 'wrap' }}>
+          {crises.map((c, i) => (
+            <button key={c.id} onClick={() => setActive(i)} style={{
+              display: 'flex', alignItems: 'center', gap: 10,
+              padding: '12px 20px', borderRadius: 10,
+              border: active === i ? `2px solid ${c.color}` : '2px solid var(--border)',
+              background: active === i ? c.bg : 'var(--white)',
+              cursor: 'pointer', transition: 'all .15s', textAlign: 'left',
             }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--amber)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 14 }}>
-                {es ? 'Lo que piensa tu empleado mientras trabaja' : 'What your employee is thinking while they work'}
+              <span style={{ fontSize: 18 }}>{c.tag}</span>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: active === i ? 700 : 500, color: active === i ? c.color : 'var(--body)', lineHeight: 1.2 }}>
+                  {c.title}
+                </div>
+                <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 2 }}>{c.subtitle}</div>
               </div>
-              {[
-                es ? '"¿Tendrá mamá para su medicina de la diabetes este mes?"' : '"Will mom have enough for her diabetes medication this month?"',
-                es ? '"¿Y si papá necesita al cardiólogo y no tengo el dinero?"' : '"What if dad needs a cardiologist and I don\'t have the money?"',
-                es ? '"¿Y si mi hija se enferma y ya no queda nada en la remesa?"' : '"What if my daughter gets sick and there\'s nothing left in the remittance?"',
-              ].map((quote, i) => (
-                <div key={i} style={{ display: 'flex', gap: 10, marginBottom: i < 2 ? 14 : 0, alignItems: 'flex-start' }}>
-                  <div style={{ width: 20, height: 20, borderRadius: '50%', background: 'var(--amber)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
-                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="3" fill="white"/></svg>
-                  </div>
-                  <p style={{ fontSize: 14, color: 'var(--ink)', fontStyle: 'italic', lineHeight: 1.6 }}>{quote}</p>
+            </button>
+          ))}
+        </div>
+
+        {/* Crisis detail — animated */}
+        <div key={active} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, animation: 'fadeUp .2s ease' }}>
+
+          {/* Left: data */}
+          <div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 24 }}>
+              {crisis.data.map(({ n, label, source }) => (
+                <div key={n} style={{ background: crisis.bg, borderRadius: 12, padding: '18px 16px', border: `1px solid ${crisis.color}20` }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 32, color: crisis.color, lineHeight: 1, marginBottom: 8 }}>{n}</div>
+                  <div style={{ fontSize: 12, color: 'var(--body)', lineHeight: 1.5, marginBottom: 6 }}>{label}</div>
+                  <div style={{ fontSize: 10, color: crisis.color, opacity: 0.7, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{source}</div>
                 </div>
               ))}
             </div>
 
-            <p style={{ fontSize: 15, color: 'var(--body)', lineHeight: 1.8, marginBottom: 20 }}>
-              {es
-                ? 'Ese miedo constante — ese riesgo financiero mensual — cuesta más que dinero. Cuesta sueño. Cuesta concentración en el trabajo. Cuesta la capacidad de construir una vida en un país nuevo mientras se cuida a seres queridos a miles de kilómetros.'
-                : 'That constant fear — that monthly financial risk — costs more than money. It costs sleep. It costs focus at work. It costs the ability to build a new life while caring for loved ones thousands of miles away.'
-              }
-            </p>
-
-            <p style={{ fontSize: 15, color: 'var(--body)', lineHeight: 1.8, fontWeight: 500 }}>
-              {es
-                ? 'Un empleado con la mente en México no puede estar con la mente en su trabajo. Y eso es un problema real para tu operación.'
-                : 'An employee with their mind in Mexico cannot have their mind on their work. And that is a real problem for your operation.'
-              }
-            </p>
+            {/* Insight */}
+            <div style={{ background: 'var(--sand)', borderRadius: 12, padding: '18px 20px', borderLeft: `3px solid ${crisis.color}` }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: crisis.color, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>
+                {es ? 'Lo que realmente ocurre' : 'What\'s really happening'}
+              </div>
+              <p style={{ fontSize: 13, color: 'var(--body)', lineHeight: 1.7 }}>{crisis.insight}</p>
+            </div>
           </div>
 
-          {/* The financial exposure — for Risk Manager */}
-          <div>
-            <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--navy)', marginBottom: 20 }}>
-              {es ? 'La exposición financiera real del empleado' : 'The employee\'s real financial exposure'}
+          {/* Right: employer impact */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+
+            {/* Visual metaphor for the crisis */}
+            <div style={{ background: 'var(--ink)', borderRadius: 16, padding: 32, flex: 1 }}>
+              <div style={{ width: 48, height: 48, borderRadius: '50%', background: crisis.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={crisis.color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d={crisis.icon}/>
+                </svg>
+              </div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>
+                {es ? 'Impacto directo en tu empresa' : 'Direct impact on your company'}
+              </div>
+              <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.85)', lineHeight: 1.75 }}>{crisis.employee_impact}</p>
             </div>
 
-            {[
-              {
-                icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
-                color: 'var(--loss)',
-                bg: 'var(--loss-light)',
-                title: es ? 'Una hospitalización lo destruye todo' : 'One hospitalization destroys everything',
-                desc: es
-                  ? 'Una hospitalización en México cuesta entre $2,000 y $8,000 USD de bolsillo. Para el empleado promedio, eso equivale a 1–4 meses de remesas. Si ocurre, la familia llama pidiendo dinero y el empleado entra en crisis financiera y emocional.'
-                  : 'A hospitalization in Mexico costs $2,000–$8,000 USD out of pocket. For the average employee, that\'s 1–4 months of remittances. When it happens, the family calls asking for money and the employee enters financial and emotional crisis.',
-                stat: '$2K–8K', statLabel: es ? 'costo promedio hospitalización' : 'avg. hospitalization cost',
-              },
-              {
-                icon: 'M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z',
-                color: 'var(--amber)',
-                bg: 'var(--amber-light)',
-                title: es ? 'El gasto en farmacia es mensual y creciente' : 'Pharmacy spend is monthly and growing',
-                desc: es
-                  ? 'Las familias mexicanas gastan un promedio de $400–800 USD al año en medicamentos crónicos — diabetes, hipertensión, artritis. Sin descuento, ese dinero sale directamente de las remesas del empleado cada mes.'
-                  : 'Mexican families spend an average of $400–800 USD per year on chronic medications — diabetes, hypertension, arthritis. Without discounts, that money comes directly from the employee\'s remittances every month.',
-                stat: '$800', statLabel: es ? 'gasto anual promedio farmacia/familia' : 'avg. annual pharmacy spend/family',
-              },
-              {
-                icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
-                color: 'var(--emerald)',
-                bg: 'var(--emerald-light)',
-                title: es ? 'Sin seguro, sin red de protección' : 'No insurance, no safety net',
-                desc: es
-                  ? 'El 54% de las familias en México no tiene seguro de salud efectivo desde la eliminación del Seguro Popular. El empleado latino es literalmente el sistema de salud de su familia — y esa responsabilidad pesa en cada turno de trabajo.'
-                  : '54% of families in Mexico have no effective health insurance since Seguro Popular was eliminated. The Latino employee is literally their family\'s healthcare system — and that responsibility weighs on every work shift.',
-                stat: '54%', statLabel: es ? 'familias en México sin seguro' : 'families in Mexico without insurance',
-              },
-            ].map(({ icon, color, bg, title, desc, stat, statLabel }) => (
-              <div key={title} style={{ background: bg, borderRadius: 12, padding: '18px 20px', marginBottom: 14, display: 'flex', gap: 14 }}>
-                <div style={{ flexShrink: 0 }}>
-                  <div style={{ width: 40, height: 40, borderRadius: 10, background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 6 }}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d={icon}/>
-                    </svg>
-                  </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 20, color, lineHeight: 1 }}>{stat}</div>
-                    <div style={{ fontSize: 9, color, opacity: 0.7, lineHeight: 1.3, maxWidth: 56 }}>{statLabel}</div>
-                  </div>
-                </div>
-                <div>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--ink)', marginBottom: 6 }}>{title}</div>
-                  <p style={{ fontSize: 12, color: 'var(--body)', lineHeight: 1.65 }}>{desc}</p>
-                </div>
+            {/* Solution teaser */}
+            <div style={{ background: crisis.bg, borderRadius: 12, padding: '18px 20px', border: `1px solid ${crisis.color}30`, display: 'flex', gap: 12, alignItems: 'center' }}>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={crisis.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Bridge to solution */}
-        <div style={{ background: 'var(--navy)', borderRadius: 20, padding: '40px 48px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
-          <div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 16 }}>
-              {es ? 'La solución' : 'The solution'}
+              <div style={{ fontSize: 13, color: crisis.color, fontWeight: 600, lineHeight: 1.4 }}>
+                {es
+                  ? active === 0 ? 'SaludCompartida convierte parte de la remesa en salud estructurada — no más gasto de bolsillo ineficiente'
+                  : active === 1 ? 'Médico 24/7, farmacia con 75% descuento y terapia — activado en 30 segundos, sin trámites'
+                  : 'Lupita llama a la familia todos los días. Detecta señales de crisis. Rompe la soledad. Tu empleado puede respirar.'
+                  : active === 0 ? 'SaludCompartida turns part of the remittance into structured healthcare — no more inefficient out-of-pocket spending'
+                  : active === 1 ? '24/7 doctor, 75% pharmacy discount, and therapy — activated in 30 seconds, no paperwork'
+                  : 'Lupita calls the family every day. Detects crisis signals. Breaks loneliness. Your employee can breathe.'
+                }
+              </div>
             </div>
-            <h3 style={{ fontSize: 30, color: 'white', marginBottom: 16, fontFamily: 'var(--font-display)', lineHeight: 1.2 }}>
-              {es
-                ? 'SaludCompartida elimina esa carga. No solo proveemos servicios de salud — proveemos certeza.'
-                : 'SaludCompartida eliminates that burden. We don\'t just provide healthcare — we provide certainty.'
-              }
-            </h3>
-            <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.7)', lineHeight: 1.8 }}>
-              {es
-                ? 'Proveemos dignidad. Proveemos la tranquilidad de saber que tu familia tiene acceso a atención de calidad, pase lo que pase. Y cuando el empleado sabe eso — trabaja diferente.'
-                : 'We provide dignity. We provide the peace of mind that comes from knowing your family has access to quality care, no matter what. And when the employee knows that — they work differently.'
-              }
-            </p>
-          </div>
-
-          {/* Two core benefits for the employee */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-            {[
-              {
-                icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
-                color: 'var(--teal)',
-                title: es ? 'Tranquilidad emocional' : 'Emotional tranquility',
-                desc: es
-                  ? 'El empleado llega a trabajar sabiendo que si mamá se enferma hoy, tiene médico disponible. Esa certeza cambia su estado mental y su presencia.'
-                  : 'The employee comes to work knowing that if mom gets sick today, there\'s a doctor available. That certainty changes their mental state and their presence.',
-              },
-              {
-                icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
-                color: 'var(--emerald)',
-                title: es ? 'Protección financiera real' : 'Real financial protection',
-                desc: es
-                  ? 'Limita su exposición financiera con su familia en México. Una consulta que antes costaba $80 ahora es gratis. Un medicamento que costaba $120 al mes ahora cuesta $40. La remesa ya no se va en emergencias.'
-                  : 'Limits their financial exposure with their family in Mexico. A consultation that cost $80 is now free. A medication that cost $120/month now costs $40. The remittance no longer goes to emergencies.',
-              },
-            ].map(({ icon, color, title, desc }) => (
-              <div key={title} style={{ background: 'rgba(255,255,255,0.06)', borderRadius: 12, padding: '18px 20px', border: '1px solid rgba(255,255,255,0.1)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-                  <div style={{ width: 32, height: 32, borderRadius: 8, background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d={icon}/>
-                    </svg>
-                  </div>
-                  <span style={{ fontSize: 14, fontWeight: 600, color: 'white' }}>{title}</span>
-                </div>
-                <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.65 }}>{desc}</p>
-              </div>
-            ))}
           </div>
         </div>
       </div>

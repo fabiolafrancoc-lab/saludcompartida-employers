@@ -9,10 +9,12 @@ import Benefits      from '@/components/sections/Benefits'
 import PaymentModels from '@/components/sections/PaymentModels'
 import AboutUs       from '@/components/sections/AboutUs'
 import FAQ           from '@/components/sections/FAQ'
+import Carlos        from '@/components/sections/Carlos'
 import TheImpact     from '@/components/sections/TheImpact'
 
 const SECTIONS = [
   { id: 'inicio',      icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
+  { id: 'carlos',      icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' },
   { id: 'problema',    icon: 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z' },
   { id: 'como',        icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
   { id: 'beneficios',  icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z' },
@@ -24,6 +26,7 @@ const SECTIONS = [
 
 const NAV_LABELS = {
   inicio:      { es: 'Inicio',        en: 'Home' },
+  carlos:      { es: 'Carlos',        en: 'Carlos' },
   problema:    { es: 'El Problema',   en: 'The Problem' },
   como:        { es: 'Cómo funciona', en: 'How it works' },
   beneficios:  { es: 'Beneficios',    en: 'Benefits' },
@@ -36,6 +39,7 @@ const NAV_LABELS = {
 // Accent colors per section for visual differentiation
 const NAV_ACCENTS = {
   inicio:      'var(--navy)',
+  carlos:      'var(--teal)',
   problema:    'var(--loss)',
   como:        'var(--teal)',
   beneficios:  'var(--emerald)',
@@ -202,6 +206,7 @@ export default function HomePage() {
         {/* Section */}
         <div key={active} style={{ flex: 1, animation: 'fadeUp .25s ease' }}>
           {active === 'inicio'      && <Hero />}
+          {active === 'carlos'      && <Carlos />}
           {active === 'problema'    && <TheProblem />}
           {active === 'como'        && <HowItWorks />}
           {active === 'beneficios'  && <Benefits />}
