@@ -75,7 +75,7 @@ export default function TheImpact() {
   ]
 
   return (
-    <div style={{ background: 'var(--sand)', animation: 'fadeUp .35s ease' }}>
+    <div style={{ background: 'var(--sand)', animation: 'fadeUp .35s ease', color: 'white' }} className="on-green">
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '72px 48px' }}>
 
         {/* Header */}

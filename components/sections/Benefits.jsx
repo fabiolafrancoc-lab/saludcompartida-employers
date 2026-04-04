@@ -36,7 +36,7 @@ export default function Benefits() {
   const svc = b.services[activeService]
 
   return (
-    <div style={{ background: 'var(--sand)', animation: 'fadeUp .35s ease' }}>
+    <div style={{ background: 'var(--sand)', animation: 'fadeUp .35s ease', color: 'white' }} className="on-green">
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '72px 48px' }}>
 
         {/* NOT insurance banner — must be clear */}

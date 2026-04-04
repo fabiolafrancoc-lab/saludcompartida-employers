@@ -73,7 +73,7 @@ export default function PaymentModels() {
         </div>
 
         {/* Employee types + configurability */}
-        <div style={{ background: 'var(--sand)', borderRadius: 12, padding: '24px 28px', border: '1px solid var(--border)' }}>
+        <div style={{ background: 'var(--sand-light)', borderRadius: 12, padding: '24px 28px', border: '1px solid var(--border)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--ink)' }}>{t(p.typesLabel, lang)}</span>
             {p.types.map(({ type, desc }) => (

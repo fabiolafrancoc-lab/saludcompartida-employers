@@ -227,7 +227,7 @@ export default function HowItWorks() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
 
             {/* Visual timeline showing position */}
-            <div style={{ background: 'var(--sand)', borderRadius: 16, padding: 28, flex: 1 }}>
+            <div style={{ background: 'var(--sand-light)', borderRadius: 16, padding: 28, flex: 1 }}>
               <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 20 }}>
                 {es ? 'Flujo completo' : 'Full flow'}
               </div>

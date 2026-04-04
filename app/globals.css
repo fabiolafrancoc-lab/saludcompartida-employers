@@ -9,7 +9,7 @@
   --emerald #059669  Verde → Sistema nervioso parasimpático, seguridad, crecimiento financiero
   --amber   #D97706  Ámbar → Atención selectiva sin amenaza, valor percibido, escasez
   --loss    #DC2626  Rojo → SOLO para datos de pérdida (loss aversion - Kahneman)
-  --sand    #FFFBF5  Warm white → Calidez sin frialdad clínica, acogida, decisión relajada
+  --mexico  #006847  Verde bandera mexicana → identidad, confianza, pertenencia cultural
   --ink     #0A0F1E  Negro azulado → Contraste máximo, autoridad editorial
 */
 
@@ -28,7 +28,8 @@
   --body:        #374151;
   --muted:       #6B7280;
   --border:      #E5E7EB;
-  --sand:        #FFFBF5;
+  --sand:        #006847;
+  --sand-light:  #E8F5EE;
   --white:       #FFFFFF;
   --font-display: 'Instrument Serif', Georgia, serif;
   --font-body:    'Inter', -apple-system, sans-serif;
@@ -58,3 +59,8 @@ a { text-decoration: none; }
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.4; }
 }
+
+/* Green background sections — text overrides */
+.on-green { color: white; }
+.on-green h1, .on-green h2, .on-green h3, .on-green h4 { color: white; }
+.on-green p, .on-green span { color: rgba(255,255,255,0.85); }
