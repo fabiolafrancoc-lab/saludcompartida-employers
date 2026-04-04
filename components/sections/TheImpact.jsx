@@ -136,9 +136,9 @@ export default function TheImpact() {
             <button key={i} onClick={() => setTab(i)} style={{
               padding: '9px 20px', borderRadius: 8,
               border: tab === i ? '2px solid white' : '2px solid rgba(255,255,255,0.2)',
-              background: tab === i ? 'white' : 'rgba(255,255,255,0.08)',
-              color: tab === i ? 'var(--sand)' : 'rgba(255,255,255,0.9)', fontWeight: tab === i ? 700 : 600,
-              fontSize: 13, fontWeight: tab === i ? 700 : 400,
+              background: tab === i ? '#0F3460' : 'rgba(255,255,255,0.08)',
+              color: 'white',
+              fontSize: 13, fontWeight: tab === i ? 800 : 600,
               cursor: 'pointer', transition: 'all .15s',
             }}>{t.label}</button>
           ))}
@@ -171,7 +171,7 @@ export default function TheImpact() {
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#0F3460', marginBottom: 4 }}>
                   {es ? '¿Adónde va la remesa?' : 'Where does the remittance go?'}
                 </div>
-                <div style={{ fontSize: 11, color: '#6B7280', marginBottom: 20 }}>
+                <div style={{ fontSize: 11, color: '#374151', fontWeight: 700, marginBottom: 20 }}>
                   {es ? 'Promedio $393/mes por trabajador' : 'Average $393/month per worker'}
                 </div>
                 <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
@@ -214,7 +214,7 @@ export default function TheImpact() {
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#0F3460', marginBottom: 4 }}>
                   {es ? '¿En qué se gasta el 10% de salud?' : 'How is the 10% for health spent?'}
                 </div>
-                <div style={{ fontSize: 11, color: '#6B7280', marginBottom: 20 }}>
+                <div style={{ fontSize: 11, color: '#374151', fontWeight: 700, marginBottom: 20 }}>
                   {es ? '$39/mes promedio · 66% en atención directa' : '$39/mo average · 66% on direct care'}
                 </div>
                 <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
@@ -285,14 +285,14 @@ export default function TheImpact() {
               <div style={{ fontSize: 13, fontWeight: 700, color: '#0F3460', marginBottom: 6 }}>
                 {es ? 'Gasto de bolsillo por servicio (USD/visita)' : 'Out-of-pocket cost per service (USD/visit)'}
               </div>
-              <div style={{ fontSize: 11, color: '#6B7280', marginBottom: 20 }}>
+              <div style={{ fontSize: 11, color: '#374151', fontWeight: 700, marginBottom: 20 }}>
                 {es ? 'Familia sin remesas vs familia con remesas (medicina privada) vs con SaludCompartida' : 'Family without remittances vs with remittances (private medicine) vs with SaludCompartida'}
               </div>
               <ResponsiveContainer width="100%" height={240}>
                 <BarChart data={gastoData} barGap={3} barCategoryGap="25%">
                   <CartesianGrid strokeDasharray="3 3" stroke="#F3F4F6" vertical={false}/>
-                  <XAxis dataKey="cat" tick={{ fontSize: 11, fill: '#6B7280' }} axisLine={false} tickLine={false}/>
-                  <YAxis tick={{ fontSize: 11, fill: '#6B7280' }} axisLine={false} tickLine={false} tickFormatter={v => `$${v}`}/>
+                  <XAxis dataKey="cat" tick={{ fontSize: 12, fill: '#111827', fontWeight: 600 }} axisLine={false} tickLine={false}/>
+                  <YAxis tick={{ fontSize: 12, fill: '#111827', fontWeight: 600 }} axisLine={false} tickLine={false} tickFormatter={v => `$${v}`}/>
                   <Tooltip content={<CustomTooltip/>}/>
                   <Bar dataKey="sinRemesa" name={es ? 'Sin remesa (público)' : 'No remittance (public)'} fill="#94A3B8" radius={[4,4,0,0]}/>
                   <Bar dataKey="conRemesa" name={es ? 'Con remesa (privado)' : 'With remittance (private)'} fill="#FCA5A5" radius={[4,4,0,0]}/>
@@ -324,13 +324,13 @@ export default function TheImpact() {
             <div style={{ background: 'white', borderRadius: 16, padding: '28px 32px', marginBottom: 20 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 6 }}>
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: '#6B7280', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 4 }}>
+                  <div style={{ fontSize: 11, fontWeight: 800, color: 'white', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 4 }}>
                     {es ? 'Total de empleados en tu empresa' : 'Total employees in your company'}
                   </div>
                   <div style={{ fontFamily: 'var(--font-display)', fontSize: 48, color: '#0F3460', lineHeight: 1 }}>{employees}</div>
                 </div>
                 <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: 11, color: '#6B7280', marginBottom: 4 }}>{es ? 'envían remesas a México' : 'send remittances to Mexico'}</div>
+                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.9)', fontWeight: 700, marginBottom: 4 }}>{es ? 'envían remesas a México' : 'send remittances to Mexico'}</div>
                   <div style={{ fontFamily: 'var(--font-display)', fontSize: 48, color: '#006847', lineHeight: 1 }}>
                     {Math.round(employees * 0.78)}
                   </div>
@@ -383,7 +383,7 @@ export default function TheImpact() {
                         <span style={{ fontFamily: 'var(--font-display)', fontSize: 28, color, lineHeight: 1 }}>{num}</span>
                         <span style={{ fontSize: 12, color, fontWeight: 600 }}>{unit}</span>
                       </div>
-                      <div style={{ fontSize: 11, color: '#6B7280', lineHeight: 1.4 }}>{sub}</div>
+                      <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.85)', fontWeight: 700, lineHeight: 1.4 }}>{sub}</div>
                     </div>
                     {arrow && (
                       <div style={{ display: 'flex', justifyContent: 'center', padding: '6px 0' }}>

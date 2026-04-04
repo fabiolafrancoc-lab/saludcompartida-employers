@@ -220,7 +220,7 @@ export default function HomePage() {
           {active === 'problema'    && <TheProblem />}
           {active === 'carlos'      && <Carlos />}
           {active === 'como'        && <HowItWorks />}
-          {active === 'beneficios'  && <><Benefits /><VideoBreak variant='ninos' /></>}
+          {active === 'beneficios'  && <Benefits />}
           {active === 'impacto'     && <TheImpact />}
           {active === 'modalidades' && <PaymentModels />}
           {active === 'nosotros'    && <AboutUs />}
