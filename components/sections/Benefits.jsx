@@ -234,7 +234,7 @@ export default function Benefits() {
               display: 'flex', alignItems: 'center', gap: 8,
               padding: '10px 18px', borderRadius: 100,
               border: active === i ? '2px solid white' : '2px solid rgba(255,255,255,0.2)',
-              background: active === i ? 'rgba(255,255,255,0.18)' : 'rgba(255,255,255,0.06)',
+              background: active === i ? '#0F3460' : 'rgba(255,255,255,0.06)',
               cursor: 'pointer', transition: 'all .15s',
             }}>
               {s.isFeature && active !== i && (
