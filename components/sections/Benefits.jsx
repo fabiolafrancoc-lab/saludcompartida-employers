@@ -332,6 +332,21 @@ export default function Benefits() {
           </div>
         </div>
 
+        {/* Photo: abuela mamá hija — la familia protegida */}
+        <div style={{ marginTop: 48, borderRadius: 16, overflow: 'hidden', height: 280, position: 'relative' }}>
+          <img src="/abuelamamahija.jpeg" alt=""
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%', display: 'block' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(0,104,71,0.88) 0%, rgba(0,104,71,0.6) 40%, transparent 75%)' }} />
+          <div style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', left: 32, maxWidth: 320 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,0.85)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10 }}>
+              {es ? 'La familia de tu empleado' : "Your employee's family"}
+            </div>
+            <p style={{ fontFamily: 'var(--font-display)', fontSize: 24, color: 'white', fontWeight: 700, lineHeight: 1.3 }}>
+              {es ? 'Protegida. Presente. Tranquila.' : 'Protected. Present. At peace.'}
+            </p>
+          </div>
+        </div>
+
         {/* Bottom: the promise */}
         <div style={{ marginTop: 48, background: 'rgba(255,255,255,0.06)', borderRadius: 16, padding: '28px 36px', border: '1px solid rgba(255,255,255,0.12)', display: 'flex', gap: 32, alignItems: 'center', flexWrap: 'wrap' }}>
           <div style={{ flex: 1, minWidth: 280 }}>

@@ -65,35 +65,41 @@ a { text-decoration: none; }
 .on-green h1, .on-green h2, .on-green h3, .on-green h4 { color: white; }
 .on-green p, .on-green span { color: rgba(255,255,255,0.85); }
 
-/* ─── DARK BACKGROUND TEXT RULES ─────────────────────────
-   White bold text on all dark backgrounds.
-   Applied via className="on-green" or className="on-dark"
-──────────────────────────────────────────────────────── */
+/* ─── DARK BACKGROUND TEXT RULES — NUCLEAR OVERRIDE ──────────
+   !important required because React inline styles always win over CSS.
+   Rule: dark background = white text, bold. Zero exceptions.
+─────────────────────────────────────────────────────────────── */
 
-/* Mexican flag green bg (#006847) */
-.on-green { color: white; }
+/* Mexican flag green #006847 */
+.on-green * {
+  color: white !important;
+  font-weight: 600 !important;
+}
 .on-green h1, .on-green h2, .on-green h3, .on-green h4 {
-  color: white;
-  font-weight: 700;
+  font-weight: 700 !important;
 }
-.on-green p {
-  color: rgba(255,255,255,0.92);
-  font-weight: 500;
-}
-.on-green span {
-  color: rgba(255,255,255,0.9);
+/* Secondary text on green */
+.on-green [data-sub], .on-green .sub {
+  color: rgba(255,255,255,0.85) !important;
+  font-weight: 500 !important;
 }
 
-/* Navy / ink dark bg (#0F3460, #0A0F1E) */
-.on-dark { color: white; }
+/* Navy / ink #0F3460 / #0A0F1E */
+.on-dark * {
+  color: white !important;
+  font-weight: 600 !important;
+}
 .on-dark h1, .on-dark h2, .on-dark h3, .on-dark h4 {
-  color: white;
-  font-weight: 700;
+  font-weight: 700 !important;
 }
-.on-dark p {
-  color: rgba(255,255,255,0.9);
-  font-weight: 500;
+
+/* Charts inside on-green must be exempt — recharts uses its own colors */
+.on-green .recharts-wrapper *,
+.on-green .recharts-surface * {
+  color: inherit !important;
+  font-weight: inherit !important;
 }
-.on-dark span {
-  color: rgba(255,255,255,0.85);
-}
+
+/* White card interiors inside on-green — exempt */
+.on-green .white-card { all: revert; }
+.on-green .white-card * { color: inherit !important; font-weight: inherit !important; }
