@@ -39,6 +39,36 @@ export default function Benefits() {
     <div style={{ background: 'var(--sand)', animation: 'fadeUp .35s ease' }}>
       <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '72px 48px' }}>
 
+        {/* NOT insurance banner — must be clear */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 16,
+          background: 'white', border: '2px solid var(--navy)',
+          borderRadius: 10, padding: '14px 20px', marginBottom: 40,
+        }}>
+          <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--navy)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </div>
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--navy)', letterSpacing: '0.02em' }}>
+              {lang === 'es' ? 'SaludCompartida NO es un seguro médico' : 'SaludCompartida is NOT health insurance'}
+            </div>
+            <p style={{ fontSize: 12, color: 'var(--muted)', marginTop: 3, lineHeight: 1.5 }}>
+              {lang === 'es'
+                ? 'Es un beneficio de acceso a servicios de salud. Sin deducibles. Sin copagos. Sin trámites de reclamación. Sin períodos de espera. La familia activa el beneficio en 30 segundos vía WhatsApp.'
+                : "It's a healthcare access benefit. No deductibles. No copays. No claims process. No waiting periods. The family activates the benefit in 30 seconds via WhatsApp."
+              }
+            </p>
+          </div>
+          <div style={{ borderLeft: '1px solid var(--border)', paddingLeft: 20, flexShrink: 0, textAlign: 'center' }}>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: 28, color: 'var(--teal)', lineHeight: 1 }}>30s</div>
+            <div style={{ fontSize: 10, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+              {lang === 'es' ? 'Activación' : 'Activation'}
+            </div>
+          </div>
+        </div>
+
         <div style={{ maxWidth: 600, marginBottom: 52 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--amber)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 12 }}>
             {t(b.eyebrow, lang)}
