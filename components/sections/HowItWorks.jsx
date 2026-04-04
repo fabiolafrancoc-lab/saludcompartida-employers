@@ -130,14 +130,14 @@ export default function HowItWorks() {
 
   return (
     <div style={{ background: 'var(--white)', animation: 'fadeUp .35s ease' }}>
-      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '72px 48px' }}>
+      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '28px 48px' }}>
 
         {/* Header */}
-        <div style={{ maxWidth: 560, marginBottom: 48 }}>
+        <div style={{ maxWidth: 560, marginBottom: 20 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 12 }}>
             {lang === 'es' ? 'Proceso de enrolamiento' : 'Enrollment process'}
           </div>
-          <h2 style={{ fontSize: 42, marginBottom: 14 }}>{lang === 'es' ? 'Cómo se enrola a SaludCompartida' : 'How to enroll in SaludCompartida'}</h2>
+          <h2 style={{ fontSize: 32, marginBottom: 10 }}>{lang === 'es' ? 'Cómo se enrola a SaludCompartida' : 'How to enroll in SaludCompartida'}</h2>
           <p style={{ fontSize: 16, color: 'var(--muted)', lineHeight: 1.65 }}>{lang === 'es' ? 'Cuatro pasos. La mayoría automatizados. Tu equipo de RRHH configura una vez y el sistema trabaja solo.' : 'Four steps. Most automated. Your HR team configures once and the system runs itself.'}</p>
         </div>
 

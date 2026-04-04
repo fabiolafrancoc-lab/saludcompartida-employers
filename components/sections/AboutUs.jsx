@@ -9,19 +9,19 @@ export default function AboutUs() {
 
   return (
     <div style={{ background: 'var(--sand)', animation: 'fadeUp .35s ease', color: 'white' }} className="on-green">
-      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '72px 48px' }}>
+      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '28px 48px' }}>
 
         {/* Header */}
-        <div style={{ maxWidth: 640, marginBottom: 56 }}>
+        <div style={{ maxWidth: 640, marginBottom: 20 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--emerald)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 12 }}>
             {t(a.eyebrow, lang)}
           </div>
-          <h2 style={{ fontSize: 42, marginBottom: 16 }}>{t(a.h2, lang)}</h2>
+          <h2 style={{ fontSize: 32, marginBottom: 10 }}>{t(a.h2, lang)}</h2>
           <p style={{ fontSize: 16, color: 'var(--muted)' }}>{t(a.sub, lang)}</p>
         </div>
 
         {/* Story — the human motivation */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, marginBottom: 64, alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, marginBottom: 28, alignItems: 'start' }}>
 
           <div>
             {/* Origin story */}

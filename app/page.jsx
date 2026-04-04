@@ -182,7 +182,7 @@ export default function HomePage() {
       </aside>
 
       {/* ── MAIN ── */}
-      <div ref={mainRef} style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, overflow: 'auto' }}>
+      <div ref={mainRef} style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, overflowY: 'auto', overflowX: 'hidden' }}>
 
         {/* Topbar */}
         <div style={{

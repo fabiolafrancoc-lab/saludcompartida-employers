@@ -102,17 +102,17 @@ export default function Carlos() {
 
   return (
     <div style={{ background: 'var(--white)', animation: 'fadeUp .35s ease' }}>
-      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '72px 48px' }}>
+      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '28px 48px 28px' }}>
 
         {/* Header */}
-        <div style={{ maxWidth: 580, marginBottom: 48 }}>
+        <div style={{ maxWidth: 580, marginBottom: 20 }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 12 }}>
             {es ? 'El empleado detrás del beneficio' : 'The employee behind the benefit'}
           </div>
-          <h2 style={{ fontSize: 42, marginBottom: 16, lineHeight: 1.1 }}>
+          <h2 style={{ fontSize: 34, marginBottom: 12, lineHeight: 1.1 }}>
             {es ? 'Un día en la vida de Carlos Henríquez' : 'A day in the life of Carlos Henríquez'}
           </h2>
-          <p style={{ fontSize: 16, color: 'var(--muted)', lineHeight: 1.7 }}>
+          <p style={{ fontSize: 14, color: 'var(--muted)', lineHeight: 1.6 }}>
             {es
               ? 'Operador de maquinaria en Houston. 34 años. 8 años en los Estados Unidos. Su suegra es diabética en Ciudad de México. Su esposa y dos hijos dependen de lo que él manda cada quincena.'
               : 'Machinery operator in Houston. 34 years old. 8 years in the United States. His mother-in-law is diabetic in Mexico City. His wife and two kids depend on what he sends every two weeks.'
@@ -121,9 +121,9 @@ export default function Carlos() {
         </div>
 
         {/* Familia de Carlos — visual anchor */}
-        <div style={{ marginBottom: 36, borderRadius: 16, overflow: 'hidden', position: 'relative', height: 340 }}>
+        <div style={{ marginBottom: 20, borderRadius: 16, overflow: 'hidden', position: 'relative', height: 220 }}>
           <img src="/familiagrande.jpeg" alt="La familia de Carlos"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 35%', display: 'block' }} />
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 12%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,8,18,0.95) 0%, rgba(5,8,18,0.55) 45%, rgba(5,8,18,0.05) 75%, transparent 100%)' }} />
           <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '28px 32px' }}>
             <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>

@@ -206,7 +206,7 @@ export default function Benefits() {
 
   return (
     <div style={{ background: 'var(--sand)', animation: 'fadeUp .35s ease', color: 'white' }} className="on-green">
-      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '72px 48px' }}>
+      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '28px 48px 28px' }}>
 
         {/* Header + NOT insurance */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 40, marginBottom: 44, flexWrap: 'wrap' }}>
@@ -228,7 +228,7 @@ export default function Benefits() {
         </div>
 
         {/* Service tabs */}
-        <div style={{ display: 'flex', gap: 8, marginBottom: 32, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 6, marginBottom: 16, flexWrap: 'wrap' }}>
           {services.map((s, i) => (
             <button key={s.id} onClick={() => handleTabChange(i)} style={{
               display: 'flex', alignItems: 'center', gap: 8,
@@ -249,21 +249,21 @@ export default function Benefits() {
         </div>
 
         {/* Detail panel */}
-        <div key={active} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, animation: 'fadeUp .2s ease' }}>
+        <div key={active} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, animation: 'fadeUp .2s ease' }}>
 
           {/* Left: story + specs — navy card matching right side */}
-          <div style={{ background: 'var(--navy)', borderRadius: 16, padding: '28px 28px', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ background: 'var(--navy)', borderRadius: 16, padding: '20px 22px', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', flexDirection: 'column' }}>
             {/* Badge + headline */}
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: `${svc.color}25`, borderRadius: 100, padding: '5px 14px', marginBottom: 16, alignSelf: 'flex-start', border: `1px solid ${svc.color}50` }}>
               {svc.IconComp && <svc.IconComp size={13} color={svc.color} strokeWidth={1.8} />}
               <span style={{ fontSize: 11, fontWeight: 800, color: 'white', textTransform: 'uppercase', letterSpacing: '0.07em' }}>{svc.tag}</span>
             </div>
 
-            <h3 style={{ fontSize: 26, color: 'white', marginBottom: 8, lineHeight: 1.2 }}>{svc.headline}</h3>
-            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', marginBottom: 24, fontWeight: 600 }}>{svc.subline}</p>
+            <h3 style={{ fontSize: 21, color: 'white', marginBottom: 6, lineHeight: 1.2 }}>{svc.headline}</h3>
+            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)', marginBottom: 14, fontWeight: 600 }}>{svc.subline}</p>
 
             {/* Human story — emotional anchor */}
-            <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: 12, padding: '20px 22px', marginBottom: 24, borderLeft: `3px solid ${svc.color}` }}>
+            <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: 12, padding: '14px 18px', marginBottom: 14, borderLeft: `3px solid ${svc.color}` }}>
               <p style={{ fontSize: 14, fontStyle: 'italic', color: 'rgba(255,255,255,0.9)', lineHeight: 1.75, marginBottom: 10 }}>
                 {svc.story}
               </p>
@@ -271,11 +271,11 @@ export default function Benefits() {
             </div>
 
             {/* Specs */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6 }}>
               {svc.specs.map((spec, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, background: 'rgba(255,255,255,0.06)', borderRadius: 8, padding: '10px 12px' }}>
+                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, background: 'rgba(255,255,255,0.06)', borderRadius: 8, padding: '7px 10px' }}>
                   <span style={{ color: svc.color, fontSize: 14, fontWeight: 700, flexShrink: 0, marginTop: 1 }}>{spec.icon}</span>
-                  <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.8)', lineHeight: 1.45 }}>{spec.text}</span>
+                  <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.85)', lineHeight: 1.4 }}>{spec.text}</span>
                 </div>
               ))}
             </div>

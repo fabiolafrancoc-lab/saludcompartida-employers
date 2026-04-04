@@ -110,14 +110,14 @@ export default function TheImpact() {
 
   return (
     <div style={{ background: 'var(--sand)', animation: 'fadeUp .35s ease', color: 'white' }} className="on-green">
-      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '72px 48px' }}>
+      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '28px 48px 28px' }}>
 
         {/* Header */}
-        <div style={{ maxWidth: 580, marginBottom: 44 }}>
+        <div style={{ maxWidth: 580, marginBottom: 16 }}>
           <div style={{ fontSize: 11, fontWeight: 800, color: 'rgba(255,255,255,0.65)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 12 }}>
             {es ? 'Datos concretos' : 'Concrete data'}
           </div>
-          <h2 style={{ fontSize: 42, color: 'white', fontWeight: 700, marginBottom: 14 }}>
+          <h2 style={{ fontSize: 32, color: 'white', fontWeight: 700, marginBottom: 10 }}>
             {es ? 'El impacto en números reales' : 'The impact in real numbers'}
           </h2>
           <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.85)', fontWeight: 600, lineHeight: 1.65 }}>
@@ -129,7 +129,7 @@ export default function TheImpact() {
         </div>
 
         {/* Tabs */}
-        <div style={{ display: 'flex', gap: 8, marginBottom: 36, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 6, marginBottom: 20, flexWrap: 'wrap' }}>
           {TABS.map((label, i) => (
             <button key={i} onClick={() => setTab(i)} style={{
               padding: '10px 22px', borderRadius: 8,
@@ -152,8 +152,8 @@ export default function TheImpact() {
                 { val: '10%',  desc: es ? 'De cada remesa se destina a salud' : 'Of each remittance goes to healthcare', src: 'IDB 2024' },
                 { val: '44%',  desc: es ? 'Más gasto en salud vs familias sin remesas — usan medicina privada' : 'More health spend vs families without remittances — use private medicine', src: 'Banxico / OCDE' },
               ].map(({ val, desc, src }) => (
-                <div key={val} style={{ background: NAVY_CARD, borderRadius: 14, padding: '22px 24px', border: '1px solid rgba(255,255,255,0.1)' }}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 44, color: 'white', fontWeight: 700, lineHeight: 1 }}>{val}</div>
+                <div key={val} style={{ background: NAVY_CARD, borderRadius: 12, padding: '14px 18px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 36, color: 'white', fontWeight: 700, lineHeight: 1 }}>{val}</div>
                   <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', fontWeight: 700, lineHeight: 1.55, margin: '10px 0 8px' }}>{desc}</p>
                   <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{src}</div>
                 </div>
@@ -163,7 +163,7 @@ export default function TheImpact() {
             {/* Two donuts */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
               {/* Donut 1 */}
-              <div style={{ background: NAVY_CARD, borderRadius: 16, padding: '28px 24px', border: '1px solid rgba(255,255,255,0.08)' }}>
+              <div style={{ background: NAVY_CARD, borderRadius: 14, padding: '18px 18px', border: '1px solid rgba(255,255,255,0.08)' }}>
                 <div style={{ fontSize: 14, fontWeight: 800, color: 'white', marginBottom: 4 }}>
                   {es ? '¿Adónde va la remesa?' : 'Where does the remittance go?'}
                 </div>
@@ -171,7 +171,7 @@ export default function TheImpact() {
                   {es ? 'Promedio $393/mes · click para explorar' : 'Average $393/mo · click to explore'}
                 </div>
                 <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
-                  <ResponsiveContainer width={160} height={160}>
+                  <ResponsiveContainer width={130} height={130}>
                     <PieChart>
                       <Pie data={remesaSlices.map(s => ({ ...s, value: s.pct }))}
                         cx="50%" cy="50%" innerRadius={44} outerRadius={68}
@@ -200,7 +200,7 @@ export default function TheImpact() {
               </div>
 
               {/* Donut 2 */}
-              <div style={{ background: NAVY_CARD, borderRadius: 16, padding: '28px 24px', border: '1px solid rgba(255,255,255,0.08)' }}>
+              <div style={{ background: NAVY_CARD, borderRadius: 14, padding: '18px 18px', border: '1px solid rgba(255,255,255,0.08)' }}>
                 <div style={{ fontSize: 14, fontWeight: 800, color: 'white', marginBottom: 4 }}>
                   {es ? '¿En qué se gasta el 10% de salud?' : 'How is the 10% for health spent?'}
                 </div>
@@ -208,7 +208,7 @@ export default function TheImpact() {
                   {es ? '$39/mes promedio · 66% en atención directa' : '$39/mo average · 66% on direct care'}
                 </div>
                 <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
-                  <ResponsiveContainer width={160} height={160}>
+                  <ResponsiveContainer width={130} height={130}>
                     <PieChart>
                       <Pie data={saludSlices.map(s => ({ ...s, value: s.pct }))}
                         cx="50%" cy="50%" innerRadius={44} outerRadius={68}
@@ -256,21 +256,21 @@ export default function TheImpact() {
                 { val: '$640', desc: es ? 'Gasto mensual de bolsillo sin SaludCompartida' : 'Monthly out-of-pocket without SaludCompartida', color: '#FCD34D', border: 'rgba(252,211,77,0.3)' },
                 { val: '$75',  desc: es ? 'Gasto mensual estimado con SaludCompartida' : 'Estimated monthly spend with SaludCompartida', color: '#34D399', border: 'rgba(52,211,153,0.3)' },
               ].map(({ val, desc, color, border }) => (
-                <div key={val} style={{ background: NAVY_CARD, borderRadius: 14, padding: '22px 24px', border: `1px solid ${border}` }}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 44, color, fontWeight: 700, lineHeight: 1 }}>{val}</div>
+                <div key={val} style={{ background: NAVY_CARD, borderRadius: 12, padding: '14px 18px', border: `1px solid ${border}` }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 36, color, fontWeight: 700, lineHeight: 1 }}>{val}</div>
                   <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', fontWeight: 700, lineHeight: 1.55, marginTop: 10 }}>{desc}</p>
                 </div>
               ))}
             </div>
 
-            <div style={{ background: NAVY_CARD, borderRadius: 16, padding: '28px 28px 20px', border: '1px solid rgba(255,255,255,0.08)' }}>
+            <div style={{ background: NAVY_CARD, borderRadius: 14, padding: '18px 18px 14px', border: '1px solid rgba(255,255,255,0.08)' }}>
               <div style={{ fontSize: 14, fontWeight: 800, color: 'white', marginBottom: 4 }}>
                 {es ? 'Gasto de bolsillo por servicio (USD/visita)' : 'Out-of-pocket cost per service (USD/visit)'}
               </div>
               <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)', fontWeight: 700, marginBottom: 24 }}>
                 {es ? 'Sin remesa (público) vs con remesa (privado +44%) vs con SaludCompartida' : 'No remittance (public) vs with remittance (private +44%) vs with SaludCompartida'}
               </div>
-              <ResponsiveContainer width="100%" height={240}>
+              <ResponsiveContainer width="100%" height={180}>
                 <BarChart data={gastoData} barGap={3} barCategoryGap="25%">
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.07)" vertical={false} />
                   <XAxis dataKey="cat" tick={axisStyle} axisLine={false} tickLine={false} />

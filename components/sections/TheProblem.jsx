@@ -10,7 +10,7 @@ export default function TheProblem() {
     <div style={{ background: 'var(--white)', animation: 'fadeUp .35s ease' }}>
 
       {/* ── HERO VISUAL: La familia que se queda ── */}
-      <div style={{ position: 'relative', height: 420, overflow: 'hidden' }}>
+      <div style={{ position: 'relative', height: 260, overflow: 'hidden', flexShrink: 0 }}>
         <Image
           src="/abuelanietas.jpeg"
           alt={es ? 'Abuela, mamá e hija — la familia en México que se queda' : 'Grandmother, mother and daughter — the family left behind in Mexico'}
@@ -59,9 +59,9 @@ export default function TheProblem() {
       </div>
 
       {/* ── CONTENT ── */}
-      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '56px 48px' }}>
+      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '24px 48px 32px' }}>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, alignItems: 'start' }}>
 
           {/* LEFT — the employee's voice */}
           <div>
@@ -153,7 +153,7 @@ export default function TheProblem() {
         {/* Bridge */}
         <div style={{ marginTop: 48, background: 'var(--navy)', borderRadius: 20, padding: '40px 48px', color: 'white', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }} className="on-dark">
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 14 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10 }}>
               {es ? 'La solución' : 'The solution'}
             </div>
             <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 28, color: 'white', marginBottom: 14, lineHeight: 1.2 }}>

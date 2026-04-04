@@ -10,16 +10,16 @@ export default function FAQ() {
 
   return (
     <div style={{ background: 'var(--white)', animation: 'fadeUp .35s ease' }}>
-      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '72px 48px' }}>
+      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '28px 48px' }}>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '0.8fr 1.2fr', gap: 64, alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '0.8fr 1.2fr', gap: 36, alignItems: 'start' }}>
 
           {/* Left: header + CTA */}
           <div style={{ position: 'sticky', top: 80 }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--teal)', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 12 }}>
               {t(f.eyebrow, lang)}
             </div>
-            <h2 style={{ fontSize: 40, marginBottom: 16 }}>{t(f.h2, lang)}</h2>
+            <h2 style={{ fontSize: 30, marginBottom: 10 }}>{t(f.h2, lang)}</h2>
             <p style={{ fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, marginBottom: 32 }}>
               {lang === 'es'
                 ? 'Respondemos las preguntas que tu equipo de RRHH y Risk Management va a hacer antes de aprobar el beneficio.'
@@ -51,7 +51,7 @@ export default function FAQ() {
           </div>
 
           {/* Right: FAQ accordion */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             {f.items.map(({ q, a }, i) => (
               <div key={i} style={{
                 borderRadius: 10,
