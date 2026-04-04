@@ -283,3 +283,19 @@ export function SCLogoMark({ size = 36, colorA = '#0891B2', colorB = '#006847' }
     </svg>
   )
 }
+
+/** Historia de Carlos: persona con reloj de día (timeline) */
+export function IconCarlos({ size = 24, color = 'currentColor', strokeWidth = 1.6 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base} stroke={color} strokeWidth={strokeWidth}>
+      {/* Persona */}
+      <circle cx="9" cy="7" r="2.8" />
+      <path d="M4.5 20c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5" />
+      {/* Reloj / timeline */}
+      <circle cx="17.5" cy="10" r="4" />
+      <path d="M17.5 7.5v2.5l1.5 1.5" strokeWidth="1.4" />
+      {/* Línea conectora */}
+      <path d="M14 8.5c-.5-.5-1-.8-1.5-.8" strokeDasharray="1.5 1" strokeWidth="1.2" />
+    </svg>
+  )
+}

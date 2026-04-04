@@ -5,7 +5,7 @@ import { translations as T, t } from '@/lib/translations'
 import {
   IconInicio, IconProblema, IconComo, IconBeneficios,
   IconImpacto, IconModalidades, IconNosotros, IconFAQ,
-  IconPortal, SCLogoMark,
+  IconPortal, IconCarlos, SCLogoMark,
 } from '@/components/icons/SCIcons'
 import Hero          from '@/components/sections/Hero'
 import TheProblem    from '@/components/sections/TheProblem'
@@ -16,10 +16,12 @@ import PaymentModels from '@/components/sections/PaymentModels'
 import AboutUs       from '@/components/sections/AboutUs'
 import FAQ           from '@/components/sections/FAQ'
 import VideoBreak    from '@/components/sections/VideoBreak'
+import Carlos        from '@/components/sections/Carlos'
 
 const SECTIONS = [
   { id: 'inicio',      Icon: IconInicio },
   { id: 'problema',    Icon: IconProblema },
+  { id: 'carlos',      Icon: IconCarlos },
   { id: 'como',        Icon: IconComo },
   { id: 'beneficios',  Icon: IconBeneficios },
   { id: 'impacto',     Icon: IconImpacto },
@@ -31,6 +33,7 @@ const SECTIONS = [
 const NAV_LABELS = {
   inicio:      { es: 'Inicio',        en: 'Home' },
   problema:    { es: 'El Problema',   en: 'The Problem' },
+  carlos:      { es: 'Historia de Carlos', en: 'Carlos\'s Story' },
   como:        { es: 'Cómo funciona', en: 'How it works' },
   beneficios:  { es: 'Beneficios',    en: 'Benefits' },
   impacto:     { es: 'Impacto',       en: 'Impact' },
@@ -42,6 +45,7 @@ const NAV_LABELS = {
 const NAV_ACCENTS = {
   inicio:      '#0F3460',
   problema:    '#DC2626',
+  carlos:      '#D97706',
   como:        '#0891B2',
   beneficios:  '#059669',
   impacto:     '#006847',
@@ -206,6 +210,7 @@ export default function HomePage() {
         <div key={active} style={{ flex: 1, animation: 'fadeUp .25s ease' }}>
           {active === 'inicio'      && <Hero />}
           {active === 'problema'    && <><VideoBreak variant='fiebre' /><TheProblem /></>}
+          {active === 'carlos'      && <Carlos />}
           {active === 'como'        && <HowItWorks />}
           {active === 'beneficios'  && <><Benefits /><VideoBreak variant='ninos' /></>}
           {active === 'impacto'     && <TheImpact />}

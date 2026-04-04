@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { useLang } from '@/contexts/LanguageContext'
+import { IconTelemedicina, IconFarmacia, IconTerapia, IconLupita } from '@/components/icons/SCIcons'
 
 // Neuroscience principle: each service tells a HUMAN STORY first, then specs.
 // The HR manager buys the story. The Risk Manager validates with the data.
@@ -10,6 +11,7 @@ const SERVICES = {
   es: [
     {
       id: 'medico',
+      IconComp: IconTelemedicina,
       color: 'var(--teal)',
       bg: 'var(--teal-light)',
       icon: 'M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z',
@@ -30,6 +32,7 @@ const SERVICES = {
     },
     {
       id: 'farmacia',
+      IconComp: IconFarmacia,
       color: 'var(--amber)',
       bg: 'var(--amber-light)',
       icon: 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z',
@@ -50,6 +53,7 @@ const SERVICES = {
     },
     {
       id: 'terapia',
+      IconComp: IconTerapia,
       color: 'var(--emerald)',
       bg: 'var(--emerald-light)',
       icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
@@ -70,6 +74,7 @@ const SERVICES = {
     },
     {
       id: 'lupita',
+      IconComp: IconLupita,
       color: 'var(--navy)',
       bg: 'var(--navy-light)',
       icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z',
@@ -95,6 +100,7 @@ const SERVICES = {
   en: [
     {
       id: 'medico',
+      IconComp: IconTelemedicina,
       color: 'var(--teal)',
       bg: 'var(--teal-light)',
       icon: 'M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z',
@@ -115,6 +121,7 @@ const SERVICES = {
     },
     {
       id: 'farmacia',
+      IconComp: IconFarmacia,
       color: 'var(--amber)',
       bg: 'var(--amber-light)',
       icon: 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z',
@@ -135,6 +142,7 @@ const SERVICES = {
     },
     {
       id: 'terapia',
+      IconComp: IconTerapia,
       color: 'var(--emerald)',
       bg: 'var(--emerald-light)',
       icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
@@ -155,6 +163,7 @@ const SERVICES = {
     },
     {
       id: 'lupita',
+      IconComp: IconLupita,
       color: 'var(--navy)',
       bg: 'var(--navy-light)',
       icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z',
@@ -233,11 +242,7 @@ export default function Benefits() {
               {s.isFeature && active !== i && (
                 <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#FCD34D', display: 'inline-block', flexShrink: 0 }}/>
               )}
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                stroke={active === i ? s.color : 'rgba(255,255,255,0.6)'}
-                strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d={s.icon}/>
-              </svg>
+              {s.IconComp && <s.IconComp size={14} color={active === i ? s.color : 'rgba(255,255,255,0.6)'} strokeWidth={1.5} />}
               <span style={{ fontSize: 13, fontWeight: active === i ? 700 : 400, color: active === i ? s.color : 'rgba(255,255,255,0.75)', whiteSpace: 'nowrap' }}>
                 {s.tag}
               </span>
@@ -252,7 +257,7 @@ export default function Benefits() {
           <div>
             {/* Badge + headline */}
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: svc.bg, borderRadius: 100, padding: '4px 12px', marginBottom: 16 }}>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={svc.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d={svc.icon}/></svg>
+              {svc.IconComp && <svc.IconComp size={13} color={svc.color} strokeWidth={1.8} />}
               <span style={{ fontSize: 11, fontWeight: 700, color: svc.color, textTransform: 'uppercase', letterSpacing: '0.07em' }}>{svc.tag}</span>
             </div>
 
