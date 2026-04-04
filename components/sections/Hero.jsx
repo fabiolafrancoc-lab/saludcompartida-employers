@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useLang } from '@/contexts/LanguageContext'
+import { IconTelemedicina, IconFarmacia, IconTerapia, IconLupita, IconApp } from '@/components/icons/SCIcons'
 
 // The employee's actual 3am thought — emotional pattern interrupt
 // Neuroscience: starts with THEIR voice, not ours. Mirror neurons fire.
