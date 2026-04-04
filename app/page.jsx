@@ -217,7 +217,7 @@ export default function HomePage() {
         {/* Section */}
         <div key={active} style={{ flex: 1, animation: 'fadeUp .25s ease' }}>
           {active === 'inicio'      && <Hero />}
-          {active === 'problema'    && <><VideoBreak variant='fiebre' /><TheProblem /></>}
+          {active === 'problema'    && <TheProblem />}
           {active === 'carlos'      && <Carlos />}
           {active === 'como'        && <HowItWorks />}
           {active === 'beneficios'  && <><Benefits /><VideoBreak variant='ninos' /></>}
