@@ -258,7 +258,7 @@ export default function Capabilities() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
                     <div style={{ width: 36, height: 36, borderRadius: 8, background: 'rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                      <path d={item.svgPath}/>
+                      <path d={svgPath}/>
                     </svg>
                   </div>
                     <span style={{ fontSize: 14, fontWeight: 800, color: 'white' }}>{title}</span>
