@@ -124,8 +124,8 @@ export default function Capabilities() {
           </div>
           <h2 style={{ fontSize: 36, color: 'var(--ink)', fontWeight: 700, marginBottom: 14, lineHeight: 1.15 }}>
             {es
-              ? <>Aprueba el beneficio.<br /><span style={{ color: 'var(--teal)' }}>SaludCompartida hace todo lo demás.</span></>
-              : <>Approve the benefit.<br /><span style={{ color: 'var(--teal)' }}>SaludCompartida handles everything else.</span></>
+              ? <>Aprobado el beneficio,<br /><span style={{ color: 'var(--teal)' }}>SaludCompartida hace todo lo demás.</span></>
+              : <>Benefit approved,<br /><span style={{ color: 'var(--teal)' }}>SaludCompartida handles everything else.</span></>
             }
           </h2>
           <p style={{ fontSize: 15, color: 'var(--muted)', lineHeight: 1.7, maxWidth: 600 }}>
