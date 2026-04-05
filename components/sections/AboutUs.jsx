@@ -172,7 +172,7 @@ export default function AboutUs() {
 
           <div style={{ background: NAVY_CARD, borderRadius: 16, padding: '24px 26px', border: '1px solid rgba(255,255,255,0.08)' }}>
             <div style={{ fontSize: 11, fontWeight: 800, color: '#34D399', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 14 }}>
-              {es ? 'Por qué SaludCompartida puede entregar esto' : 'Why SaludCompartida can deliver this'}
+              {es ? 'SaludCompartida Capabilities' : 'SaludCompartida Capabilities'}
             </div>
             {[
               {
@@ -198,24 +198,7 @@ export default function AboutUs() {
           </div>
         </div>
 
-        {/* Bottom: the commitment */}
-        <div style={{ background: NAVY_CARD, borderRadius: 14, padding: '22px 28px', border: '1px solid rgba(255,255,255,0.08)', display: 'flex', gap: 24, alignItems: 'center', flexWrap: 'wrap' }}>
-          <p style={{ fontFamily: 'var(--font-display)', fontSize: 20, color: 'white', fontWeight: 700, lineHeight: 1.35, flex: 1, minWidth: 280, margin: 0 }}>
-            {es
-              ? 'No le pedimos a tu empresa que confíe en una promesa. Le pedimos que evalúe lo que ya está funcionando.'
-              : 'We are not asking your company to trust a promise. We are asking you to evaluate what is already working.'
-            }
-          </p>
-          <a href="/demo" style={{
-            background: '#006847', color: 'white',
-            padding: '12px 28px', borderRadius: 8,
-            fontSize: 14, fontWeight: 700,
-            display: 'inline-flex', alignItems: 'center', gap: 8, flexShrink: 0,
-          }}>
-            {es ? 'Solicitar acceso' : 'Request access'}
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </a>
-        </div>
+
       </div>
     </div>
   )
