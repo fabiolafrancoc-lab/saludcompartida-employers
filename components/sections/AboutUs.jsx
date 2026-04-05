@@ -133,33 +133,41 @@ export default function AboutUs() {
         {/* Live ticker — real patient voices from Mexico */}
         <LiveTicker es={es} />
 
-        {/* What we know — track record without startup language */}
+        {/* The human cost — the real reason we exist */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 24 }}>
-          <div style={{ background: NAVY_CARD, borderRadius: 16, padding: '24px 26px', border: '1px solid rgba(255,255,255,0.08)' }}>
-            <div style={{ fontSize: 11, fontWeight: 800, color: '#22D3EE', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 14 }}>
-              {es ? 'Lo que entendemos de este mercado' : 'What we understand about this market'}
-            </div>
-            {[
-              {
-                bold: es ? '25 años en seguros de salud en LATAM' : '25 years in LATAM health insurance',
-                text: es ? '— sabemos exactamente cómo funcionan los sistemas de salud en México, qué falla, y qué necesita la base de la pirámide.' : '— we know exactly how healthcare systems work in Mexico, what fails, and what the base of the pyramid needs.',
-              },
-              {
-                bold: es ? 'Probado a escala: 600,000 suscriptores en Brasil (2019)' : 'Proven at scale: 600,000 subscribers in Brazil (2019)',
-                text: es ? '— con el mismo modelo de acceso a salud para trabajadores de bajos ingresos. No es teoría.' : '— with the same healthcare access model for low-income workers. This is not theory.',
-              },
-              {
-                bold: es ? '8 países, 30+ socios de distribución' : '8 countries, 30+ distribution partners',
-                text: es ? '— entendemos cómo construir y operar partnerships con PEOs, aseguradoras y canales de distribución masiva.' : '— we understand how to build and operate partnerships with PEOs, insurers, and mass distribution channels.',
-              },
-            ].map(({ bold, text }, i) => (
-              <div key={i} style={{ display: 'flex', gap: 10, marginBottom: i < 2 ? 14 : 0, alignItems: 'flex-start' }}>
-                <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#22D3EE', flexShrink: 0, marginTop: 6 }}/>
-                <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', fontWeight: 600, lineHeight: 1.65, margin: 0 }}>
-                  <strong style={{ color: 'white', fontWeight: 800 }}>{bold}</strong>{text}
+          <div style={{ background: NAVY_CARD, borderRadius: 16, padding: '28px 30px', border: '1px solid rgba(255,255,255,0.08)', position: 'relative', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(90deg, #22D3EE, #A78BFA)' }}/>
+            {es ? (
+              <>
+                <p style={{ fontFamily: 'var(--font-display)', fontSize: 18, color: 'white', fontWeight: 700, lineHeight: 1.55, marginBottom: 18, fontStyle: 'italic' }}>
+                  &ldquo;Para el migrante en los Estados Unidos, cada remesa viene acompañada de una ansiedad invisible.&rdquo;
                 </p>
-              </div>
-            ))}
+                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.85)', fontWeight: 600, lineHeight: 1.75, marginBottom: 16 }}>
+                  &ldquo;¿Tendrá mamá para su medicamento de diabetes este mes? ¿Y si papá necesita ver a un cardiólogo? ¿Y si mi hija se enferma y no queda dinero?&rdquo;
+                </p>
+                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.85)', fontWeight: 600, lineHeight: 1.75, marginBottom: 16 }}>
+                  Ese miedo constante — ese riesgo financiero mensual — cuesta más que dinero. Cuesta el sueño. Cuesta la concentración en el trabajo. Cuesta la capacidad de construir una vida en un nuevo país mientras se cuida a los seres queridos a miles de kilómetros de distancia.
+                </p>
+                <p style={{ fontSize: 15, color: 'white', fontWeight: 800, lineHeight: 1.65 }}>
+                  SaludCompartida elimina una gran parte de esa carga. No solo ofrecemos servicios de salud — ofrecemos certeza. Ofrecemos dignidad. Ofrecemos la tranquilidad que viene de saber que tu familia tiene acceso a atención de calidad, pase lo que pase.
+                </p>
+              </>
+            ) : (
+              <>
+                <p style={{ fontFamily: 'var(--font-display)', fontSize: 18, color: 'white', fontWeight: 700, lineHeight: 1.55, marginBottom: 18, fontStyle: 'italic' }}>
+                  &ldquo;For migrants in the United States, every remittance comes with invisible anxiety.&rdquo;
+                </p>
+                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.85)', fontWeight: 600, lineHeight: 1.75, marginBottom: 16 }}>
+                  &ldquo;Will Mom be able to afford her diabetes medication this month? What if Dad needs to see a cardiologist? What if my daughter gets sick and there&rsquo;s no money left?&rdquo;
+                </p>
+                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.85)', fontWeight: 600, lineHeight: 1.75, marginBottom: 16 }}>
+                  That constant fear — that monthly financial risk — costs more than money. It costs sleep. It costs focus on work. It costs the ability to build a life in a new country while caring for loved ones thousands of miles away.
+                </p>
+                <p style={{ fontSize: 15, color: 'white', fontWeight: 800, lineHeight: 1.65 }}>
+                  SaludCompartida eliminates a large portion of that burden. We don&rsquo;t just provide healthcare services — we provide certainty. We provide dignity. We provide the peace of mind that comes from knowing your family has access to quality care, regardless of what happens.
+                </p>
+              </>
+            )}
           </div>
 
           <div style={{ background: NAVY_CARD, borderRadius: 16, padding: '24px 26px', border: '1px solid rgba(255,255,255,0.08)' }}>
