@@ -195,7 +195,7 @@ const SERVICES = {
 export default function Benefits() {
   const { lang } = useLang()
   const es = lang === 'es'
-  const [active, setActive] = useState(3) // default to Lupita — most differentiated
+  const [active, setActive] = useState(0) // default to Videollamada con Doctor
   const [videoPlaying, setVideoPlaying] = useState(false)
   // Reset video when switching tabs
   const handleTabChange = (i) => { setActive(i); setVideoPlaying(false) }
