@@ -158,7 +158,7 @@ export default function HomePage() {
           )}
 
           {/* Portal CTA */}
-          <a href="/login" style={{
+          <a href="/dashboard/demo" style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
             padding: '9px 12px', background: 'var(--navy)', borderRadius: 8,
             color: 'white', fontSize: 12, fontWeight: 600,
@@ -212,7 +212,7 @@ export default function HomePage() {
                 </span>
               ))}
             </div>
-            <a href="/login" style={{ fontSize: 13, color: 'var(--muted)', fontWeight: 500 }}>
+            <a href="/dashboard/demo" style={{ fontSize: 13, color: 'var(--muted)', fontWeight: 500 }}>
               {lang === 'es' ? 'Iniciar sesión' : 'Sign in'}
             </a>
           </div>

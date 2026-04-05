@@ -38,7 +38,7 @@ export default function FAQ() {
                   : 'Access the portal to see configuration, utilization reports, and billing.'
                 }
               </p>
-              <a href="/login" style={{
+              <a href="/dashboard/demo" style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
                 background: 'var(--teal)', color: 'white',
                 padding: '12px 20px', borderRadius: 8,
