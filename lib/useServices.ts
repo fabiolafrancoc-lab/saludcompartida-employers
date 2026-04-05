@@ -45,7 +45,7 @@ export const SERVICE_CATALOG: Record<ServiceKey, ServiceConfig> = {
   lupita: {
     key: 'lupita',
     label_es: 'Compañía',
-    label_en: 'AI Companion',
+    label_en: 'Acompañante Personalizado',
     description_es: 'Lupita te llama para acompañarte',
     route: '/dashboard/compannia',
     icon: 'phone',
