@@ -18,8 +18,8 @@ const OBJECTIONS = (es) => [
   {
     q: es ? '"¿Qué pasa si un empleado sale de la empresa?"'
            : '"What happens when an employee leaves the company?"',
-    a: es ? 'Automático. Cuando el PEO desactiva al empleado en PrismHR o ADP, la API de SaludCompartida recibe la señal y desactiva el certificado en tiempo real. No hay trabajo manual. Si aplica COBRA, el empleado recibe automáticamente la notificación de continuación a los 30 días.'
-           : 'Automatic. When the PEO deactivates the employee in PrismHR or ADP, the SaludCompartida API receives the signal and deactivates the certificate in real time. No manual work. If COBRA applies, the employee automatically receives the continuation notice within 30 days.',
+    a: es ? 'Automático. Cuando el PEO desactiva al empleado en PrismHR o ADP, la API de SaludCompartida recibe la señal y desactiva el certificado de forma automática. No hay trabajo manual. Si aplica COBRA, el empleado recibe automáticamente la notificación de continuación a los 30 días.'
+           : 'Automatic. When the PEO deactivates the employee in PrismHR or ADP, the SaludCompartida API receives the signal and deactivates the certificate automatically. No manual work. If COBRA applies, the employee automatically receives the continuation notice within 30 days.',
     color: '#34D399',
   },
   {

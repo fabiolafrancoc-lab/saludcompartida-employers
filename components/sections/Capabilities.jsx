@@ -67,7 +67,7 @@ export default function Capabilities() {
         es ? 'Revisa el reporte mensual de utilización (si lo desea)' : 'Reviews monthly utilization report (if desired)',
       ],
       sc:  [
-        es ? 'Enrollment automático de nuevos empleados elegibles en tiempo real' : 'Automatic enrollment of new eligible employees in real time',
+        es ? 'Enrollment automático de nuevos empleados elegibles' : 'Automatic enrollment of new eligible employees',
         es ? 'Baja automática cuando un empleado sale de la empresa' : 'Automatic offboarding when an employee leaves the company',
         es ? 'Soporte 24/7 para empleados y familias en México — SaludCompartida lo maneja' : 'Support 24/7 for employees and families in Mexico — SaludCompartida handles it',
         es ? 'Comunicaciones de recordatorio y engagement a empleados' : 'Reminder and engagement communications to employees',
@@ -297,8 +297,8 @@ export default function Capabilities() {
               </div>
               <div style={{ fontSize: 15, fontWeight: 700, color: 'white', lineHeight: 1.4 }}>
                 {es
-                  ? 'En tiempo real, ves cuántos empleados activaron el beneficio, qué servicios usan más y cuánto están ahorrando sus familias. Un solo número mensual para tu CFO.'
-                  : 'In real time, you see how many employees activated the benefit, which services they use most, and how much their families are saving. One monthly number for your CFO.'
+                  ? 'Cada semana ves cuántos empleados han activado el beneficio, qué servicios usan más y cuánto están ahorrando sus familias. Un solo número mensual para tu CFO.'
+                  : 'Every week you see how many employees have activated the benefit, which services they use most, and how much their families are saving. One monthly number for your CFO.'
                 }
               </div>
             </div>
@@ -311,7 +311,7 @@ export default function Capabilities() {
                   {es ? 'Dashboard · G&A Partners · Abril 2026' : 'Dashboard · G&A Partners · April 2026'}
                 </div>
                 <div style={{ fontSize: 11, color: '#34D399', fontWeight: 700, background: 'rgba(52,211,153,0.12)', padding: '3px 10px', borderRadius: 100 }}>
-                  {es ? 'Actualizado en tiempo real' : 'Updated in real time'}
+                  {es ? 'Actualizado semanalmente' : 'Updated weekly'}
                 </div>
               </div>
 
@@ -373,7 +373,7 @@ export default function Capabilities() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
               {[
                 { title: es ? 'Vistas por empleado' : 'Per-employee view', desc: es ? 'Quién activó el beneficio y quién no, cuándo lo usó por última vez, qué servicios utiliza.' : 'Who activated the benefit and who did not, when they last used it, which services they use.' },
-                { title: es ? 'Reportes mensuales' : 'Monthly reports', desc: es ? 'Resumen automático el día 1 de cada mes. Utilización, ahorros generados y comparativo vs mes anterior.' : 'Automatic summary on day 1 of each month. Utilization, savings generated, and comparison vs previous month.' },
+                { title: es ? 'Reportes mensuales' : 'Monthly reports', desc: es ? 'Reporte semanal de actividad + resumen consolidado el día 1 de cada mes. Utilización, ahorros generados y comparativo vs semana anterior.' : 'Weekly activity report + consolidated summary on day 1 of each month. Utilization, savings generated, and comparison vs prior week.' },
                 { title: es ? 'Facturación automática' : 'Automatic billing', desc: es ? 'Un solo invoice consolidado a tu PEO. Desglosado por empleado si lo necesitas. Sin trabajo administrativo.' : 'One consolidated invoice to your PEO. Broken down by employee if needed. No administrative work.' },
                 { title: es ? 'Alerta de baja utilización' : 'Low utilization alert', desc: es ? 'Si un grupo de empleados no está usando el beneficio, SaludCompartida activa una campaña de reactivación automáticamente.' : 'If a group of employees is not using the benefit, SaludCompartida activates a reactivation campaign automatically.' },
               ].map(({ title, desc }, i) => (
