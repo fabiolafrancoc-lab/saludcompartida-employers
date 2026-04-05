@@ -5,7 +5,7 @@ import { translations as T, t } from '@/lib/translations'
 
 const COLORS = ['var(--navy)', 'var(--teal)', 'var(--muted)']
 const BGS    = ['var(--navy-light)', 'var(--teal-light)', '#F9FAFB']
-const PRICES = ['$18–22', 'X% / Y%', '$18–22']
+const PRICES = ['$16–$20', null, '$18–$22']
 const FEATURED = [true, false, false]
 
 export default function PaymentModels() {
@@ -52,8 +52,38 @@ export default function PaymentModels() {
               <h3 style={{ fontSize: 19, color: 'var(--ink)', marginBottom: 10, fontFamily: 'var(--font-display)' }}>{t(model.title, lang)}</h3>
 
               <div style={{ marginBottom: 14 }}>
-                <span style={{ fontFamily: 'var(--font-display)', fontSize: 32, color: COLORS[i] }}>{PRICES[i]}</span>
-                <span style={{ fontSize: 12, color: 'var(--muted)', marginLeft: 4 }}>{t(model.period, lang)}</span>
+                {PRICES[i] ? (
+                  <>
+                    <span style={{ fontFamily: 'var(--font-display)', fontSize: 32, color: COLORS[i] }}>{PRICES[i]}</span>
+                    <span style={{ fontSize: 12, color: 'var(--muted)', marginLeft: 4 }}>{t(model.period, lang)}</span>
+                    {i === 0 && (
+                      <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, marginLeft: 10, background: 'rgba(15,52,96,0.08)', borderRadius: 100, padding: '2px 9px' }}>
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--navy)' }}>
+                          {lang === 'es' ? 'Mejor precio' : 'Best price'}
+                        </span>
+                      </div>
+                    )}
+                    {i === 2 && (
+                      <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, marginLeft: 10, background: 'rgba(107,114,128,0.08)', borderRadius: 100, padding: '2px 9px' }}>
+                        <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--muted)' }}>
+                          {lang === 'es' ? 'precio estándar' : 'standard price'}
+                        </span>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div>
+                    <span style={{ fontFamily: 'var(--font-display)', fontSize: 28, color: COLORS[i] }}>
+                      {lang === 'es' ? 'A convenir' : 'Custom split'}
+                    </span>
+                    <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 4 }}>
+                      {lang === 'es' ? 'Empresa + empleado definen el %' : 'Company + employee define the %'}
+                    </div>
+                  </div>
+                )}
               </div>
 
               <p style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.7, marginBottom: 18, minHeight: 60 }}>{t(model.desc, lang)}</p>
