@@ -317,7 +317,7 @@ export default function Capabilities() {
 
               {/* 4 KPI widgets */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10, marginBottom: 20 }}>
-                {DASH_WIDGETS.map(({ n, label, color }, i) => (
+                {DASH_WIDGETS.map(({ n, label, color, svgPath }, i) => (
                   <div key={i} style={{ background: NAVY_CARD, borderRadius: 10, padding: '14px 16px', border: `1px solid ${color}20` }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
                       <div style={{ fontFamily: 'var(--font-display)', fontSize: 28, color, fontWeight: 700, lineHeight: 1 }}>—</div>
@@ -352,6 +352,21 @@ export default function Capabilities() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* CTA — opens the real demo dashboard */}
+            <div style={{ marginBottom: 14, background: 'rgba(34,211,238,0.08)', borderRadius: 12, padding: '14px 20px', border: '1px solid rgba(34,211,238,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: 'white' }}>
+                {es ? 'Explora el dashboard real con datos de ejemplo.' : 'Explore the real dashboard with sample data.'}
+              </div>
+              <a href="/dashboard/demo" target="_blank" rel="noopener noreferrer" style={{
+                background: '#006847', color: 'white', padding: '10px 22px',
+                borderRadius: 8, fontSize: 13, fontWeight: 700,
+                display: 'inline-flex', alignItems: 'center', gap: 8, flexShrink: 0, textDecoration: 'none',
+              }}>
+                {es ? 'Ver dashboard demo' : 'View demo dashboard'}
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </a>
             </div>
 
             {/* What you get in the report */}
