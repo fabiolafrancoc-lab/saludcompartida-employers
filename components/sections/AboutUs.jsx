@@ -113,13 +113,13 @@ export default function AboutUs() {
               : 'We are not asking your company to trust a promise. We are asking you to evaluate what is already working.'
             }
           </p>
-          <a href="/dashboard" style={{
+          <a href="/login" style={{
             background: '#006847', color: 'white',
             padding: '12px 28px', borderRadius: 8,
             fontSize: 14, fontWeight: 700,
             display: 'inline-flex', alignItems: 'center', gap: 8, flexShrink: 0,
           }}>
-            {es ? 'Ver el portal' : 'See the portal'}
+            {es ? 'Solicitar acceso' : 'Request access'}
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </a>
         </div>

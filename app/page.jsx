@@ -158,7 +158,7 @@ export default function HomePage() {
           )}
 
           {/* Portal CTA */}
-          <a href="/dashboard" style={{
+          <a href="/login" style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
             padding: '9px 12px', background: 'var(--navy)', borderRadius: 8,
             color: 'white', fontSize: 12, fontWeight: 600,

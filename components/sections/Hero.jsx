@@ -152,14 +152,14 @@ export default function Hero() {
 
         {/* CTAs */}
         <div style={{ display: 'flex', gap: 10, marginBottom: 32 }}>
-          <Link href="/dashboard" style={{
+          <Link href="/login" style={{
             background: '#006847', color: 'white',
             padding: '13px 32px', borderRadius: 8,
             fontSize: 14, fontWeight: 700,
             display: 'inline-flex', alignItems: 'center', gap: 8,
             letterSpacing: '0.02em', border: '2px solid #006847',
           }}>
-            {es ? 'Acceder al Portal' : 'Access Portal'}
+            {es ? 'Solicitar acceso' : 'Request access'}
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
