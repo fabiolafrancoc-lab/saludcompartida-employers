@@ -66,7 +66,7 @@ const SERVICES = {
       story_who: '— La separación familiar tiene un costo emocional invisible.',
       specs: [
         { chk: true, text: 'Psicólogos certificados disponibles' },
-        { chk: true, text: 'Video, chat o llamada' },
+        { chk: true, text: 'Videollamada con terapeuta certificado' },
         { chk: true, text: 'Para adultos, adolescentes y niños' },
         { chk: true, text: 'Agenda online en minutos' },
       ],
@@ -157,7 +157,7 @@ const SERVICES = {
       story_who: '— Family separation has an invisible emotional cost.',
       specs: [
         { chk: true, text: 'Certified psychologists available' },
-        { chk: true, text: 'Video, chat, or phone' },
+        { chk: true, text: 'Video call with certified therapist' },
         { chk: true, text: 'For adults, teens, and children' },
         { chk: true, text: 'Online scheduling in minutes' },
       ],
