@@ -113,7 +113,7 @@ export default function AboutUs() {
               : 'We are not asking your company to trust a promise. We are asking you to evaluate what is already working.'
             }
           </p>
-          <a href="/dashboard/demo" style={{
+          <a href="/demo" style={{
             background: '#006847', color: 'white',
             padding: '12px 28px', borderRadius: 8,
             fontSize: 14, fontWeight: 700,

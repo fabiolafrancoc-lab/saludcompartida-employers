@@ -359,7 +359,7 @@ export default function Capabilities() {
               <div style={{ fontSize: 14, fontWeight: 700, color: 'white' }}>
                 {es ? 'Explora el dashboard real con datos de ejemplo.' : 'Explore the real dashboard with sample data.'}
               </div>
-              <a href="/dashboard/demo" target="_blank" rel="noopener noreferrer" style={{
+              <a href="/demo" target="_blank" rel="noopener noreferrer" style={{
                 background: '#006847', color: 'white', padding: '10px 22px',
                 borderRadius: 8, fontSize: 13, fontWeight: 700,
                 display: 'inline-flex', alignItems: 'center', gap: 8, flexShrink: 0, textDecoration: 'none',

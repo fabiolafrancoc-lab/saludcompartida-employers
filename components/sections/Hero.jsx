@@ -152,7 +152,7 @@ export default function Hero() {
 
         {/* CTAs */}
         <div style={{ display: 'flex', gap: 10, marginBottom: 32 }}>
-          <Link href="/dashboard/demo" style={{
+          <Link href="/demo" style={{
             background: '#006847', color: 'white',
             padding: '13px 32px', borderRadius: 8,
             fontSize: 14, fontWeight: 700,
