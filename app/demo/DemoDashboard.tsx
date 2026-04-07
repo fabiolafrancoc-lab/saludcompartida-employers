@@ -7,7 +7,7 @@ const NAVY_CARD = '#162040'
 const NAVY_IN   = '#1E2D4F'
 const GREEN     = '#006847'
 
-const COMPANY = 'G&A Partners'
+const COMPANY = 'PEO Ejemplo'
 
 /* ─── BILINGUAL DATA ─────────────────────────────────────────── */
 const MONTHS_ES = ['Enero', 'Febrero', 'Marzo', 'Abril']
@@ -122,7 +122,7 @@ export default function DemoDashboard() {
           <div style={{ width: 1, height: 28, background: 'rgba(255,255,255,0.1)' }}/>
           <div>
             <div style={{ fontSize: 13, fontWeight: 700, color: 'white' }}>{COMPANY}</div>
-            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)', fontWeight: 600 }}>PEO · Houston, TX</div>
+            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.5)', fontWeight: 600 }}>PEO · United States</div>
           </div>
         </div>
 

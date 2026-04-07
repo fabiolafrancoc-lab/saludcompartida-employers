@@ -1,6 +1,5 @@
 'use client'
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { useLang } from '@/contexts/LanguageContext'
 
 const FEARS = {
@@ -148,32 +147,6 @@ export default function Hero() {
               {es ? ' · sin deducibles · sin copagos · activa en 30s' : ' · no deductibles · no copays · activates in 30s'}
             </span>
           </span>
-        </div>
-
-        {/* CTAs */}
-        <div style={{ display: 'flex', gap: 10, marginBottom: 32 }}>
-          <Link href="/demo" style={{
-            background: '#006847', color: 'white',
-            padding: '13px 32px', borderRadius: 8,
-            fontSize: 14, fontWeight: 700,
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            letterSpacing: '0.02em', border: '2px solid #006847',
-          }}>
-            {es ? 'Solicitar acceso' : 'Request access'}
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </Link>
-          <a style={{
-            background: 'rgba(255,255,255,0.1)',
-            backdropFilter: 'blur(8px)',
-            color: 'white', fontWeight: 600,
-            padding: '13px 22px', borderRadius: 8,
-            fontSize: 13, border: '1px solid rgba(255,255,255,0.2)',
-            cursor: 'pointer',
-          }}>
-            {es ? 'Ver cómo funciona' : 'See how it works'}
-          </a>
         </div>
 
         {/* Bottom stats */}
