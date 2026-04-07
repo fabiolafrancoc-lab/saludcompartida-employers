@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts'
 
 const NAVY      = '#0F3460'
@@ -81,7 +81,18 @@ const DarkTip = ({ active, payload }: any) => {
 }
 
 export default function DemoDashboard() {
-  const [lang, setLang]           = useState<'es'|'en'>('es')
+  const [lang, setLang] = useState<'es'|'en'>('es')
+
+  // Persist language choice — survives re-renders
+  useEffect(() => {
+    const saved = localStorage.getItem('demo-lang') as 'es'|'en' | null
+    if (saved === 'en') setLang('en')
+  }, [])
+
+  const handleLangChange = (l: 'es'|'en') => {
+    setLang(l)
+    localStorage.setItem('demo-lang', l)
+  }
   const [monthIdx, setMonthIdx]   = useState(3)
   const [activeTab, setActiveTab] = useState<'overview'|'employees'|'invoice'>('overview')
   const [searchQ, setSearchQ]     = useState('')
@@ -150,7 +161,7 @@ export default function DemoDashboard() {
           {/* Language toggle */}
           <div style={{ display: 'flex', gap: 2, background: 'rgba(255,255,255,0.06)', borderRadius: 8, padding: 3 }}>
             {(['es','en'] as const).map(l => (
-              <button key={l} onClick={() => setLang(l)} style={{
+              <button key={l} onClick={() => handleLangChange(l)} style={{
                 padding: '4px 12px', borderRadius: 6, border: 'none',
                 background: lang === l ? 'rgba(255,255,255,0.15)' : 'transparent',
                 color: lang === l ? 'white' : 'rgba(255,255,255,0.4)',
