@@ -24,7 +24,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <img
-            src="/saludcompartida-light-bg.png"
+            src="/sc-logo-light.png"
             alt="SaludCompartida"
             style={{ height: 36, width: 'auto', objectFit: 'contain' }}
           />

@@ -121,7 +121,7 @@ export default function DemoDashboard() {
           {/* Logo */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <img
-              src="/saludcompartida-light-bg.png"
+              src="/sc-logo-light.png"
               alt="SaludCompartida"
               style={{ height: 28, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
             />
