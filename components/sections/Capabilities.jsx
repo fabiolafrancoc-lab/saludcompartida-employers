@@ -373,9 +373,8 @@ export default function Capabilities() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
               {[
                 { title: es ? 'Vistas por empleado' : 'Per-employee view', desc: es ? 'Quién activó el beneficio y quién no, cuándo lo usó por última vez, qué servicios utiliza.' : 'Who activated the benefit and who did not, when they last used it, which services they use.' },
-                { title: es ? 'Reportes mensuales' : 'Monthly reports', desc: es ? 'Reporte semanal de actividad + resumen consolidado el día 1 de cada mes. Utilización, ahorros generados y comparativo vs semana anterior.' : 'Weekly activity report + consolidated summary on day 1 of each month. Utilization, savings generated, and comparison vs prior week.' },
+                { title: es ? 'Reportes mensuales' : 'Monthly reports', desc: es ? 'Resumen consolidado el día 1 de cada mes. Utilización, ahorros generados y comparativo vs mes anterior.' : 'Consolidated summary on day 1 of each month. Utilization, savings generated, and comparison vs previous month.' },
                 { title: es ? 'Facturación automática' : 'Automatic billing', desc: es ? 'Un solo invoice consolidado a tu PEO. Desglosado por empleado si lo necesitas. Sin trabajo administrativo.' : 'One consolidated invoice to your PEO. Broken down by employee if needed. No administrative work.' },
-                { title: es ? 'Alerta de baja utilización' : 'Low utilization alert', desc: es ? 'Si un grupo de empleados no está usando el beneficio, SaludCompartida activa una campaña de reactivación automáticamente.' : 'If a group of employees is not using the benefit, SaludCompartida activates a reactivation campaign automatically.' },
               ].map(({ title, desc }, i) => (
                 <div key={i} style={{ background: NAVY_CARD, borderRadius: 12, padding: '16px 18px', border: '1px solid rgba(255,255,255,0.07)' }}>
                   <div style={{ fontSize: 13, fontWeight: 800, color: 'white', marginBottom: 6 }}>{title}</div>
