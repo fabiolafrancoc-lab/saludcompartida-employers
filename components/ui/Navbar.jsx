@@ -23,24 +23,11 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{
-            width: 38, height: 38, borderRadius: 10,
-            background: 'linear-gradient(135deg, var(--clarity), var(--action))',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M10 2C7 2 4 5.2 4 8.8c0 5 6 9.2 6 9.2s6-4.2 6-9.2C16 5.2 13 2 10 2z" fill="white" opacity="0.9"/>
-              <circle cx="10" cy="8.5" r="2.8" fill="white"/>
-            </svg>
-          </div>
-          <div>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: 18, color: 'var(--ink)', lineHeight: 1.1 }}>
-              SaludCompartida
-            </div>
-            <div style={{ fontSize: 10, color: 'var(--clarity)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-              {t(nav.tagline, lang)}
-            </div>
-          </div>
+          <img
+            src="/saludcompartida-light-bg.png"
+            alt="SaludCompartida"
+            style={{ height: 36, width: 'auto', objectFit: 'contain' }}
+          />
         </Link>
 
         {/* Nav links */}

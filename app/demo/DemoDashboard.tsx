@@ -120,15 +120,12 @@ export default function DemoDashboard() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
           {/* Logo */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ width: 28, height: 28, borderRadius: 7, background: GREEN, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-              </svg>
-            </div>
-            <div>
-              <div style={{ fontSize: 13, fontWeight: 800, color: 'white', lineHeight: 1 }}>SaludCompartida</div>
-              <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.5)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>for employers</div>
-            </div>
+            <img
+              src="/saludcompartida-light-bg.png"
+              alt="SaludCompartida"
+              style={{ height: 28, width: 'auto', objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
+            />
+            <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.5)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>for employers</div>
           </div>
           <div style={{ width: 1, height: 28, background: 'rgba(255,255,255,0.1)' }}/>
           <div>
