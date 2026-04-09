@@ -87,20 +87,20 @@ export default function HomePage() {
       }}>
 
         {/* Logo */}
-        <div style={{ padding: collapsed ? '18px 14px' : '18px 18px', borderBottom: '1px solid var(--border)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ flexShrink: 0 }}>
-              <SCLogoMark size={36} />
-            </div>
-            {!collapsed && (
-              <div>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 15, color: 'var(--ink)', lineHeight: 1.1, whiteSpace: 'nowrap' }}>
-                  SaludCompartida
-                </div>
-                <div style={{ fontSize: 9, color: 'var(--teal)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                  For Employers
-                </div>
-              </div>
+        <div style={{ padding: collapsed ? '14px 10px' : '14px 18px', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: collapsed ? 'center' : 'flex-start' }}>
+            {collapsed ? (
+              <img
+                src="/sc-logo-light.png"
+                alt="SaludCompartida"
+                style={{ height: 28, width: 28, objectFit: 'contain', objectPosition: 'left center' }}
+              />
+            ) : (
+              <img
+                src="/sc-logo-light.png"
+                alt="SaludCompartida"
+                style={{ height: 36, width: 'auto', objectFit: 'contain', maxWidth: 180 }}
+              />
             )}
           </div>
         </div>
